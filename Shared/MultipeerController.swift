@@ -53,7 +53,7 @@ public class MultipeerController: NSObject {
     public let serviceType: String
     public let connectionType: ConnectionType
 
-    private let myPeerID = MCPeerID(displayName: UIDevice.current.name)
+    private let myPeerID = MCPeerID(displayName: "UIDevice.current.name")
     private lazy var session: MCSession = MCSession(peer: myPeerID)
 
     #if os(iOS)

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		327CAE3424AE6F3100F94F57 /* TileMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CAE3324AE6F3100F94F57 /* TileMapping.swift */; };
 		327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 327CAE3524AE702700F94F57 /* BasicTileSet.sks */; };
-		32D3363124AE725D00EC37FD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32D3363024AE725900EC37FD /* GameScene.sks */; };
+		32D3363324AE781300EC37FD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32D3363224AE781300EC37FD /* GameScene.sks */; };
 		CB5E26F224AE46F200400B2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E26F124AE46F200400B2E /* AppDelegate.swift */; };
 		CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26F324AE46F200400B2E /* GameScene.sks */; };
 		CB5E26F624AE46F200400B2E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26F524AE46F200400B2E /* Actions.sks */; };
@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		327CAE3324AE6F3100F94F57 /* TileMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapping.swift; sourceTree = "<group>"; };
 		327CAE3524AE702700F94F57 /* BasicTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BasicTileSet.sks; sourceTree = "<group>"; };
-		32D3363024AE725900EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../tvAPP.xcodeproj/GameScene.sks; sourceTree = "<group>"; };
+		32D3363224AE781300EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CB5E26EE24AE46F200400B2E /* tvAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5E26F124AE46F200400B2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5E26F324AE46F200400B2E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -187,9 +187,9 @@
 		CBC5D86824AE48ED00D049DF /* macAPP */ = {
 			isa = PBXGroup;
 			children = (
+				32D3363224AE781300EC37FD /* GameScene.sks */,
 				CBC5D87D24AE48F600D049DF /* Application */,
 				CBC5D86D24AE48ED00D049DF /* Actions.sks */,
-				32D3363024AE725900EC37FD /* GameScene.sks */,
 				CBC5D86F24AE48ED00D049DF /* GameScene.swift */,
 				CBC5D87124AE48ED00D049DF /* ViewController.swift */,
 				CBC5D87324AE48EF00D049DF /* Assets.xcassets */,
@@ -351,7 +351,7 @@
 				CBC5D88624AE497500D049DF /* MediaShared.xcassets in Resources */,
 				CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D86E24AE48ED00D049DF /* Actions.sks in Resources */,
-				32D3363124AE725D00EC37FD /* GameScene.sks in Resources */,
+				32D3363324AE781300EC37FD /* GameScene.sks in Resources */,
 				327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */,
 				CBC5D87724AE48EF00D049DF /* Main.storyboard in Resources */,
 			);
