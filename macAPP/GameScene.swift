@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import MultipeerConnectivity
 
 class GameScene: SKScene {
     
@@ -29,6 +30,7 @@ class GameScene: SKScene {
         tileMapping.buildNumericMap(from: chao!)
         self.initShapes()
 
+        MultipeerController.shared().delegate = self
 //        let position = chao?.convert(square!.position, to: square!)
 //        let column = chao?.tileColumnIndex(fromPosition: position!)
 //        let row = chao?.tileRowIndex(fromPosition: position!)
@@ -157,5 +159,40 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+}
+
+extension GameScene: MultipeerHandler {
+    func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
+        print("Encontrado um usuário")
+        return true
+    }
+
+    func receivedData(_ data: Data, from peerID: MCPeerID) {
+        guard let texto = String(bytes: data, encoding: .utf8) else { return }
+        let move = Movement(decode: texto)
+
+        if !lockPlayer {
+            let instantPos = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
+            switch move.type {
+            case .right : //right
+                self.instantCol = tileMapping.getIndexWallRightRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+            case .left: //left
+                self.instantCol = tileMapping.getIndexWallLeftRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+            case .up: //up
+                self.instantRow = tileMapping.getIndexWallUpColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+            case .down: //down
+                self.instantRow = tileMapping.getIndexWallDownColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+            default:
+                break
+            }
+            let destination = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
+            let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
+            lockPlayer = true
+            self.spriteSquare?.run(action, completion: {
+                self.lockPlayer = false
+            })
+        }
+        print("\(move.type) \(peerID)")
     }
 }
