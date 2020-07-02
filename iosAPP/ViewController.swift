@@ -51,23 +51,24 @@ class ViewController: UIViewController {
             movement = "down"
         }
 
-        if let movementData = movement.data(using: .utf8) {
-            MultipeerController.shared().sendToAllPeers(movementData, reliably: false)
+        if let movementData = movement.data(using: .utf8), let host = host {
+            MultipeerController.shared().sendToPeers(movementData, reliably: false, peers: [host])
         }
     }
 
 }
 
 extension ViewController: MultipeerHandler {
+
+    // Quando encontra o host do jogo (AppleTV)
     func peerDiscovered(_ id: MCPeerID) -> Bool {
         host = id
         return true
     }
-
+        
     func peerLost(_ id: MCPeerID) {
 
     }
-
 
 }
 

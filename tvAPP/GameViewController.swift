@@ -45,6 +45,6 @@ extension GameViewController: MultipeerHandler {
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         let texto = String(bytes: data, encoding: .utf8)
-        print(texto)
+        print("\(texto) \(peerID)")
     }
 }

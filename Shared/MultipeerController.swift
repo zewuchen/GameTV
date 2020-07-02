@@ -104,7 +104,6 @@ extension MultipeerController: MCSessionDelegate {
         }
     }
 
-
 }
 
 #if os(iOS)
