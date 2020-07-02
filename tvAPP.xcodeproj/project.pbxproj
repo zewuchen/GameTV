@@ -35,6 +35,12 @@
 		CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
 		CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
 		CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
+		CBC5D89424AE539A00D049DF /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89324AE539A00D049DF /* MultipeerController.swift */; };
+		CBC5D89624AE53C600D049DF /* MultipeerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */; };
+		CBC5D89724AE53C600D049DF /* MultipeerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */; };
+		CBC5D89824AE53C600D049DF /* MultipeerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */; };
+		CBC5D89924AE53D100D049DF /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89324AE539A00D049DF /* MultipeerController.swift */; };
+		CBC5D89A24AE53D200D049DF /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89324AE539A00D049DF /* MultipeerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +75,8 @@
 		CBC5D87924AE48EF00D049DF /* macAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macAPP.entitlements; sourceTree = "<group>"; };
 		CBC5D88324AE497500D049DF /* MediaShared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaShared.xcassets; sourceTree = "<group>"; };
 		CBC5D88724AE499200D049DF /* InfoShared.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoShared.plist; sourceTree = "<group>"; };
+		CBC5D89324AE539A00D049DF /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
+		CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +207,8 @@
 		CBC5D87E24AE491200D049DF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				CBC5D89324AE539A00D049DF /* MultipeerController.swift */,
+				CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */,
 				CBC5D88324AE497500D049DF /* MediaShared.xcassets */,
 				CBC5D88724AE499200D049DF /* InfoShared.plist */,
 			);
@@ -348,8 +358,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5E26F824AE46F200400B2E /* GameScene.swift in Sources */,
+				CBC5D89624AE53C600D049DF /* MultipeerHandler.swift in Sources */,
 				CB5E26FA24AE46F200400B2E /* GameViewController.swift in Sources */,
 				CB5E26F224AE46F200400B2E /* AppDelegate.swift in Sources */,
+				CBC5D89424AE539A00D049DF /* MultipeerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC5D85024AE486100D049DF /* ViewController.swift in Sources */,
+				CBC5D89924AE53D100D049DF /* MultipeerController.swift in Sources */,
+				CBC5D89724AE53C600D049DF /* MultipeerHandler.swift in Sources */,
 				CBC5D84C24AE486100D049DF /* AppDelegate.swift in Sources */,
 				CBC5D84E24AE486100D049DF /* SceneDelegate.swift in Sources */,
 				CBC5D85624AE486100D049DF /* iosAPP.xcdatamodeld in Sources */,
@@ -368,8 +382,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBC5D89A24AE53D200D049DF /* MultipeerController.swift in Sources */,
 				CBC5D87224AE48ED00D049DF /* ViewController.swift in Sources */,
 				CBC5D87024AE48ED00D049DF /* GameScene.swift in Sources */,
+				CBC5D89824AE53C600D049DF /* MultipeerHandler.swift in Sources */,
 				CBC5D86A24AE48ED00D049DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DB2793VW42;
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -592,6 +609,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DB2793VW42;
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
