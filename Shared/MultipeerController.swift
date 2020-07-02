@@ -8,6 +8,33 @@
 
 import MultipeerConnectivity
 
+public enum MovementType {
+    case up
+    case down
+    case left
+    case right
+    case invalid
+}
+
+public struct Movement {
+    var decode: String
+
+    var type: MovementType {
+        switch decode {
+        case "1":
+            return .up
+        case "2":
+            return .down
+        case "3":
+            return .left
+        case "4":
+            return .right
+        default:
+            return .invalid
+        }
+    }
+}
+
 public enum ConnectionType {
     case host
     case peer
@@ -38,7 +65,7 @@ public class MultipeerController: NSObject {
     public var delegate: MultipeerHandler?
 
     private override init() {
-        self.serviceType = "teste"
+        self.serviceType = "GameTV"
         #if os(iOS)
         browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         browser.startBrowsingForPeers()

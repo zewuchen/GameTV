@@ -36,19 +36,19 @@ class ViewController: UIViewController {
     }
 
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
-        var movement: String = "invalid"
+        var movement: String = "0"
 
-        if gesture.direction == .right {
-            movement = "right"
-        }
-        else if gesture.direction == .left {
-            movement = "left"
-        }
-        else if gesture.direction == .up {
-            movement = "up"
+        if gesture.direction == .up {
+            movement = "1"
         }
         else if gesture.direction == .down {
-            movement = "down"
+            movement = "2"
+        }
+        else if gesture.direction == .left {
+            movement = "3"
+        }
+        else if gesture.direction == .right {
+            movement = "4"
         }
 
         if let movementData = movement.data(using: .utf8), let host = host {
