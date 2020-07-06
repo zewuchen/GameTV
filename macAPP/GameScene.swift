@@ -14,10 +14,9 @@ class GameScene: SKScene {
     
     private var chao : SKTileMapNode?
     private var spriteSquare: SKShapeNode?
-    var player = Player(name: "Teste", colorPlayer: .black, instantCol: 1, instantRow: 22)
+    var player = Player(name: "Teste", colorPlayer: .blue, instantCol: 1, instantRow: 22)
     
     let tileMapping = TileMapping()
-    var lockPlayer = false
     
     override func didMove(to view: SKView) {
         self.chao = self.childNode(withName: "//chao") as? SKTileMapNode
@@ -42,7 +41,7 @@ class GameScene: SKScene {
     }
     
     override func keyDown(with event: NSEvent) {
-        if !lockPlayer {
+        if !player.lock {
             let character = Int16(event.keyCode)
             let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow))!
             switch character {
@@ -59,9 +58,9 @@ class GameScene: SKScene {
             }
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-                lockPlayer = true
+                player.lock = true
                 self.spriteSquare?.run(action, completion: {
-                    self.lockPlayer = false
+                    self.player.lock = false
                 })
             }
         }
@@ -91,7 +90,7 @@ extension GameScene: MultipeerHandler {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)
 
-        if !lockPlayer {
+        if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             switch move.type {
             case .right : //right
@@ -107,9 +106,9 @@ extension GameScene: MultipeerHandler {
             }
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-                lockPlayer = true
+                player.lock = true
                 self.spriteSquare?.run(action, completion: {
-                    self.lockPlayer = false
+                    self.player.lock = false
                 })
             }
         }

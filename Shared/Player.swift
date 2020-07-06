@@ -55,12 +55,14 @@ class Player {
     var score: Int
     var instantCol: Int
     var instantRow: Int
+    var lock: Bool
 
-    public init(name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int) {
+    public init(name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int, lock: Bool = false) {
         self.name = name
         self.colorPlayer = colorPlayer
         self.score = score
         self.instantCol = instantCol
         self.instantRow = instantRow
+        self.lock = lock
     }
 }
