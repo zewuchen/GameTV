@@ -13,139 +13,63 @@ import MultipeerConnectivity
 class GameScene: SKScene {
     
     private var chao : SKTileMapNode?
-    private var spriteSquare: SKShapeNode?
+    private var squares: [SKShapeNode?] = []
+    var players: [Player] = [
+        Player(id: "1", name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22),
+        Player(id: "2", name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)]
     
     let tileMapping = TileMapping()
-    var instantCol = 0
-    var instantRow = 0
-    var lockPlayer = false
+    var player1 = false // Teste
     
     override func didMove(to view: SKView) {
-        
-//        self.square = self.childNode(withName: "//square") as? SKNode
-//        square!.position = CGPoint(x: 0, y: 0)
-//        self.square
-        // Get label node from scene and store it for use later
         self.chao = self.childNode(withName: "//chao") as? SKTileMapNode
         tileMapping.buildNumericMap(from: chao!)
         self.initShapes()
 
         MultipeerController.shared().delegate = self
-//        let position = chao?.convert(square!.position, to: square!)
-//        let column = chao?.tileColumnIndex(fromPosition: position!)
-//        let row = chao?.tileRowIndex(fromPosition: position!)
-//        print(column, row)
-//
-//        let destination = (chao?.centerOfTile(atColumn: 1, row: 22))!
-//        instantCol = 1
-//        instantRow = 22
-////        let action = SKAction.move(to: destination, duration: 0)
-////        square.run(action)
-//        square!.position = destination
-//        print(square!.position)
-//
-//        let position2 = chao?.convert(square.position, to: square)
-//        let column2 = chao?.tileColumnIndex(fromPosition: position2!)
-//        let row2 = chao?.tileRowIndex(fromPosition: position2!)
-//        print(column2, row2)
-        
-        
-        // Create shape node to use during mouse interaction
-//        let w = (self.size.width + self.size.height) * 0.05
-//        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-//
-//        if let spinnyNode = self.spinnyNode {
-//            spinnyNode.lineWidth = 2.5
-//
-//            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-//            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-//                                              SKAction.fadeOut(withDuration: 0.5),
-//                                              SKAction.removeFromParent()]))
-//        }
     }
     
     func initShapes() {
-        self.spriteSquare = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
-        guard let sSquare = self.spriteSquare else {
-            fatalError()
+        for player in players {
+            let square = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
+            square.fillColor = player.colorPlayer.color
+            square.name = player.id
+            self.squares.append(square)
         }
-        sSquare.name = "player1"
-        sSquare.fillColor = .blue
-//        sSquare.position = CGPoint(x: 0, y: 0)
-        let destination = (chao?.centerOfTile(atColumn: 1, row: 22))!
-        instantCol = 1
-        instantRow = 22
 
-        sSquare.position = destination
-        self.chao?.addChild(sSquare)
+        for index in 0..<squares.count {
+            if let positionSquare = (chao?.centerOfTile(atColumn: players[index].instantCol, row: players[index].instantRow)), let square = squares[index] {
+                square.position = positionSquare
+                self.chao?.addChild(square)
+            }
+        }
     }
     
-//
-//    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchMoved(toPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.blue
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
-//    }
-//
-//    override func mouseDown(with event: NSEvent) {
-//        self.touchDown(atPoint: event.location(in: self))
-//    }
-//
-//    override func mouseDragged(with event: NSEvent) {
-//        self.touchMoved(toPoint: event.location(in: self))
-//    }
-//
-//    override func mouseUp(with event: NSEvent) {
-//        self.touchUp(atPoint: event.location(in: self))
-//    }
-    
     override func keyDown(with event: NSEvent) {
-        if !lockPlayer {
+        guard var player = players.first else { return }
+        if !player.lock {
             let character = Int16(event.keyCode)
-            let instantPos = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
+            let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow))!
             switch character {
             case 0x7C : //right
-                self.instantCol = tileMapping.getIndexWallRightRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case 0x7B: //left
-                self.instantCol = tileMapping.getIndexWallLeftRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case 0x7E: //up
-                self.instantRow = tileMapping.getIndexWallUpColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case 0x7D: //down
-                self.instantRow = tileMapping.getIndexWallDownColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:
                 break
             }
-            let destination = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
-            let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-            lockPlayer = true
-            self.spriteSquare?.run(action, completion: {
-                self.lockPlayer = false
-            })
+            if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
+                let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
+                player.lock = true
+                self.squares.first??.run(action, completion: {
+                    player.lock = false
+                })
+            }
         }
-//        self.spriteSquare?.position = destination
-        
-        
-//        instantCol = instantCol + 1
-//        let destination = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
-//        self.square?.position = destination
     }
     
     func getDuration(pointA:CGPoint,pointB:CGPoint,speed:CGFloat)->TimeInterval {
@@ -163,36 +87,64 @@ class GameScene: SKScene {
 }
 
 extension GameScene: MultipeerHandler {
+
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
         print("Encontrado um usuário")
+
+        // Teste
+        if !player1 {
+            players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
+            squares[0]?.name = id.description
+            player1 = true
+        } else {
+            players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
+            squares[1]?.name = id.description
+        }
+
         return true
     }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)
+        var playerAux: Player?
+        var squareAux: SKShapeNode?
 
-        if !lockPlayer {
-            let instantPos = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
+        // Encontra qual é o player e a square que vai se mover
+        for index in 0..<players.count {
+            if players[index].id == peerID.description {
+                playerAux = players[index]
+            }
+            if squares[index]?.name == peerID.description {
+                squareAux = squares[index]
+            }
+        }
+
+        guard var player = playerAux else { return }
+        guard var square = squareAux else { return }
+
+        if !player.lock {
+            guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             switch move.type {
             case .right : //right
-                self.instantCol = tileMapping.getIndexWallRightRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .left: //left
-                self.instantCol = tileMapping.getIndexWallLeftRow(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .up: //up
-                self.instantRow = tileMapping.getIndexWallUpColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .down: //down
-                self.instantRow = tileMapping.getIndexWallDownColumn(instantRow: instantRow, instantCol: instantCol) ?? 0
+                player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:
                 break
             }
-            let destination = (chao?.centerOfTile(atColumn: instantCol, row: instantRow))!
-            let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-            lockPlayer = true
-            self.spriteSquare?.run(action, completion: {
-                self.lockPlayer = false
-            })
+            if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
+                let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
+                player.lock = true
+                square.run(action, completion: {
+                    player.lock = false
+                })
+            }
         }
-        print("\(move.type) \(peerID)")
+        print("\(peerID) moveu para \(move.type)")
     }
 }
