@@ -11,7 +11,10 @@ import MultipeerConnectivity
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var selectionView: SelectionController!
+    
     var host: MCPeerID?
+    var instantPos = (0,0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +42,23 @@ class ViewController: UIViewController {
         var movement: String = "0"
 
         if gesture.direction == .up {
+            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .up)
+            self.instantPos = finalPos
             movement = "1"
         }
         else if gesture.direction == .down {
+            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .down)
+            self.instantPos = finalPos
             movement = "2"
         }
         else if gesture.direction == .left {
+            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .left)
+            self.instantPos = finalPos
             movement = "3"
         }
         else if gesture.direction == .right {
+            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .right)
+            self.instantPos = finalPos
             movement = "4"
         }
 

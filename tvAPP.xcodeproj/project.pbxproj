@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48B624AFA990008CEA30 /* HomeViewController.swift */; };
+		324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324F48B724AFA990008CEA30 /* HomeViewController.xib */; };
+		324F48BB24AFAB45008CEA30 /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */; };
 		327CAE3424AE6F3100F94F57 /* TileMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CAE3324AE6F3100F94F57 /* TileMapping.swift */; };
 		327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 327CAE3524AE702700F94F57 /* BasicTileSet.sks */; };
 		32D3363324AE781300EC37FD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32D3363224AE781300EC37FD /* GameScene.sks */; };
 		CB4ACFA024B38BDB009E1EA0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4ACF9F24B38BDB009E1EA0 /* Player.swift */; };
 		CB4ACFA124B38BDB009E1EA0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4ACF9F24B38BDB009E1EA0 /* Player.swift */; };
 		CB4ACFA224B38BDB009E1EA0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4ACF9F24B38BDB009E1EA0 /* Player.swift */; };
+		32E3A38024B3AC97000287D0 /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */; };
 		CB5E26F224AE46F200400B2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E26F124AE46F200400B2E /* AppDelegate.swift */; };
 		CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26F324AE46F200400B2E /* GameScene.sks */; };
 		CB5E26F624AE46F200400B2E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26F524AE46F200400B2E /* Actions.sks */; };
@@ -34,9 +38,6 @@
 		CBC5D87224AE48ED00D049DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D87124AE48ED00D049DF /* ViewController.swift */; };
 		CBC5D87424AE48EF00D049DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D87324AE48EF00D049DF /* Assets.xcassets */; };
 		CBC5D87724AE48EF00D049DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D87524AE48EF00D049DF /* Main.storyboard */; };
-		CBC5D88424AE497500D049DF /* MediaShared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88324AE497500D049DF /* MediaShared.xcassets */; };
-		CBC5D88524AE497500D049DF /* MediaShared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88324AE497500D049DF /* MediaShared.xcassets */; };
-		CBC5D88624AE497500D049DF /* MediaShared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88324AE497500D049DF /* MediaShared.xcassets */; };
 		CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
 		CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
 		CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
@@ -49,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		324F48B624AFA990008CEA30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		324F48B724AFA990008CEA30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
 		327CAE3324AE6F3100F94F57 /* TileMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapping.swift; sourceTree = "<group>"; };
 		327CAE3524AE702700F94F57 /* BasicTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BasicTileSet.sks; sourceTree = "<group>"; };
 		32D3363224AE781300EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -81,7 +85,6 @@
 		CBC5D87624AE48EF00D049DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBC5D87824AE48EF00D049DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBC5D87924AE48EF00D049DF /* macAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macAPP.entitlements; sourceTree = "<group>"; };
-		CBC5D88324AE497500D049DF /* MediaShared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaShared.xcassets; sourceTree = "<group>"; };
 		CBC5D88724AE499200D049DF /* InfoShared.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoShared.plist; sourceTree = "<group>"; };
 		CBC5D89324AE539A00D049DF /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerHandler.swift; sourceTree = "<group>"; };
@@ -112,6 +115,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		324F48B124AFA8BA008CEA30 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				324F48B624AFA990008CEA30 /* HomeViewController.swift */,
+				324F48B724AFA990008CEA30 /* HomeViewController.xib */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
 		CB5E26E524AE46F100400B2E = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +148,7 @@
 		CB5E26F024AE46F200400B2E /* tvAPP */ = {
 			isa = PBXGroup;
 			children = (
+				324F48B124AFA8BA008CEA30 /* Screen */,
 				CBC5D86024AE486900D049DF /* Application */,
 				CB5E26F324AE46F200400B2E /* GameScene.sks */,
 				CB5E26F524AE46F200400B2E /* Actions.sks */,
@@ -145,6 +158,7 @@
 				CB5E26FE24AE46F500400B2E /* Assets.xcassets */,
 				CB5E270024AE46F500400B2E /* LaunchScreen.storyboard */,
 				CB5E270324AE46F500400B2E /* Info.plist */,
+				324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */,
 			);
 			path = tvAPP;
 			sourceTree = "<group>";
@@ -219,7 +233,6 @@
 			children = (
 				CBC5D89324AE539A00D049DF /* MultipeerController.swift */,
 				CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */,
-				CBC5D88324AE497500D049DF /* MediaShared.xcassets */,
 				CBC5D88724AE499200D049DF /* InfoShared.plist */,
 				CB4ACF9F24B38BDB009E1EA0 /* Player.swift */,
 			);
@@ -327,11 +340,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5E26FD24AE46F200400B2E /* Main.storyboard in Resources */,
-				CBC5D88424AE497500D049DF /* MediaShared.xcassets in Resources */,
 				CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */,
 				CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */,
 				CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */,
 				CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */,
+				324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */,
 				CB5E26F624AE46F200400B2E /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +357,6 @@
 				CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D85824AE486300D049DF /* Assets.xcassets in Resources */,
 				CBC5D85324AE486100D049DF /* Main.storyboard in Resources */,
-				CBC5D88524AE497500D049DF /* MediaShared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC5D87424AE48EF00D049DF /* Assets.xcassets in Resources */,
-				CBC5D88624AE497500D049DF /* MediaShared.xcassets in Resources */,
 				CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D86E24AE48ED00D049DF /* Actions.sks in Resources */,
 				32D3363324AE781300EC37FD /* GameScene.sks in Resources */,
@@ -375,6 +386,8 @@
 				CB5E26F224AE46F200400B2E /* AppDelegate.swift in Sources */,
 				CB4ACFA024B38BDB009E1EA0 /* Player.swift in Sources */,
 				CBC5D89424AE539A00D049DF /* MultipeerController.swift in Sources */,
+				324F48BB24AFAB45008CEA30 /* ColorSelectionView.swift in Sources */,
+				324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +401,7 @@
 				CBC5D84C24AE486100D049DF /* AppDelegate.swift in Sources */,
 				CB4ACFA124B38BDB009E1EA0 /* Player.swift in Sources */,
 				CBC5D84E24AE486100D049DF /* SceneDelegate.swift in Sources */,
+				32E3A38024B3AC97000287D0 /* ColorSelectionView.swift in Sources */,
 				CBC5D85624AE486100D049DF /* iosAPP.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
