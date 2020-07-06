@@ -13,10 +13,13 @@ import MultipeerConnectivity
 class GameScene: SKScene {
     
     private var chao : SKTileMapNode?
-    private var spriteSquare: SKShapeNode?
-    var player = Player(name: "Teste", colorPlayer: .blue, instantCol: 1, instantRow: 22)
+    private var squares: [SKShapeNode?] = []
+    var players: [Player] = [
+        Player(name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22),
+        Player(name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)]
     
     let tileMapping = TileMapping()
+    var player1 = false // Teste
     
     override func didMove(to view: SKView) {
         self.chao = self.childNode(withName: "//chao") as? SKTileMapNode
@@ -27,20 +30,23 @@ class GameScene: SKScene {
     }
     
     func initShapes() {
-        self.spriteSquare = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
-        guard let sSquare = self.spriteSquare else {
-            fatalError()
+        for player in players {
+            let square = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
+            square.fillColor = player.colorPlayer.color
+            square.name = player.name
+            self.squares.append(square)
         }
-        sSquare.name = player.name
-        sSquare.fillColor = player.colorPlayer.color
 
-        if let positionSquare = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
-            sSquare.position = positionSquare
-            self.chao?.addChild(sSquare)
+        for index in 0..<squares.count {
+            if let positionSquare = (chao?.centerOfTile(atColumn: players[index].instantCol, row: players[index].instantRow)), let square = squares[index] {
+                square.position = positionSquare
+                self.chao?.addChild(square)
+            }
         }
     }
     
     override func keyDown(with event: NSEvent) {
+        guard var player = players.first else { return }
         if !player.lock {
             let character = Int16(event.keyCode)
             let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow))!
@@ -59,8 +65,8 @@ class GameScene: SKScene {
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
-                self.spriteSquare?.run(action, completion: {
-                    self.player.lock = false
+                self.squares.first??.run(action, completion: {
+                    player.lock = false
                 })
             }
         }
@@ -81,14 +87,41 @@ class GameScene: SKScene {
 }
 
 extension GameScene: MultipeerHandler {
+
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
         print("Encontrado um usuário")
+
+        // Teste
+        if !player1 {
+            players[0] = Player(name: id.description, colorPlayer: .blue, instantCol: 1, instantRow: 22)
+            squares[0]?.name = id.description
+            player1 = true
+        } else {
+            players[1] = Player(name: id.description, colorPlayer: .blue, instantCol: 22, instantRow: 22)
+            squares[1]?.name = id.description
+        }
+
         return true
     }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)
+        var playerAux: Player?
+        var squareAux: SKShapeNode?
+
+        // Encontra qual é o player e a square que vai se mover
+        for index in 0..<players.count {
+            if players[index].name == peerID.description {
+                playerAux = players[index]
+            }
+            if squares[index]?.name == peerID.description {
+                squareAux = squares[index]
+            }
+        }
+
+        guard var player = playerAux else { return }
+        guard var square = squareAux else { return }
 
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
@@ -107,11 +140,11 @@ extension GameScene: MultipeerHandler {
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
-                self.spriteSquare?.run(action, completion: {
-                    self.player.lock = false
+                square.run(action, completion: {
+                    player.lock = false
                 })
             }
         }
-        print("\(move.type) \(peerID)")
+        print("\(peerID) moveu para \(move.type)")
     }
 }
