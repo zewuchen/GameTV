@@ -5,6 +5,7 @@
 //  Created by Zewu Chen on 06/07/20.
 //  Copyright © 2020 Zewu Chen. All rights reserved.
 //
+#if !os(macOS)
 import UIKit
 
 public enum ColorPlayer {
@@ -25,6 +26,28 @@ public enum ColorPlayer {
         }
     }
 }
+#else
+import AppKit
+
+public enum ColorPlayer {
+    case black
+    case blue
+    case red
+
+    var color: NSColor {
+        switch self {
+        case .black:
+            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        case .blue:
+            return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        case .red:
+            return #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        default:
+            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+    }
+}
+#endif
 
 class Player {
     let name: String
@@ -33,7 +56,7 @@ class Player {
     var instantCol: Int
     var instantRow: Int
 
-    public init(_ name: String, _ colorPlayer: ColorPlayer, _ score: Int = 0, _ instantCol: Int, _ instantRow: Int) {
+    public init(name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int) {
         self.name = name
         self.colorPlayer = colorPlayer
         self.score = score
