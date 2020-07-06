@@ -2,7 +2,6 @@
 //  Player.swift
 //  tvAPP
 //
-<<<<<<< HEAD
 //  Created by Zewu Chen on 06/07/20.
 //  Copyright © 2020 Zewu Chen. All rights reserved.
 //
@@ -69,10 +68,4 @@ class Player {
         self.lock = lock
     }
 }
-=======
-//  Created by Felipe Petersen on 03/07/20.
-//  Copyright © 2020 Zewu Chen. All rights reserved.
-//
 
-import Foundation
->>>>>>> create single menu
