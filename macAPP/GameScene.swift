@@ -15,8 +15,8 @@ class GameScene: SKScene {
     private var chao : SKTileMapNode?
     private var squares: [SKShapeNode?] = []
     var players: [Player] = [
-        Player(name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22),
-        Player(name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)]
+        Player(id: "1", name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22),
+        Player(id: "2", name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)]
     
     let tileMapping = TileMapping()
     var player1 = false // Teste
@@ -33,7 +33,7 @@ class GameScene: SKScene {
         for player in players {
             let square = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             square.fillColor = player.colorPlayer.color
-            square.name = player.name
+            square.name = player.id
             self.squares.append(square)
         }
 
@@ -93,11 +93,11 @@ extension GameScene: MultipeerHandler {
 
         // Teste
         if !player1 {
-            players[0] = Player(name: id.description, colorPlayer: .blue, instantCol: 1, instantRow: 22)
+            players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
             squares[0]?.name = id.description
             player1 = true
         } else {
-            players[1] = Player(name: id.description, colorPlayer: .blue, instantCol: 22, instantRow: 22)
+            players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
             squares[1]?.name = id.description
         }
 
@@ -112,7 +112,7 @@ extension GameScene: MultipeerHandler {
 
         // Encontra qual é o player e a square que vai se mover
         for index in 0..<players.count {
-            if players[index].name == peerID.description {
+            if players[index].id == peerID.description {
                 playerAux = players[index]
             }
             if squares[index]?.name == peerID.description {

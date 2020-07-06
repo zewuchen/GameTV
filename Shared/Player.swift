@@ -50,6 +50,7 @@ public enum ColorPlayer {
 #endif
 
 class Player {
+    let id: String
     let name: String
     var colorPlayer: ColorPlayer
     var score: Int
@@ -57,7 +58,8 @@ class Player {
     var instantRow: Int
     var lock: Bool
 
-    public init(name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int, lock: Bool = false) {
+    public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int, lock: Bool = false) {
+        self.id = id
         self.name = name
         self.colorPlayer = colorPlayer
         self.score = score
