@@ -7,47 +7,54 @@
 //
 #if !os(macOS)
 import UIKit
-
-public enum ColorPlayer {
-    case black
-    case blue
-    case red
-
-    var color: UIColor {
-        switch self {
-        case .black:
-            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        case .blue:
-            return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-        case .red:
-            return #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        default:
-            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        }
-    }
-}
 #else
 import AppKit
+#endif
 
 public enum ColorPlayer {
-    case black
     case blue
     case red
+    case green
+    case purple
+    case orange
+    case yellow
 
-    var color: NSColor {
+    #if !os(macOS)
+    var color: UIColor {
         switch self {
-        case .black:
-            return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         case .blue:
-            return #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            return DesignSystem.Colors.blue
         case .red:
-            return #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        default:
-            return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            return DesignSystem.Colors.red
+        case .green:
+            return DesignSystem.Colors.green
+        case .purple:
+            return DesignSystem.Colors.purple
+        case .orange:
+            return DesignSystem.Colors.orange
+        case .yellow:
+            return DesignSystem.Colors.yellow
         }
     }
+    #else
+    var color: NSColor {
+        switch self {
+        case .blue:
+            return DesignSystem.Colors.blue
+        case .red:
+            return DesignSystem.Colors.red
+        case .green:
+            return DesignSystem.Colors.green
+        case .purple:
+            return DesignSystem.Colors.purple
+        case .orange:
+            return DesignSystem.Colors.orange
+        case .yellow:
+            return DesignSystem.Colors.yellow
+        }
+    }
+    #endif
 }
-#endif
 
 class Player {
     let id: String
