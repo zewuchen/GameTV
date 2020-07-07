@@ -9,15 +9,9 @@
 import Foundation
 import UIKit
 
-enum SelectionState: CGFloat {
-    case notSelected = 50
-    case preSelected = 200
-    case selected = 300
-}
-
 class SelectionController: UIView {
-
-    let colors: [[UIColor]] = [[.orange, .blue, .green], [.black, .brown, .red]]
+    
+    let colors: [[ColorPlayer]] = [[.red, .blue, .black], [.black, .blue, .red]]
     var viewHeight: CGFloat?
     var viewWidth: CGFloat?
     var selectionViews = [[SelectionView]]()
@@ -100,46 +94,86 @@ class SelectionController: UIView {
         self.selectionViews[instantPos.0][instantPos.1].animateTo(state: .selected, newColumn: nil)
         return true
     }
+    
+    func getColor(instantPos: (Int,Int)) -> ColorPlayer {
+        return self.selectionViews[instantPos.0][instantPos.1].color ?? .blue
+    }
+    
+    func deselectAllViews() {
+        for column in selectionViews  {
+            for view in column {
+                view.state = .notSelected
+            }
+        }
+    }
+    
+    func updateBasedOnPlayersPosition(players: [Player]) {
+        deselectAllViews()
+        for player in players {
+            let view = selectionViews[player.menuPosition.0][player.menuPosition.1]
+            //TODO:- Tratar se já esta na selected
+            view.state = player.selectionState
+        }
+        for column in selectionViews  {
+            for view in column {
+                view.animateOwnState()
+            }
+        }
+    }
+    
+    func getLimitsOfColors() -> (Int, Int) {
+        return (self.colors.count, self.colors[0].count)
+    }
 }
 
 class SelectionView: UIView {
     
-    var color: UIColor?
+    var color: ColorPlayer?
     var state: SelectionState = .notSelected
     var column: Int?
     var position: CGPoint?
     
-    init(color: UIColor, size: CGSize, position: CGPoint, column: Int) {
+    init(color: ColorPlayer, size: CGSize, position: CGPoint, column: Int) {
         self.color = color
         self.column = column
         self.position = position
         super.init(frame: CGRect(x: position.x, y: position.y, width: state.rawValue, height: size.height))
-        self.backgroundColor = color
-//        self.draw(self.frame)
+        self.backgroundColor = color.color
+        //        self.draw(self.frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-//
-//    override func draw(_ rect: CGRect) {
-//        self.backgroundColor = color
-//        self.frame = rect
-//    }
+    //
+    //    override func draw(_ rect: CGRect) {
+    //        self.backgroundColor = color
+    //        self.frame = rect
+    //    }
     func animateTo(state: SelectionState, newColumn: Int?) {
         self.state = state
         if let newColumn = newColumn {
-         self.column = newColumn
+            self.column = newColumn
         }
         UIView.animate(withDuration: 0.5) {
             switch self.column {
             case 0:
                 self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: state.rawValue, height: self.frame.height)
-
+                
             case 1:
                 self.frame = CGRect(x: self.position!.x + SelectionState.notSelected.rawValue - state.rawValue, y: self.frame.minY, width: state.rawValue, height: self.frame.height)
             default:
                 break
+            }
+        }
+    }
+    
+    func animateOwnState() {
+        UIView.animate(withDuration: 0.5) {
+            if self.frame.minX > 0 {
+                self.frame = CGRect(x: self.position!.x + SelectionState.notSelected.rawValue - self.state.rawValue, y: self.frame.minY, width: self.state.rawValue, height: self.frame.height)
+            } else {
+                self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.state.rawValue, height: self.frame.height)
             }
         }
     }
