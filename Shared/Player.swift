@@ -5,6 +5,13 @@
 //  Created by Zewu Chen on 06/07/20.
 //  Copyright © 2020 Zewu Chen. All rights reserved.
 //
+
+enum SelectionState: CGFloat {
+    case notSelected = 50
+    case preSelected = 200
+    case selected = 300
+}
+
 #if !os(macOS)
 import UIKit
 #else
@@ -64,8 +71,10 @@ class Player {
     var instantCol: Int
     var instantRow: Int
     var lock: Bool
+    var selectionState: SelectionState
+    var menuPosition: (Int,Int)
 
-    public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int, instantRow: Int, lock: Bool = false) {
+    public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int = 0, instantRow: Int = 0, lock: Bool = false, selectionState: SelectionState = .preSelected, menuPosition: (Int,Int) = (0,0)) {
         self.id = id
         self.name = name
         self.colorPlayer = colorPlayer
@@ -73,6 +82,8 @@ class Player {
         self.instantCol = instantCol
         self.instantRow = instantRow
         self.lock = lock
+        self.selectionState = selectionState
+        self.menuPosition = menuPosition
     }
 }
 
