@@ -33,65 +33,6 @@ public class DesignSystem {
         static let white = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
         static let gray = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 1)
 
-        #if !os(macOS)
-        static func allColors() -> [UIColor] {
-            return [
-                Colors.blue,
-                Colors.red,
-                Colors.green,
-                Colors.purple,
-                Colors.orange,
-                Colors.yellow,
-                Colors.white,
-                Colors.gray
-            ]
-        }
-
-        static func leftColumnColors() -> [UIColor] {
-            return [
-                Colors.blue,
-                Colors.red,
-                Colors.green
-            ]
-        }
-
-        static func rightColumnColors() -> [UIColor] {
-            return [
-                Colors.purple,
-                Colors.orange,
-                Colors.yellow
-            ]
-        }
-        #else
-        static func allColors() -> [NSColor] {
-            return [
-                Colors.blue,
-                Colors.red,
-                Colors.green,
-                Colors.purple,
-                Colors.orange,
-                Colors.yellow,
-                Colors.white,
-                Colors.gray
-            ]
-        }
-
-        static func leftColumnColors() -> [NSColor] {
-            return [
-                Colors.blue,
-                Colors.red,
-                Colors.green
-            ]
-        }
-
-        static func rightColumnColors() -> [NSColor] {
-            return [
-                Colors.purple,
-                Colors.orange,
-                Colors.yellow
-            ]
-        }
-        #endif
     }
 
 }

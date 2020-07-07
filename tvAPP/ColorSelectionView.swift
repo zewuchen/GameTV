@@ -11,7 +11,7 @@ import UIKit
 
 class SelectionController: UIView {
     
-    let colors: [[ColorPlayer]] = [[.red, .blue, .black], [.black, .blue, .red]]
+    let colors: [[ColorPlayer]] = [[.blue, .red, .green], [.purple, .orange, .yellow]]
     var viewHeight: CGFloat?
     var viewWidth: CGFloat?
     var selectionViews = [[SelectionView]]()
