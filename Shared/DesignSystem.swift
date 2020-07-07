@@ -11,9 +11,19 @@ import UIKit
 import AppKit
 #endif
 
-struct DesignSystem {
+public class DesignSystem {
 
-    struct Colors {
+    public static func shared() -> DesignSystem {
+        return sharedInstance
+    }
+
+    private static let sharedInstance: DesignSystem = {
+        let shared = DesignSystem()
+        return shared
+    }()
+
+    public class Colors {
+
         static let blue = #colorLiteral(red: 0.4666666667, green: 0.7647058824, blue: 0.9333333333, alpha: 1)
         static let red = #colorLiteral(red: 0.8941176471, green: 0.2862745098, blue: 0.2862745098, alpha: 1)
         static let green = #colorLiteral(red: 0.4705882353, green: 0.9254901961, blue: 0.3137254902, alpha: 1)
@@ -24,7 +34,7 @@ struct DesignSystem {
         static let gray = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 1)
 
         #if !os(macOS)
-        func allColors() -> [UIColor] {
+        static func allColors() -> [UIColor] {
             return [
                 Colors.blue,
                 Colors.red,
@@ -36,8 +46,24 @@ struct DesignSystem {
                 Colors.gray
             ]
         }
+
+        static func leftColumnColors() -> [UIColor] {
+            return [
+                Colors.blue,
+                Colors.red,
+                Colors.green
+            ]
+        }
+
+        static func rightColumnColors() -> [UIColor] {
+            return [
+                Colors.purple,
+                Colors.orange,
+                Colors.yellow
+            ]
+        }
         #else
-        func allColors() -> [NSColor] {
+        static func allColors() -> [NSColor] {
             return [
                 Colors.blue,
                 Colors.red,
@@ -47,9 +73,26 @@ struct DesignSystem {
                 Colors.yellow,
                 Colors.white,
                 Colors.gray
+            ]
+        }
+
+        static func leftColumnColors() -> [NSColor] {
+            return [
+                Colors.blue,
+                Colors.red,
+                Colors.green
+            ]
+        }
+
+        static func rightColumnColors() -> [NSColor] {
+            return [
+                Colors.purple,
+                Colors.orange,
+                Colors.yellow
             ]
         }
         #endif
     }
+
 }
 
