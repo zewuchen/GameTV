@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class HomeViewController: UIViewController {
 
@@ -15,12 +16,26 @@ class HomeViewController: UIViewController {
     
 //    var instantCol = 0
 //    var instantRow = 0
-    var instantPos = (0,0)
+    var startPos = (0,0)
+    var players = [Player]()
+    var countColors: (Int, Int)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MultipeerController.shared().delegate = self
         self.playButtonOutlet.isEnabled = false
-        
+        self.createGestures()
+//        initControl()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initControl()
+        self.countColors = self.selectionView.getLimitsOfColors()
+    }
+    
+    func createGestures() {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
@@ -39,36 +54,58 @@ class HomeViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         self.view.addGestureRecognizer(tap)
-
-        // Do any additional setup after loading the view.
     }
     
-    
+    func initControl() {
+        let controlPlayer = Player(id: "RemoteControl", name: "RemoteControl", colorPlayer: selectionView.getColor(instantPos: startPos))
+        self.players.append(controlPlayer)
+        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+    }
+     
+    //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.right {
             print("Swipe Right")
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .right)
-            self.instantPos = finalPos
+            if players[0].menuPosition.0 + 1 < countColors?.0 ?? 0 {
+                players[0].menuPosition.0 += 1
+            }
+//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .right)
+//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
             print("Swipe Left")
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .left)
-            self.instantPos = finalPos
+            if players[0].menuPosition.0 - 1 >= 0 {
+                players[0].menuPosition.0 -= 1
+            }
+//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .left)
+//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             print("Swipe Up")
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .up)
-            self.instantPos = finalPos
+            if players[0].menuPosition.1 - 1 >= 0 {
+                players[0].menuPosition.1 -= 1
+            } else {
+                players[0].menuPosition.1 = (countColors?.1 ?? 0) - 1
+            }
+//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .up)
+//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             print("Down")
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .down)
-            self.instantPos = finalPos
+            if players[0].menuPosition.1 + 1 < countColors?.1 ?? 0 {
+                players[0].menuPosition.1 += 1
+            } else {
+                players[0].menuPosition.1 = 0
+            }
+
+//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .down)
+//            self.startPos = finalPos
         }
+        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
     }
     
     @objc func didTap() {
-        let worked = self.selectionView.selectItem(instantPos: instantPos)
+        let worked = self.selectionView.selectItem(instantPos: startPos)
         self.view.gestureRecognizers?.removeAll()
         playButtonOutlet.isEnabled = true
         playButtonOutlet.becomeFirstResponder()
@@ -81,6 +118,62 @@ class HomeViewController: UIViewController {
     @IBAction func didTapPlay(_ sender: Any) {
         print("Play")
     }
-    
+}
 
+//MARK:- Multipeer handler
+extension HomeViewController: MultipeerHandler {
+    
+    func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
+        let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
+        self.players.append(phonePlayer)
+        print("Connected")
+        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+        return MultipeerController.shared().connectedPeers.count < 1
+    }
+    
+    func receivedData(_ data: Data, from peerID: MCPeerID) {
+        guard let texto = String(bytes: data, encoding: .utf8) else { return }
+
+        let move = Movement(decode: texto)
+        var playerAux: Player?
+        
+        for index in 0..<players.count {
+            if players[index].id == peerID.description {
+                playerAux = players[index]
+            }
+        }
+
+        guard var player = playerAux else { return }
+        print(move.type)
+        switch move.type {
+        case .down:
+            if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {
+                player.menuPosition.1 += 1
+            } else {
+                player.menuPosition.1 = 0
+            }
+        case .up:
+            if player.menuPosition.1 - 1 >= 0 {
+                player.menuPosition.1 -= 1
+            } else {
+                player.menuPosition.1 = (countColors?.1 ?? 0) - 1
+            }
+        case .left:
+            if player.menuPosition.0 - 1 >= 0 {
+                player.menuPosition.0 -= 1
+            }
+        case .right:
+            if player.menuPosition.0 + 1 < countColors?.0 ?? 0 {
+                player.menuPosition.0 += 1
+            }
+        default:
+            break
+        }
+        DispatchQueue.main.async {
+            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+            
+        }
+
+    }
+    
 }
