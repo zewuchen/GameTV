@@ -33,6 +33,7 @@
 		CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26FE24AE46F500400B2E /* Assets.xcassets */; };
 		CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5E270024AE46F500400B2E /* LaunchScreen.storyboard */; };
 		CBB95C0824B643D70070997D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0724B643D70070997D /* SearchViewController.swift */; };
+		CBB95C0A24B64B810070997D /* GameControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0924B64B810070997D /* GameControlViewController.swift */; };
 		CBC5D84C24AE486100D049DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84B24AE486100D049DF /* AppDelegate.swift */; };
 		CBC5D84E24AE486100D049DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84D24AE486100D049DF /* SceneDelegate.swift */; };
 		CBC5D85024AE486100D049DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84F24AE486100D049DF /* ViewController.swift */; };
@@ -79,6 +80,7 @@
 		CB5E270124AE46F500400B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB5E270324AE46F500400B2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBB95C0724B643D70070997D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		CBB95C0924B64B810070997D /* GameControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlViewController.swift; sourceTree = "<group>"; };
 		CBC5D84924AE486100D049DF /* iosAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC5D84B24AE486100D049DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBC5D84D24AE486100D049DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,8 +184,9 @@
 			children = (
 				CBC5D86124AE48B300D049DF /* Application */,
 				CBC5D86224AE48C300D049DF /* CoreData */,
-				CBC5D84F24AE486100D049DF /* ViewController.swift */,
 				CBB95C0724B643D70070997D /* SearchViewController.swift */,
+				CBC5D84F24AE486100D049DF /* ViewController.swift */,
+				CBB95C0924B64B810070997D /* GameControlViewController.swift */,
 				CBC5D85124AE486100D049DF /* Main.storyboard */,
 				CBC5D85724AE486300D049DF /* Assets.xcassets */,
 				CBC5D85924AE486300D049DF /* LaunchScreen.storyboard */,
@@ -426,6 +429,7 @@
 				CBC5D84E24AE486100D049DF /* SceneDelegate.swift in Sources */,
 				32E3A38024B3AC97000287D0 /* ColorSelectionView.swift in Sources */,
 				CBC5D85624AE486100D049DF /* iosAPP.xcdatamodeld in Sources */,
+				CBB95C0A24B64B810070997D /* GameControlViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
