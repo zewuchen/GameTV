@@ -10,6 +10,10 @@
 		324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48B624AFA990008CEA30 /* HomeViewController.swift */; };
 		324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324F48B724AFA990008CEA30 /* HomeViewController.xib */; };
 		324F48BB24AFAB45008CEA30 /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */; };
+		326993FB24B50600008A698B /* BasicTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 327CAE3524AE702700F94F57 /* BasicTileSet.sks */; };
+		326993FC24B508A3008A698B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D87324AE48EF00D049DF /* Assets.xcassets */; };
+		3269940324B509D9008A698B /* ScreenGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3269940124B509D9008A698B /* ScreenGameViewController.swift */; };
+		3269940424B509D9008A698B /* ScreenGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3269940224B509D9008A698B /* ScreenGameViewController.xib */; };
 		327CAE3424AE6F3100F94F57 /* TileMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327CAE3324AE6F3100F94F57 /* TileMapping.swift */; };
 		327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 327CAE3524AE702700F94F57 /* BasicTileSet.sks */; };
 		32D3363324AE781300EC37FD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 32D3363224AE781300EC37FD /* GameScene.sks */; };
@@ -56,6 +60,8 @@
 		324F48B624AFA990008CEA30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		324F48B724AFA990008CEA30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
+		3269940124B509D9008A698B /* ScreenGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenGameViewController.swift; sourceTree = "<group>"; };
+		3269940224B509D9008A698B /* ScreenGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenGameViewController.xib; sourceTree = "<group>"; };
 		327CAE3324AE6F3100F94F57 /* TileMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapping.swift; sourceTree = "<group>"; };
 		327CAE3524AE702700F94F57 /* BasicTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BasicTileSet.sks; sourceTree = "<group>"; };
 		32D3363224AE781300EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 			children = (
 				324F48B624AFA990008CEA30 /* HomeViewController.swift */,
 				324F48B724AFA990008CEA30 /* HomeViewController.xib */,
+				3269940124B509D9008A698B /* ScreenGameViewController.swift */,
+				3269940224B509D9008A698B /* ScreenGameViewController.xib */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -346,10 +354,13 @@
 			files = (
 				CB5E26FD24AE46F200400B2E /* Main.storyboard in Resources */,
 				CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */,
+				3269940424B509D9008A698B /* ScreenGameViewController.xib in Resources */,
 				CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */,
+				326993FB24B50600008A698B /* BasicTileSet.sks in Resources */,
 				CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */,
 				CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */,
 				324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */,
+				326993FC24B508A3008A698B /* Assets.xcassets in Resources */,
 				CB5E26F624AE46F200400B2E /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +405,7 @@
 				CBC5D89424AE539A00D049DF /* MultipeerController.swift in Sources */,
 				324F48BB24AFAB45008CEA30 /* ColorSelectionView.swift in Sources */,
 				324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */,
+				3269940324B509D9008A698B /* ScreenGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
     
-//    var instantCol = 0
+    @IBOutlet weak var waitForPlayersLabel: UILabel!
+    //    var instantCol = 0
 //    var instantRow = 0
     var startPos = (0,0)
     var players = [Player]()
@@ -105,18 +106,40 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didTap() {
-        let worked = self.selectionView.selectItem(instantPos: startPos)
+//        let worked = self.selectionView.selectItem(instantPos: startPos)
+        self.players[0].selectionState = .selected
         self.view.gestureRecognizers?.removeAll()
         playButtonOutlet.isEnabled = true
         playButtonOutlet.becomeFirstResponder()
-        self.playButtonOutlet.setTitleColor(.white, for: .normal)
-        self.playButtonOutlet.tintColor = .white
-        self.view.setNeedsDisplay()
+        self.setNeedsFocusUpdate()
+        self.playButtonOutlet.setTitleColor(.black, for: .normal)
+//        self.playButtonOutlet.tintColor = .white
+        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+//        self.view.setNeedsDisplay()
 //        self.reloadInputViews()
     }
     
     @IBAction func didTapPlay(_ sender: Any) {
+        if checkEveryoneReady() {
+            let gameVC = ScreenGameViewController()
+            self.show(gameVC, sender: self)
+        } else {
+            self.waitForPlayersLabel.alpha = 1
+            UIView.animate(withDuration: 3) {
+                self.waitForPlayersLabel.alpha = 0
+            }
+        }
         print("Play")
+    }
+    
+    func checkEveryoneReady() -> Bool {
+        var ready = true
+        for player in players {
+            if player.selectionState != .selected {
+                ready = false
+            }
+        }
+        return ready
     }
 }
 
@@ -128,7 +151,7 @@ extension HomeViewController: MultipeerHandler {
         self.players.append(phonePlayer)
         print("Connected")
         self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-        return MultipeerController.shared().connectedPeers.count < 1
+        return MultipeerController.shared().connectedPeers.count < 5
     }
     
     func receivedData(_ data: Data, from peerID: MCPeerID) {
