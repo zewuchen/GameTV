@@ -150,20 +150,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procurando Apple TV..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-pq-pD6">
-                                <rect key="frame" x="78" y="433.5" width="258" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procurando Apple TV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-pq-pD6">
+                                <rect key="frame" x="87.5" y="433.5" width="239" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BWD-we-VFf">
+                                <rect key="frame" x="197" y="472.5" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerY" secondItem="5Le-Nu-VEl" secondAttribute="centerY" id="Pav-qL-bl4"/>
+                            <constraint firstItem="BWD-we-VFf" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="RUQ-ex-WFh"/>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="gr0-UU-SQ8"/>
+                            <constraint firstItem="BWD-we-VFf" firstAttribute="top" secondItem="aAU-pq-pD6" secondAttribute="bottom" constant="10" id="kBS-hg-Eg7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0DR-tM-AVq"/>
                     </view>
+                    <connections>
+                        <outlet property="loadingView" destination="BWD-we-VFf" id="xqx-S2-Oa5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usK-RO-1vg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

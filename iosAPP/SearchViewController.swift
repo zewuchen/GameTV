@@ -11,6 +11,8 @@ import MultipeerConnectivity
 
 class SearchViewController: UIViewController, MultipeerHandler {
 
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         MultipeerController.shared().delegate = self
@@ -26,6 +28,14 @@ class SearchViewController: UIViewController, MultipeerHandler {
         }
         
         return true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        loadingView.startAnimating()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        loadingView.stopAnimating()
     }
 
     func peerLost(_ id: MCPeerID) { }
