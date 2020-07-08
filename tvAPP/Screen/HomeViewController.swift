@@ -169,9 +169,9 @@ extension HomeViewController: MultipeerHandler {
         default:
             break
         }
+        MultipeerController.shared().sendToPeers(data, reliably: false, peers: [peerID])
         DispatchQueue.main.async {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-            
         }
 
     }
