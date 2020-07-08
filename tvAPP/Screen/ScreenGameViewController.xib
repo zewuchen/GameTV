@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="16097" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenGameViewController" customModule="tvAPP" customModuleProvider="target">
+            <connections>
+                <outlet property="gameView" destination="l3w-e5-SSV" id="wqw-o9-cgo"/>
+                <outlet property="view" destination="iN0-l3-epB" id="Eym-vH-oyN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3w-e5-SSV">
+                    <rect key="frame" x="390" y="160" width="1140" height="860"/>
+                </skView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jM6-gd-ytm">
+                    <rect key="frame" x="1530" y="160" width="390" height="760"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="jM6-gd-ytm" firstAttribute="top" secondItem="nkI-NY-t1X" secondAttribute="top" constant="100" id="6Qo-CM-eyM"/>
+                <constraint firstAttribute="trailing" secondItem="jM6-gd-ytm" secondAttribute="trailing" id="Cx9-nU-5Ou"/>
+                <constraint firstItem="l3w-e5-SSV" firstAttribute="top" secondItem="nkI-NY-t1X" secondAttribute="top" constant="100" id="YFg-q1-yxH"/>
+                <constraint firstItem="l3w-e5-SSV" firstAttribute="leading" secondItem="nkI-NY-t1X" secondAttribute="leading" constant="300" id="YRa-jc-oz8"/>
+                <constraint firstItem="nkI-NY-t1X" firstAttribute="bottom" secondItem="jM6-gd-ytm" secondAttribute="bottom" constant="100" id="c2Y-Fm-mcn"/>
+                <constraint firstItem="nkI-NY-t1X" firstAttribute="bottom" secondItem="l3w-e5-SSV" secondAttribute="bottom" id="gdG-qE-WZR"/>
+                <constraint firstItem="jM6-gd-ytm" firstAttribute="leading" secondItem="l3w-e5-SSV" secondAttribute="trailing" id="tir-F1-Ib4"/>
+                <constraint firstItem="nkI-NY-t1X" firstAttribute="trailing" secondItem="l3w-e5-SSV" secondAttribute="trailing" constant="300" id="vws-NJ-ufR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="nkI-NY-t1X"/>
+            <point key="canvasLocation" x="50" y="103"/>
+        </view>
+    </objects>
+</document>

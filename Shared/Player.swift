@@ -7,7 +7,7 @@
 //
 
 enum SelectionState: CGFloat {
-    case notSelected = 50
+    case notSelected = 100
     case preSelected = 200
     case selected = 300
 }

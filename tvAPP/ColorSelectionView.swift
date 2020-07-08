@@ -19,7 +19,7 @@ class SelectionController: UIView {
     override func draw(_ rect: CGRect) {
         self.viewWidth = rect.width
         self.viewHeight = rect.height
-        self.backgroundColor = .gray
+//        self.backgroundColor = .gray
         initViews()
     }
     
@@ -155,7 +155,7 @@ class SelectionView: UIView {
         if let newColumn = newColumn {
             self.column = newColumn
         }
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             switch self.column {
             case 0:
                 self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: state.rawValue, height: self.frame.height)
@@ -169,7 +169,7 @@ class SelectionView: UIView {
     }
     
     func animateOwnState() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             if self.frame.minX > 0 {
                 self.frame = CGRect(x: self.position!.x + SelectionState.notSelected.rawValue - self.state.rawValue, y: self.frame.minY, width: self.state.rawValue, height: self.frame.height)
             } else {
