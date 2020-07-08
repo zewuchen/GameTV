@@ -42,23 +42,15 @@ class ViewController: UIViewController {
         var movement: String = "0"
 
         if gesture.direction == .up {
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .up)
-            self.instantPos = finalPos
             movement = "1"
         }
         else if gesture.direction == .down {
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .down)
-            self.instantPos = finalPos
             movement = "2"
         }
         else if gesture.direction == .left {
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .left)
-            self.instantPos = finalPos
             movement = "3"
         }
         else if gesture.direction == .right {
-            let finalPos = self.selectionView.changePos(instantPos: instantPos, swipe: .right)
-            self.instantPos = finalPos
             movement = "4"
         }
 
@@ -77,9 +69,31 @@ extension ViewController: MultipeerHandler {
         return true
     }
         
-    func peerLost(_ id: MCPeerID) {
+    func peerLost(_ id: MCPeerID) { }
 
+    func receivedData(_ data: Data, from peerID: MCPeerID) {
+        guard let texto = String(bytes: data, encoding: .utf8) else { return }
+        let move = Movement(decode: texto)
+
+        switch move.type {
+        case .up:
+            animatedSelections(swipe: .up)
+        case .down:
+            animatedSelections(swipe: .down)
+        case .left:
+            animatedSelections(swipe: .left)
+        case .right:
+            animatedSelections(swipe: .right)
+        case .invalid:
+            break
+        }
+    }
+
+    func animatedSelections(swipe: MovementType) {
+        DispatchQueue.main.async {
+            let finalPos = self.selectionView.changePos(instantPos: self.instantPos, swipe: swipe)
+            self.instantPos = finalPos
+        }
     }
 
 }
-
