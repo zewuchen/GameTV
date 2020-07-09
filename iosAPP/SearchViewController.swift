@@ -24,7 +24,6 @@ class SearchViewController: UIViewController, MultipeerHandler {
             vc.host = id
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
-
         }
         
         return true

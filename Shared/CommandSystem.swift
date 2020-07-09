@@ -7,11 +7,14 @@
 //
 
 public enum Command {
-    case start
-    case pause
-    case `continue`
-    case newGame
-    case end
+    case start // Tela de seleção -> Tela de controle do jogo
+    case pause // Jogo pausado (Continua na tela de controle do jogo)
+    case `continue` // Retomada do jogo pausado (Continua na tela de controle do jogo)
+    case restart // Fim de jogo -> Recomeçar jogo (Continua na tela de controle do jogo)
+    case end // Fim de jogo (Continua na tela de controle do jogo)
+    case newGame // Fim de jogo -> Tela de seleção
+    case lockColor // Player escolheu a cor dele
+    case confirmedColor // Confirmação que a cor foi escolhida pela AppleTV
     case invalid
 }
 
@@ -26,10 +29,16 @@ public struct CommandSystem {
             return .pause
         case "CONTINUE":
             return .continue
-        case "NEWGAME":
-            return .newGame
+        case "RESTART":
+            return .restart
         case "END":
             return .end
+        case "NEWGAME":
+            return .newGame
+        case "LOCKCOLOR":
+            return .lockColor
+        case "CONFIRMEDCOLOR":
+            return .confirmedColor
         default:
             return .invalid
         }
