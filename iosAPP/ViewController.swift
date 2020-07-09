@@ -12,6 +12,8 @@ import MultipeerConnectivity
 class ViewController: UIViewController {
 
     @IBOutlet weak var selectionView: SelectionController!
+    @IBOutlet weak var btnEscolher: UIButton!
+    @IBOutlet weak var lblTrack: UILabel!
     
     var host: MCPeerID?
     var instantPos = (0,0)
@@ -63,12 +65,26 @@ class ViewController: UIViewController {
             movement = "4"
         }
 
-        if let movementData = movement.data(using: .utf8), let host = host {
-            MultipeerController.shared().sendToPeers(movementData, reliably: false, peers: [host])
+        if let movementData = movement.data(using: .utf8), let host = host, enableConnectivity {
+            MultipeerController.shared().sendToPeers(movementData, reliably: true, peers: [host])
         }
     }
 
-    @IBAction func btnEscolher(_ sender: Any) { }
+    @IBAction func btnEscolher(_ sender: Any) {
+        let choice: String = "LOCKCOLOR"
+
+        if let choiceData = choice.data(using: .utf8), let host = host {
+            MultipeerController.shared().sendToPeers(choiceData, reliably: true, peers: [host])
+        }
+
+        enableConnectivity = false
+        btnEscolher.isEnabled = false
+        btnEscolher.isHidden = true
+
+        DispatchQueue.main.async {
+            self.lblTrack.text = "Cor escolhida"
+        }
+    }
 
 }
 
