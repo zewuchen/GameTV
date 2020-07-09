@@ -196,7 +196,20 @@ extension HomeViewController: MultipeerHandler {
         DispatchQueue.main.async {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
-
+    }
+    
+    func peerLeft(_ id: MCPeerID) {
+        let player = players.first { (player) -> Bool in
+            return player.id == id.description
+        }
+        
+        let seconds = 5.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.players.removeAll { (removingPlayer) -> Bool in
+                player?.id == removingPlayer.id
+            }
+            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+        }
     }
     
 }
