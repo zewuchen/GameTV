@@ -13,6 +13,7 @@ class GameControlViewController: UIViewController {
 
     var host: MCPeerID?
     var color: UIColor?
+    var pause: Bool = false
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTrack: UILabel!
@@ -55,7 +56,7 @@ class GameControlViewController: UIViewController {
             movement = "4"
         }
 
-        if let movementData = movement.data(using: .utf8), let host = host {
+        if let movementData = movement.data(using: .utf8), let host = host, !pause {
             MultipeerController.shared().sendToPeers(movementData, reliably: false, peers: [host])
         }
     }
@@ -77,5 +78,40 @@ extension GameControlViewController : MultipeerHandler {
 
     func peerLost(_ id: MCPeerID) { }
     
-    func receivedData(_ data: Data, from peerID: MCPeerID) { }
+    func receivedData(_ data: Data, from peerID: MCPeerID) {
+        guard let texto = String(bytes: data, encoding: .utf8) else { return }
+        let command = CommandSystem(decode: texto)
+
+        commandGame(command: command)
+    }
+
+    func commandGame(command: CommandSystem) {
+        switch command.command {
+        case .start:
+            break
+        case .pause:
+            updateLabel(title: "Jogo pausado", track: "Aguarde a retomada do jogo")
+            pause = true
+        case .continue:
+            updateLabel(title: "Jogo em andamento", track: "Deslize para mover")
+            pause = false
+        case .restart:
+            updateLabel(title: "Jogo em andamento", track: "Deslize para mover")
+            pause = false
+        case .end:
+            updateLabel(title: "Fim de jogo!", track: "Bom jogo, jogue novamente!")
+            pause = true
+        case .newGame:
+            self.dismiss(animated: true, completion: nil)
+        case .invalid:
+            break
+        }
+    }
+
+    func updateLabel(title: String, track: String) {
+        DispatchQueue.main.async {
+            self.lblTitle.text = title
+            self.lblTrack.text = track
+        }
+    }
 }

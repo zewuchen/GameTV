@@ -114,6 +114,8 @@ extension ViewController: MultipeerHandler {
             break
         case .end:
             break
+        case .newGame:
+            break
         case .invalid:
             break
         }
