@@ -103,6 +103,8 @@ extension GameControlViewController : MultipeerHandler {
             pause = true
         case .newGame:
             self.dismiss(animated: true, completion: nil)
+        case .lockColor:
+            break
         case .invalid:
             break
         }

@@ -68,6 +68,8 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func btnEscolher(_ sender: Any) { }
+
 }
 
 extension ViewController: MultipeerHandler {
@@ -126,6 +128,8 @@ extension ViewController: MultipeerHandler {
         case .end:
             break
         case .newGame:
+            break
+        case .lockColor:
             break
         case .invalid:
             break

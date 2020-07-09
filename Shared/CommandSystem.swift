@@ -13,6 +13,7 @@ public enum Command {
     case restart // Fim de jogo -> Recomeçar jogo (Continua na tela de controle do jogo)
     case end // Fim de jogo (Continua na tela de controle do jogo)
     case newGame // Fim de jogo -> Tela de seleção
+    case lockColor // Player escolheu a cor dele
     case invalid
 }
 
@@ -33,6 +34,8 @@ public struct CommandSystem {
             return .end
         case "NEWGAME":
             return .newGame
+        case "LOCKCOLOR":
+            return .lockColor
         default:
             return .invalid
         }
