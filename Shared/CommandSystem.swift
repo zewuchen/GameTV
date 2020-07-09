@@ -7,11 +7,11 @@
 //
 
 public enum Command {
-    case start
-    case pause
-    case `continue`
-    case newGame
-    case end
+    case start // Tela de seleção -> Tela de controle do jogo
+    case pause // Jogo pausado (Continua na tela de controle do jogo)
+    case `continue` // Retomada do jogo pausado (Continua na tela de controle do jogo)
+    case restart // Fim de jogo -> Recomeçar jogo (Continua na tela de controle do jogo)
+    case end // Voltar ao inicio -> Tela de seleção
     case invalid
 }
 
@@ -26,8 +26,8 @@ public struct CommandSystem {
             return .pause
         case "CONTINUE":
             return .continue
-        case "NEWGAME":
-            return .newGame
+        case "RESTART":
+            return .restart
         case "END":
             return .end
         default:
