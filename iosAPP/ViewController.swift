@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     var host: MCPeerID?
     var instantPos = (0,0)
+    var enableConnectivity = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,14 @@ class ViewController: UIViewController {
         self.view.addGestureRecognizer(swipeDown)
 
         MultipeerController.shared().delegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        enableConnectivity = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        enableConnectivity = false
     }
 
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -76,17 +85,19 @@ extension ViewController: MultipeerHandler {
         let move = Movement(decode: texto)
         let command = CommandSystem(decode: texto)
 
-        switch move.type {
-        case .up:
-            animatedSelections(swipe: .up)
-        case .down:
-            animatedSelections(swipe: .down)
-        case .left:
-            animatedSelections(swipe: .left)
-        case .right:
-            animatedSelections(swipe: .right)
-        case .invalid:
-            commandGame(command: command)
+        if enableConnectivity {
+            switch move.type {
+            case .up:
+                animatedSelections(swipe: .up)
+            case .down:
+                animatedSelections(swipe: .down)
+            case .left:
+                animatedSelections(swipe: .left)
+            case .right:
+                animatedSelections(swipe: .right)
+            case .invalid:
+                commandGame(command: command)
+            }
         }
     }
 
