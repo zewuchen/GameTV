@@ -105,6 +105,8 @@ extension GameControlViewController : MultipeerHandler {
             self.dismiss(animated: true, completion: nil)
         case .lockColor:
             break
+        case .confirmedColor:
+            break
         case .invalid:
             break
         }

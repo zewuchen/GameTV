@@ -14,6 +14,7 @@ public enum Command {
     case end // Fim de jogo (Continua na tela de controle do jogo)
     case newGame // Fim de jogo -> Tela de seleção
     case lockColor // Player escolheu a cor dele
+    case confirmedColor // Confirmação que a cor foi escolhida pela AppleTV
     case invalid
 }
 
@@ -36,6 +37,8 @@ public struct CommandSystem {
             return .newGame
         case "LOCKCOLOR":
             return .lockColor
+        case "CONFIRMEDCOLOR":
+            return .confirmedColor
         default:
             return .invalid
         }

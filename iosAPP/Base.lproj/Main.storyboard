@@ -76,6 +76,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="btnEscolher" destination="AIv-ay-IvP" id="0PC-Hu-i2x"/>
+                        <outlet property="lblTrack" destination="uEm-67-x3g" id="ZFe-Jl-Xth"/>
                         <outlet property="selectionView" destination="T6d-bm-ROZ" id="T9K-74-R7S"/>
                     </connections>
                 </viewController>
