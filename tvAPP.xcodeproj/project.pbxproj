@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3210988224B6485E00DAAE26 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3210988124B6485E00DAAE26 /* ScoreController.swift */; };
 		324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48B624AFA990008CEA30 /* HomeViewController.swift */; };
 		324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324F48B724AFA990008CEA30 /* HomeViewController.xib */; };
 		324F48BB24AFAB45008CEA30 /* ColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3210988124B6485E00DAAE26 /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		324F48B624AFA990008CEA30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		324F48B724AFA990008CEA30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				CB5E270024AE46F500400B2E /* LaunchScreen.storyboard */,
 				CB5E270324AE46F500400B2E /* Info.plist */,
 				324F48BA24AFAB45008CEA30 /* ColorSelectionView.swift */,
+				3210988124B6485E00DAAE26 /* ScoreController.swift */,
 			);
 			path = tvAPP;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 			files = (
 				CB5E26F824AE46F200400B2E /* GameScene.swift in Sources */,
 				CBC5D89624AE53C600D049DF /* MultipeerHandler.swift in Sources */,
+				3210988224B6485E00DAAE26 /* ScoreController.swift in Sources */,
 				CB5E26FA24AE46F200400B2E /* GameViewController.swift in Sources */,
 				CB13CAD924B3B711001576F8 /* DesignSystem.swift in Sources */,
 				CB5E26F224AE46F200400B2E /* AppDelegate.swift in Sources */,
