@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C71FA6524B8EC8500B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
+		0C71FA6624B8EC8600B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
+		0C71FA6724B8EC8600B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
+		0C71FA6824B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */; };
+		0C71FA6924B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */; };
+		0C71FA6A24B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */; };
+		0C71FA6B24B8EC8600B21498 /* colisao_parede.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */; };
+		0C71FA6C24B8EC8600B21498 /* colisao_parede.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */; };
+		0C71FA6D24B8EC8600B21498 /* colisao_parede.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */; };
+		0C71FA6F24B8ED3000B21498 /* backgroundSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6E24B8ED3000B21498 /* backgroundSong.mp3 */; };
+		0C71FA7024B8ED3000B21498 /* backgroundSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6E24B8ED3000B21498 /* backgroundSong.mp3 */; };
+		0C71FA7124B8ED3000B21498 /* backgroundSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6E24B8ED3000B21498 /* backgroundSong.mp3 */; };
 		3210988224B6485E00DAAE26 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3210988124B6485E00DAAE26 /* ScoreController.swift */; };
 		324F48B824AFA990008CEA30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F48B624AFA990008CEA30 /* HomeViewController.swift */; };
 		324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324F48B724AFA990008CEA30 /* HomeViewController.xib */; };
@@ -33,11 +45,11 @@
 		CB5E26FD24AE46F200400B2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26FB24AE46F200400B2E /* Main.storyboard */; };
 		CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5E26FE24AE46F500400B2E /* Assets.xcassets */; };
 		CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB5E270024AE46F500400B2E /* LaunchScreen.storyboard */; };
+		CBB95C0824B643D70070997D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0724B643D70070997D /* SearchViewController.swift */; };
+		CBB95C0A24B64B810070997D /* GameControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0924B64B810070997D /* GameControlViewController.swift */; };
 		CBB95C0C24B65A220070997D /* CommandSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0B24B65A220070997D /* CommandSystem.swift */; };
 		CBB95C0D24B65A220070997D /* CommandSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0B24B65A220070997D /* CommandSystem.swift */; };
 		CBB95C0E24B65A220070997D /* CommandSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0B24B65A220070997D /* CommandSystem.swift */; };
-		CBB95C0824B643D70070997D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0724B643D70070997D /* SearchViewController.swift */; };
-		CBB95C0A24B64B810070997D /* GameControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB95C0924B64B810070997D /* GameControlViewController.swift */; };
 		CBC5D84C24AE486100D049DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84B24AE486100D049DF /* AppDelegate.swift */; };
 		CBC5D84E24AE486100D049DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84D24AE486100D049DF /* SceneDelegate.swift */; };
 		CBC5D85024AE486100D049DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D84F24AE486100D049DF /* ViewController.swift */; };
@@ -63,6 +75,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jogador_pego.mp3; sourceTree = "<group>"; };
+		0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = colisao_jogadores.mp3; sourceTree = "<group>"; };
+		0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = colisao_parede.mp3; sourceTree = "<group>"; };
+		0C71FA6E24B8ED3000B21498 /* backgroundSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundSong.mp3; sourceTree = "<group>"; };
 		3210988124B6485E00DAAE26 /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		324F48B624AFA990008CEA30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		324F48B724AFA990008CEA30 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -84,9 +100,9 @@
 		CB5E26FE24AE46F500400B2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB5E270124AE46F500400B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB5E270324AE46F500400B2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBB95C0B24B65A220070997D /* CommandSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandSystem.swift; sourceTree = "<group>"; };
 		CBB95C0724B643D70070997D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CBB95C0924B64B810070997D /* GameControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlViewController.swift; sourceTree = "<group>"; };
+		CBB95C0B24B65A220070997D /* CommandSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandSystem.swift; sourceTree = "<group>"; };
 		CBC5D84924AE486100D049DF /* iosAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC5D84B24AE486100D049DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBC5D84D24AE486100D049DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +151,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C71FA6124B8EC4100B21498 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				0C71FA6E24B8ED3000B21498 /* backgroundSong.mp3 */,
+				0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */,
+				0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */,
+				0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		324F48B124AFA8BA008CEA30 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +283,7 @@
 		CBC5D87E24AE491200D049DF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0C71FA6124B8EC4100B21498 /* Sound */,
 				CBC5D89324AE539A00D049DF /* MultipeerController.swift */,
 				CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */,
 				CBC5D88724AE499200D049DF /* InfoShared.plist */,
@@ -369,13 +397,17 @@
 				CB5E26FD24AE46F200400B2E /* Main.storyboard in Resources */,
 				CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */,
 				3269940424B509D9008A698B /* ScreenGameViewController.xib in Resources */,
+				0C71FA6F24B8ED3000B21498 /* backgroundSong.mp3 in Resources */,
+				0C71FA6524B8EC8500B21498 /* jogador_pego.mp3 in Resources */,
 				CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */,
 				326993FB24B50600008A698B /* BasicTileSet.sks in Resources */,
+				0C71FA6824B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
 				CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */,
 				CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */,
 				324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */,
 				326993FC24B508A3008A698B /* Assets.xcassets in Resources */,
 				CB5E26F624AE46F200400B2E /* Actions.sks in Resources */,
+				0C71FA6B24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,10 +415,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C71FA6924B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
 				CBC5D85B24AE486300D049DF /* LaunchScreen.storyboard in Resources */,
+				0C71FA6624B8EC8600B21498 /* jogador_pego.mp3 in Resources */,
 				CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D85824AE486300D049DF /* Assets.xcassets in Resources */,
+				0C71FA6C24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 				CBC5D85324AE486100D049DF /* Main.storyboard in Resources */,
+				0C71FA7024B8ED3000B21498 /* backgroundSong.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,11 +431,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC5D87424AE48EF00D049DF /* Assets.xcassets in Resources */,
+				0C71FA6724B8EC8600B21498 /* jogador_pego.mp3 in Resources */,
+				0C71FA6D24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
+				0C71FA6A24B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
 				CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D86E24AE48ED00D049DF /* Actions.sks in Resources */,
 				32D3363324AE781300EC37FD /* GameScene.sks in Resources */,
 				327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */,
 				CBC5D87724AE48EF00D049DF /* Main.storyboard in Resources */,
+				0C71FA7124B8ED3000B21498 /* backgroundSong.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
