@@ -140,19 +140,27 @@ extension ViewController: MultipeerHandler {
         case .lockColor:
             break
         case .confirmedColor:
-            lockChoice()
+            lockChoice(track: "Cor escolhida")
+        case .cannotConfirmeColor:
+            invalidChoice(track: "Cor já selecionada")
         case .invalid:
             break
         }
     }
 
-    func lockChoice() {
+    func lockChoice(track: String) {
         enableConnectivity = false
-        btnEscolher.isEnabled = false
-        btnEscolher.isHidden = true
 
         DispatchQueue.main.async {
-            self.lblTrack.text = "Cor escolhida"
+            self.btnEscolher.isEnabled = false
+            self.btnEscolher.isHidden = true
+            self.lblTrack.text = track
+        }
+    }
+
+    func invalidChoice(track: String) {
+        DispatchQueue.main.async {
+            self.lblTrack.text = track
         }
     }
 

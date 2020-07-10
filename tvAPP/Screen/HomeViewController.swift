@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
-    
     @IBOutlet weak var waitForPlayersLabel: UILabel!
     //    var instantCol = 0
 //    var instantRow = 0
@@ -107,16 +106,18 @@ class HomeViewController: UIViewController {
     
     @objc func didTap() {
 //        let worked = self.selectionView.selectItem(instantPos: startPos)
-        self.players[0].selectionState = .selected
-        self.view.gestureRecognizers?.removeAll()
-        playButtonOutlet.isEnabled = true
-        playButtonOutlet.becomeFirstResponder()
-        self.setNeedsFocusUpdate()
-        self.playButtonOutlet.setTitleColor(.black, for: .normal)
-//        self.playButtonOutlet.tintColor = .white
-        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-//        self.view.setNeedsDisplay()
-//        self.reloadInputViews()
+        if lockColorRemote(player: self.players[0]) {
+            self.players[0].selectionState = .selected
+                    self.view.gestureRecognizers?.removeAll()
+                    playButtonOutlet.isEnabled = true
+                    playButtonOutlet.becomeFirstResponder()
+                    self.setNeedsFocusUpdate()
+                    self.playButtonOutlet.setTitleColor(.black, for: .normal)
+            //        self.playButtonOutlet.tintColor = .white
+                    self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+            //        self.view.setNeedsDisplay()
+            //        self.reloadInputViews()
+        }
     }
     
     @IBAction func didTapPlay(_ sender: Any) {
@@ -156,7 +157,7 @@ extension HomeViewController: MultipeerHandler {
     
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
-
+        let command = CommandSystem(decode: texto)
         let move = Movement(decode: texto)
         var playerAux: Player?
         
@@ -189,8 +190,8 @@ extension HomeViewController: MultipeerHandler {
             if player.menuPosition.0 + 1 < countColors?.0 ?? 0 {
                 player.menuPosition.0 += 1
             }
-        default:
-            break
+        case .invalid:
+            commandGame(command: command, peer: peerID)
         }
         MultipeerController.shared().sendToPeers(data, reliably: false, peers: [peerID])
         DispatchQueue.main.async {
@@ -211,5 +212,61 @@ extension HomeViewController: MultipeerHandler {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
-    
+
+    func commandGame(command: CommandSystem, peer: MCPeerID) {
+        switch command.command {
+        case .start:
+            break
+        case .pause:
+            break
+        case .continue:
+            break
+        case .restart:
+            break
+        case .end:
+            break
+        case .newGame:
+            break
+        case .lockColor:
+            lockColor(peer: peer)
+        case .confirmedColor:
+            break
+        case .cannotConfirmeColor:
+            break
+        case .invalid:
+            break
+        }
+    }
+
+    func lockColor(peer: MCPeerID) {
+        let response: String
+
+        let player = players.first { (player) -> Bool in
+            return player.id == peer.description
+        }
+
+        if let player = player, player.selectionState != .selected {
+            let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
+            if filteredPlayers.count > 0 {
+                response = "CANNOTCOLOR"
+            } else {
+                response = "CONFIRMEDCOLOR"
+                player.selectionState = .selected
+            }
+            if let responseData = response.data(using: .utf8) {
+                MultipeerController.shared().sendToPeers(responseData, reliably: true, peers: [peer])
+            }
+        }
+    }
+
+    func lockColorRemote(player: Player) -> Bool {
+        let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
+        if filteredPlayers.count > 0 {
+            return false
+        } else {
+            player.selectionState = .selected
+        }
+
+        return true
+    }
 }
