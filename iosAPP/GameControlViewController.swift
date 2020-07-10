@@ -107,6 +107,8 @@ extension GameControlViewController : MultipeerHandler {
             break
         case .confirmedColor:
             break
+        case .cannotConfirmeColor:
+            break
         case .invalid:
             break
         }

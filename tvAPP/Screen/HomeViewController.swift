@@ -231,12 +231,16 @@ extension HomeViewController: MultipeerHandler {
             lockColor(peer: peer)
         case .confirmedColor:
             break
+        case .cannotConfirmeColor:
+            break
         case .invalid:
             break
         }
     }
 
     func lockColor(peer: MCPeerID) {
+        let response: String
+
         let player = players.first { (player) -> Bool in
             return player.id == peer.description
         }
@@ -244,14 +248,13 @@ extension HomeViewController: MultipeerHandler {
         if let player = player, player.selectionState != .selected {
             let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
             if filteredPlayers.count > 0 {
-                // TODO: Enviar mensagem para o iOS dizendo que a cor já foi escolhida
+                response = "CANNOTCOLOR"
             } else {
-                let response: String = "CONFIRMEDCOLOR"
-
-                if let responseData = response.data(using: .utf8) {
-                    MultipeerController.shared().sendToPeers(responseData, reliably: true, peers: [peer])
-                    player.selectionState = .selected
-                }
+                response = "CONFIRMEDCOLOR"
+                player.selectionState = .selected
+            }
+            if let responseData = response.data(using: .utf8) {
+                MultipeerController.shared().sendToPeers(responseData, reliably: true, peers: [peer])
             }
         }
     }
