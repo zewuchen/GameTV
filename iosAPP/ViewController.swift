@@ -148,10 +148,10 @@ extension ViewController: MultipeerHandler {
 
     func lockChoice() {
         enableConnectivity = false
-        btnEscolher.isEnabled = false
-        btnEscolher.isHidden = true
 
         DispatchQueue.main.async {
+            self.btnEscolher.isEnabled = false
+            self.btnEscolher.isHidden = true
             self.lblTrack.text = "Cor escolhida"
         }
     }
