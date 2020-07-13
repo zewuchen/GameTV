@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     var startPos = (0,0)
     var players = [Player]()
     var countColors: (Int, Int)?
+    var enableConnectivity = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,11 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         self.initControl()
         self.countColors = self.selectionView.getLimitsOfColors()
+        enableConnectivity = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        enableConnectivity = false
     }
     
     func createGestures() {
@@ -148,54 +154,60 @@ class HomeViewController: UIViewController {
 extension HomeViewController: MultipeerHandler {
     
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
-        let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
-        self.players.append(phonePlayer)
-        print("Connected")
-        self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-        return MultipeerController.shared().connectedPeers.count < 5
+        if MultipeerController.shared().connectedPeers.count < 5, enableConnectivity {
+            let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
+            self.players.append(phonePlayer)
+            print("Connected")
+            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+
+            return true
+        }
+        return false
     }
     
     func receivedData(_ data: Data, from peerID: MCPeerID) {
-        guard let texto = String(bytes: data, encoding: .utf8) else { return }
-        let command = CommandSystem(decode: texto)
-        let move = Movement(decode: texto)
-        var playerAux: Player?
-        
-        for index in 0..<players.count {
-            if players[index].id == peerID.description {
-                playerAux = players[index]
-            }
-        }
+        if enableConnectivity {
+            guard let texto = String(bytes: data, encoding: .utf8) else { return }
+            let command = CommandSystem(decode: texto)
+            let move = Movement(decode: texto)
+            var playerAux: Player?
 
-        guard var player = playerAux else { return }
-        print(move.type)
-        switch move.type {
-        case .down:
-            if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {
-                player.menuPosition.1 += 1
-            } else {
-                player.menuPosition.1 = 0
+            for index in 0..<players.count {
+                if players[index].id == peerID.description {
+                    playerAux = players[index]
+                }
             }
-        case .up:
-            if player.menuPosition.1 - 1 >= 0 {
-                player.menuPosition.1 -= 1
-            } else {
-                player.menuPosition.1 = (countColors?.1 ?? 0) - 1
+
+            guard var player = playerAux else { return }
+            print(move.type)
+            switch move.type {
+            case .down:
+                if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {
+                    player.menuPosition.1 += 1
+                } else {
+                    player.menuPosition.1 = 0
+                }
+            case .up:
+                if player.menuPosition.1 - 1 >= 0 {
+                    player.menuPosition.1 -= 1
+                } else {
+                    player.menuPosition.1 = (countColors?.1 ?? 0) - 1
+                }
+            case .left:
+                if player.menuPosition.0 - 1 >= 0 {
+                    player.menuPosition.0 -= 1
+                }
+            case .right:
+                if player.menuPosition.0 + 1 < countColors?.0 ?? 0 {
+                    player.menuPosition.0 += 1
+                }
+            case .invalid:
+                commandGame(command: command, peer: peerID)
             }
-        case .left:
-            if player.menuPosition.0 - 1 >= 0 {
-                player.menuPosition.0 -= 1
+            MultipeerController.shared().sendToPeers(data, reliably: true, peers: [peerID])
+            DispatchQueue.main.async {
+                self.selectionView.updateBasedOnPlayersPosition(players: self.players)
             }
-        case .right:
-            if player.menuPosition.0 + 1 < countColors?.0 ?? 0 {
-                player.menuPosition.0 += 1
-            }
-        case .invalid:
-            commandGame(command: command, peer: peerID)
-        }
-        MultipeerController.shared().sendToPeers(data, reliably: false, peers: [peerID])
-        DispatchQueue.main.async {
-            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
     

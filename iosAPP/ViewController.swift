@@ -91,22 +91,24 @@ extension ViewController: MultipeerHandler {
     func peerLost(_ id: MCPeerID) { }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
-        guard let texto = String(bytes: data, encoding: .utf8) else { return }
-        let move = Movement(decode: texto)
-        let command = CommandSystem(decode: texto)
-
         if enableConnectivity {
-            switch move.type {
-            case .up:
-                animatedSelections(swipe: .up)
-            case .down:
-                animatedSelections(swipe: .down)
-            case .left:
-                animatedSelections(swipe: .left)
-            case .right:
-                animatedSelections(swipe: .right)
-            case .invalid:
-                commandGame(command: command)
+            guard let texto = String(bytes: data, encoding: .utf8) else { return }
+            let move = Movement(decode: texto)
+            let command = CommandSystem(decode: texto)
+
+            if enableConnectivity {
+                switch move.type {
+                case .up:
+                    animatedSelections(swipe: .up)
+                case .down:
+                    animatedSelections(swipe: .down)
+                case .left:
+                    animatedSelections(swipe: .left)
+                case .right:
+                    animatedSelections(swipe: .right)
+                case .invalid:
+                    commandGame(command: command)
+                }
             }
         }
     }

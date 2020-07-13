@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class SearchViewController: UIViewController, MultipeerHandler {
 
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    var enableConnectivity = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,19 @@ class SearchViewController: UIViewController, MultipeerHandler {
     }
 
     func peerDiscovered(_ id: MCPeerID) -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewController(identifier: "viewController") as? ViewController {
-            vc.host = id
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+
+        if enableConnectivity {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = storyboard.instantiateViewController(identifier: "viewController") as? ViewController {
+                vc.host = id
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+
+            return true
         }
         
-        return true
+        return false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +41,7 @@ class SearchViewController: UIViewController, MultipeerHandler {
 
     override func viewWillDisappear(_ animated: Bool) {
         loadingView.stopAnimating()
+        enableConnectivity = false
     }
 
     func peerLost(_ id: MCPeerID) { }
