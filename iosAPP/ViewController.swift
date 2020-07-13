@@ -123,11 +123,13 @@ extension ViewController: MultipeerHandler {
     func commandGame(command: CommandSystem) {
         switch command.command {
         case .start:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
-                vc.host = host
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
+                    vc.host = self.host
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
         case .pause:
             break
