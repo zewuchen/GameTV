@@ -10,31 +10,28 @@ import SwiftUI
 
 struct ContentView: View {
 
-    var soundMan = SoundManager()
+    var soundManager = SoundManager()
 
     var body: some View {
         VStack(spacing: 20) {
             Button(action: {
-                self.soundMan.play(sound: .playerEaten)
+                self.soundManager.play(sound: .playerEaten)
             }) {
                 Text("Player Eaten")
             }
             Button(action: {
-                self.soundMan.play(sound: .wallCollision)
+                self.soundManager.play(sound: .wallCollision)
             }) {
                 Text("Wall Collision")
             }
             Button(action: {
-                self.soundMan.play(sound: .playerCollision)
+                self.soundManager.play(sound: .playerCollision)
             }) {
                 Text("Player collision")
             }
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .onAppear(perform: {
+            self.soundManager.play(sound: .backgroundSong)
+        })
     }
 }

@@ -9,6 +9,7 @@
 import AVFoundation
 
 public enum Sound {
+    case backgroundSong
     case playerEaten
     case playerCollision
     case wallCollision
@@ -23,6 +24,8 @@ final class SoundManager {
         var soundURL: URL?
 
         switch sound {
+        case .backgroundSong:
+            soundURL = Bundle.main.url(forResource: "backgroundSong", withExtension: "mp3")
         case .playerEaten:
             soundURL = Bundle.main.url(forResource: "jogador_pego", withExtension: "mp3")
         case .playerCollision:
@@ -40,6 +43,11 @@ final class SoundManager {
             print(error.localizedDescription)
         }
 
-        player?.play()
+        if sound != .backgroundSong {
+            player?.play()
+        } else {
+            player?.play()
+            player?.numberOfLoops = -1
+        }
     }
 }
