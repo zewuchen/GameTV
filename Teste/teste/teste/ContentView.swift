@@ -10,7 +10,9 @@ import SwiftUI
 
 struct ContentView: View {
 
-    var soundManager = SoundManager()
+    private var soundManager = SoundManager()
+    private var backgroundSong = SoundManager()
+    @State private var musicOn: Bool = true
 
     var body: some View {
         VStack(spacing: 20) {
@@ -22,16 +24,22 @@ struct ContentView: View {
             Button(action: {
                 self.soundManager.play(sound: .wallCollision)
             }) {
-                Text("Wall Collision")
+                Text("Wall collision")
             }
             Button(action: {
                 self.soundManager.play(sound: .playerCollision)
             }) {
                 Text("Player collision")
             }
+            Button(action: {
+                self.backgroundSong.stopSound()
+                self.musicOn.toggle()
+            }) {
+                musicOn ? Text("Stop music") : Text("Play music")
+            }
         }
         .onAppear(perform: {
-            self.soundManager.play(sound: .backgroundSong)
+            self.backgroundSong.play(sound: .backgroundSong)
         })
     }
 }

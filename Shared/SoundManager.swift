@@ -18,6 +18,7 @@ public enum Sound {
 final class SoundManager {
 
     private var player: AVAudioPlayer?
+    private var toggleMusic: Bool = true
 
     func play(sound: Sound) {
 
@@ -48,6 +49,16 @@ final class SoundManager {
         } else {
             player?.play()
             player?.numberOfLoops = -1
+        }
+    }
+
+    func stopSound() {
+        if toggleMusic {
+            player?.stop()
+            toggleMusic.toggle()
+        } else {
+            player?.play()
+            toggleMusic.toggle()
         }
     }
 }
