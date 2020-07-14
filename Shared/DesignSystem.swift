@@ -46,5 +46,32 @@ public class DesignSystem {
     func getLeftPointsColor() -> [ColorPlayer] {
         return [.purple, .orange, .yellow]
     }
+    
 }
 
+
+public class DesignSystemMap1 {
+    
+    var possiblePositions: [(Int, Int)] = [(1, 15), (21, 15), (1, 1), (12, 8), (21, 1), (11, 1)]
+    var auxPossible:  [(Int, Int)] = [(1, 15), (21, 15), (1, 1), (12, 8), (21, 1), (11, 1)]
+    public static func shared() -> DesignSystemMap1 {
+        return sharedInstance
+    }
+
+    private static let sharedInstance: DesignSystemMap1 = {
+        let shared = DesignSystemMap1()
+        return shared
+    }()
+
+    func getRandomPosition() -> (Int, Int) {
+        guard let pos = auxPossible.randomElement() else { return (0,0) }
+        auxPossible.removeAll { (position) -> Bool in
+            return pos == position
+        }
+        return pos
+    }
+    
+    func resetPos() {
+        self.auxPossible = possiblePositions
+    }
+}

@@ -18,9 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var chao : SKTileMapNode?
     private var squares: [SKShapeNode?] = []
-    var players: [Player] = [
-        Player(id: "1", name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 15),
-        Player(id: "2", name: "Teste2", colorPlayer: .red, instantCol: 1, instantRow: 12)]
+    var players = [Player]()
     
     let tileMapping = TileMapping()
     var player1 = false // Teste
@@ -250,14 +248,14 @@ extension GameScene: MultipeerHandler {
         print("Encontrado um usuário")
         
         // Teste
-        if !player1 {
-            players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
-            squares[0]?.name = id.description
-            player1 = true
-        } else {
-            players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
-            squares[1]?.name = id.description
-        }
+//        if !player1 {
+//            players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
+//            squares[0]?.name = id.description
+//            player1 = true
+//        } else {
+//            players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
+//            squares[1]?.name = id.description
+//        }
         
         return true
     }
