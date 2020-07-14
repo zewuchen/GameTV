@@ -129,6 +129,7 @@ extension ViewController: MultipeerHandler {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
                     vc.host = self.host
+                    vc.color = self.selectionView.colors[self.instantPos.0][self.instantPos.1].color
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true, completion: nil)
                 }
