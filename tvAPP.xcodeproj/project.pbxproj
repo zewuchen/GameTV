@@ -70,9 +70,6 @@
 		CBC5D87224AE48ED00D049DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D87124AE48ED00D049DF /* ViewController.swift */; };
 		CBC5D87424AE48EF00D049DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D87324AE48EF00D049DF /* Assets.xcassets */; };
 		CBC5D87724AE48EF00D049DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D87524AE48EF00D049DF /* Main.storyboard */; };
-		CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
-		CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
-		CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBC5D88724AE499200D049DF /* InfoShared.plist */; };
 		CBC5D89424AE539A00D049DF /* MultipeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89324AE539A00D049DF /* MultipeerController.swift */; };
 		CBC5D89624AE53C600D049DF /* MultipeerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */; };
 		CBC5D89724AE53C600D049DF /* MultipeerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */; };
@@ -130,7 +127,6 @@
 		CBC5D87624AE48EF00D049DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CBC5D87824AE48EF00D049DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBC5D87924AE48EF00D049DF /* macAPP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macAPP.entitlements; sourceTree = "<group>"; };
-		CBC5D88724AE499200D049DF /* InfoShared.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoShared.plist; sourceTree = "<group>"; };
 		CBC5D89324AE539A00D049DF /* MultipeerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerController.swift; sourceTree = "<group>"; };
 		CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -295,7 +291,6 @@
 				0C71FA6124B8EC4100B21498 /* Sound */,
 				CBC5D89324AE539A00D049DF /* MultipeerController.swift */,
 				CBC5D89524AE53C600D049DF /* MultipeerHandler.swift */,
-				CBC5D88724AE499200D049DF /* InfoShared.plist */,
 				CB4ACF9F24B38BDB009E1EA0 /* Player.swift */,
 				CB13CAD824B3B711001576F8 /* DesignSystem.swift */,
 				CBB95C0B24B65A220070997D /* CommandSystem.swift */,
@@ -413,7 +408,6 @@
 				CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */,
 				326993FB24B50600008A698B /* BasicTileSet.sks in Resources */,
 				0C71FA6824B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
-				CBC5D88824AE499200D049DF /* InfoShared.plist in Resources */,
 				CB5E270224AE46F500400B2E /* LaunchScreen.storyboard in Resources */,
 				324F48B924AFA990008CEA30 /* HomeViewController.xib in Resources */,
 				326993FC24B508A3008A698B /* Assets.xcassets in Resources */,
@@ -429,7 +423,6 @@
 				0C71FA6924B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
 				CBC5D85B24AE486300D049DF /* LaunchScreen.storyboard in Resources */,
 				0C71FA6624B8EC8600B21498 /* jogador_pego.mp3 in Resources */,
-				CBC5D88924AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D85824AE486300D049DF /* Assets.xcassets in Resources */,
 				0C71FA6C24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 				CBC5D85324AE486100D049DF /* Main.storyboard in Resources */,
@@ -445,7 +438,6 @@
 				0C71FA6724B8EC8600B21498 /* jogador_pego.mp3 in Resources */,
 				0C71FA6D24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 				0C71FA6A24B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
-				CBC5D88A24AE499200D049DF /* InfoShared.plist in Resources */,
 				CBC5D86E24AE48ED00D049DF /* Actions.sks in Resources */,
 				32D3363324AE781300EC37FD /* GameScene.sks in Resources */,
 				327CAE3624AE702700F94F57 /* BasicTileSet.sks in Resources */,
