@@ -112,6 +112,11 @@ class ScreenGameViewController: UIViewController {
     func setRandomPlayerAsPegador() {
         guard let randomPlayer = self.players.randomElement() else { fatalError() }
         randomPlayer.isPegador = true
+        for player in players {
+            if player.id != randomPlayer.id {
+                player.isPegador = false
+            }
+        }
     }
     
     func timeString(time:TimeInterval) -> String {
@@ -123,10 +128,15 @@ class ScreenGameViewController: UIViewController {
     
     func timerController() {
 
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             print("Timer fired!")
             if self.totalTime <  1 {
                 timer.invalidate()
+                for player in self.players {
+                    if !player.isPegador {
+                        self.setPointToPlayer(player: player)
+                    }
+                }
                 self.timerRestart()
             }
             self.totalTime -= 1
@@ -139,10 +149,30 @@ class ScreenGameViewController: UIViewController {
         self.totalTime = 20
         self.timerController()
     }
+    
+    func setPointToPlayer(player: Player) {
+        for p in players {
+            if p.id == player.id {
+                player.score += 1
+            }
+        }
+        var rightPlayers = [Player]()
+        var leftPlayers = [Player]()
+        for p in players {
+            if p.menuPosition.0 == 0 {
+                leftPlayers.append(player)
+            } else {
+                rightPlayers.append(player)
+            }
+        }
+        rightScoreView.updatePoints(players: rightPlayers)
+        leftScoreView.updatePoints(players: leftPlayers)
+    }
 }
 
 extension ScreenGameViewController: GameSceneDelegate {
     func endGame(winnerPlayer: Player) {
+        setPointToPlayer(player: winnerPlayer)
         timerRestart()
     }
 }
