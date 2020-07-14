@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         self.createGestures()
 //        initControl()
         // Do any additional setup after loading the view.
+        System.soundManager.play(sound: .backgroundSong)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,11 +128,16 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func didTapPlay(_ sender: Any) {
-        if checkEveryoneReady() {
+        if checkEveryoneReady(), self.players.count > 1 {
             let gameVC = ScreenGameViewController()
             gameVC.players = self.players
             self.show(gameVC, sender: self)
         } else {
+            if self.players.count < 2 {
+                self.waitForPlayersLabel.text = "É necessário ter pelo menos 2 jogadores"
+            } else {
+                self.waitForPlayersLabel.text = "Espere todos os jogadores escolherem"
+            }
             self.waitForPlayersLabel.alpha = 1
             UIView.animate(withDuration: 3) {
                 self.waitForPlayersLabel.alpha = 0
