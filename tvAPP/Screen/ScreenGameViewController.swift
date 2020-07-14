@@ -26,7 +26,6 @@ class ScreenGameViewController: UIViewController {
         initScene()
         timerController()
 //        timer.fire()
-//        mockPlayer()
         initViews()
     }
     
@@ -54,12 +53,10 @@ class ScreenGameViewController: UIViewController {
         setRandomPlayerAsPegador()
         initPositions()
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-            // Set the scale mode to scale to fit the window
             scene.scaleMode = .fill
             scene.gameDelegate = self
             scene.players = self.players
             gameView.backgroundColor = .blue
-            // Present the scene
             gameView.presentScene(scene)
         }
         
@@ -82,32 +79,6 @@ class ScreenGameViewController: UIViewController {
         }
         map1.resetPos()
     }
-
-//    func mockPlayer() {
-//        let player0 = Player(id: "0", name: "0", colorPlayer: .blue)
-//        player0.menuPosition = (0,0)
-//        player0.selectionState = .selected
-//        player0.score = 2
-//        self.players.append(player0)
-//
-//        let player1 = Player(id: "1", name: "1", colorPlayer: .blue)
-//        player1.menuPosition = (1,0)
-//        player1.selectionState = .selected
-//        player1.score = 1
-//        self.players.append(player1)
-//
-//        let player2 = Player(id: "2", name: "2", colorPlayer: .blue)
-//        player2.menuPosition = (1,2)
-//        player2.selectionState = .selected
-//        player2.score = 0
-//        self.players.append(player2)
-//
-//        let player3 = Player(id: "3", name: "3", colorPlayer: .blue)
-//        player3.menuPosition = (0,2)
-//        player3.selectionState = .selected
-////        self.players.append(player3)
-//        setRandomPlayerAsPegador()
-//    }
     
     func setRandomPlayerAsPegador() {
         guard let randomPlayer = self.players.randomElement() else { fatalError() }

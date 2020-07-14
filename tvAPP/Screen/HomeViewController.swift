@@ -14,8 +14,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
     @IBOutlet weak var waitForPlayersLabel: UILabel!
-    //    var instantCol = 0
-//    var instantRow = 0
     var startPos = (0,0)
     var players = [Player]()
     var countColors: (Int, Int)?
@@ -26,8 +24,7 @@ class HomeViewController: UIViewController {
         MultipeerController.shared().delegate = self
         self.playButtonOutlet.isEnabled = false
         self.createGestures()
-//        initControl()
-        // Do any additional setup after loading the view.
+        System.soundManager.play(sound: .backgroundSong)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,16 +72,12 @@ class HomeViewController: UIViewController {
             if players[0].menuPosition.0 + 1 < countColors?.0 ?? 0 {
                 players[0].menuPosition.0 += 1
             }
-//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .right)
-//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
             print("Swipe Left")
             if players[0].menuPosition.0 - 1 >= 0 {
                 players[0].menuPosition.0 -= 1
             }
-//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .left)
-//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
             print("Swipe Up")
@@ -93,8 +86,6 @@ class HomeViewController: UIViewController {
             } else {
                 players[0].menuPosition.1 = (countColors?.1 ?? 0) - 1
             }
-//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .up)
-//            self.startPos = finalPos
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             print("Down")
@@ -103,15 +94,11 @@ class HomeViewController: UIViewController {
             } else {
                 players[0].menuPosition.1 = 0
             }
-
-//            let finalPos = self.selectionView.changePos(instantPos: startPos, swipe: .down)
-//            self.startPos = finalPos
         }
         self.selectionView.updateBasedOnPlayersPosition(players: self.players)
     }
     
     @objc func didTap() {
-//        let worked = self.selectionView.selectItem(instantPos: startPos)
         if lockColorRemote(player: self.players[0]) {
             self.players[0].selectionState = .selected
                     self.view.gestureRecognizers?.removeAll()
@@ -119,19 +106,21 @@ class HomeViewController: UIViewController {
                     playButtonOutlet.becomeFirstResponder()
                     self.setNeedsFocusUpdate()
                     self.playButtonOutlet.setTitleColor(.black, for: .normal)
-            //        self.playButtonOutlet.tintColor = .white
                     self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-            //        self.view.setNeedsDisplay()
-            //        self.reloadInputViews()
         }
     }
     
     @IBAction func didTapPlay(_ sender: Any) {
-        if checkEveryoneReady() {
+        if checkEveryoneReady(), self.players.count > 1 {
             let gameVC = ScreenGameViewController()
             gameVC.players = self.players
             self.show(gameVC, sender: self)
         } else {
+            if self.players.count < 2 {
+                self.waitForPlayersLabel.text = "É necessário ter pelo menos 2 jogadores"
+            } else {
+                self.waitForPlayersLabel.text = "Espere todos os jogadores escolherem"
+            }
             self.waitForPlayersLabel.alpha = 1
             UIView.animate(withDuration: 3) {
                 self.waitForPlayersLabel.alpha = 0
