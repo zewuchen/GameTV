@@ -55,8 +55,13 @@ class ScoreController: UIView {
             default:
                 break
             }
-            
-            scoreView = ScoreView(color: colors[i], size: size, position: position!)
+            var systemColor: [ColorPlayer] = DesignSystem().getLeftPointsColor()
+            if scorePosition == .left {
+                systemColor = DesignSystem().getLeftPointsColor()
+            } else {
+                systemColor = DesignSystem().getRightPointsColor()
+            }
+            scoreView = ScoreView(color: systemColor[i], size: size, position: position!)
             self.addSubview(scoreView!)
             self.scoreViews.append(scoreView!)
         }
