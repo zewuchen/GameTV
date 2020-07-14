@@ -40,11 +40,11 @@ public class DesignSystem {
     }
     
     func getRightPointsColor() -> [ColorPlayer] {
-        return [.blue, .red, .green]
+        return [.purple, .orange, .yellow]
     }
 
     func getLeftPointsColor() -> [ColorPlayer] {
-        return [.purple, .orange, .yellow]
+        return [.blue, .red, .green]
     }
     
 }
