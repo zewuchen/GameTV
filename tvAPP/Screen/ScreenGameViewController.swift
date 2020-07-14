@@ -36,6 +36,11 @@ class ScreenGameViewController: UIViewController {
         gameView.showsFPS = true
         gameView.showsNodeCount = true
         // Do any additional setup after loading the view.
+
+        let response: String = "START"
+        if let responseData = response.data(using: .utf8) {
+            MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
