@@ -129,6 +129,7 @@ class HomeViewController: UIViewController {
     @IBAction func didTapPlay(_ sender: Any) {
         if checkEveryoneReady() {
             let gameVC = ScreenGameViewController()
+            gameVC.players = self.players
             self.show(gameVC, sender: self)
         } else {
             self.waitForPlayersLabel.alpha = 1
@@ -264,6 +265,7 @@ extension HomeViewController: MultipeerHandler {
             } else {
                 response = "CONFIRMEDCOLOR"
                 player.selectionState = .selected
+                player.colorPlayer = selectionView.colors[player.menuPosition.0][player.menuPosition.1]
             }
             if let responseData = response.data(using: .utf8) {
                 MultipeerController.shared().sendToPeers(responseData, reliably: true, peers: [peer])
@@ -277,6 +279,7 @@ extension HomeViewController: MultipeerHandler {
             return false
         } else {
             player.selectionState = .selected
+            player.colorPlayer = selectionView.colors[player.menuPosition.0][player.menuPosition.1]
         }
 
         return true

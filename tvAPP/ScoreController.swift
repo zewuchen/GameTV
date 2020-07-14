@@ -66,8 +66,16 @@ class ScoreController: UIView {
         for player in players {
             let view = scoreViews[player.menuPosition.1]
             view.state = player.selectionState
-            view.animateOwnState(scorePosition: scorePosition, width: self.viewWidth ?? 0)
+            view.animateOwnState(scorePosition: scorePosition, width: self.viewWidth ?? 0, player: player)
 //            view.createPoints()
+        }
+//        updatePoints(players: players)
+    }
+    
+    func updatePoints(players: [Player]) {
+        for player in players {
+            let view = scoreViews[player.menuPosition.1]
+            view.updatePoints(player: player)
         }
     }
 }
@@ -76,6 +84,7 @@ class ScoreView: UIView {
     var color: ColorPlayer?
     var position: CGPoint?
     var state: SelectionState = .notSelected
+    var pointsView: PointsView?
 
     init(color: ColorPlayer, size: CGSize, position: CGPoint) {
         self.color = color
@@ -88,7 +97,7 @@ class ScoreView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func animateOwnState(scorePosition: ScorePosition, width: CGFloat) {
+    func animateOwnState(scorePosition: ScorePosition, width: CGFloat, player: Player) {
         UIView.animate(withDuration: 0.3) {
             switch scorePosition {
             case .left:
@@ -97,19 +106,40 @@ class ScoreView: UIView {
                 self.frame = CGRect(x: 0, y: self.frame.minY, width: width, height: self.frame.height)
             }
         }
-        createPoints()
+        createPoints(player: player)
     }
     
-    func createPoints() {
+    func createPoints(player: Player) {
         let sizeConstant: CGFloat = 0.5
         let pointSize = CGSize(width: self.frame.width * sizeConstant, height: self.frame.width * sizeConstant)
-        let pointsView = PointsView(frame: CGRect(x: self.frame.width/2 - pointSize.width/2, y: self.frame.height/2 - pointSize.width/2, width: pointSize.width, height: pointSize.height))
+//        let pointsView = PointsView(frame: CGRect(x: self.frame.width/2 - pointSize.width/2, y: self.frame.height/2 - pointSize.width/2, width: pointSize.width, height: pointSize.height))
+        let pointsView = PointsView(score: player.score, size: CGSize(width: pointSize.width, height: pointSize.height), position: CGPoint(x: self.frame.width/2 - pointSize.width/2, y: self.frame.height/2 - pointSize.width/2))
+        self.pointsView = pointsView
         self.addSubview(pointsView)
+//        updatePoints(player: player)
+    }
+    
+    func updatePoints(player: Player) {
+        pointsView?.updateBasedOnScore(player: player)
     }
 }
 
 class PointsView: UIView {
     var totalPoints = 4
+    var pointsViews = [UIView]()
+    var position: CGPoint?
+    var size: CGSize?
+    var score: Int?
+    
+    init(score: Int, size: CGSize, position: CGPoint) {
+        self.position = position
+        self.score = score
+        super.init(frame: CGRect(x: position.x, y: position.y, width: size.width, height: size.height))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func draw(_ rect: CGRect) {
         distributeScore()
@@ -126,10 +156,27 @@ class PointsView: UIView {
                 let circleSize = CGSize(width: circleViewOwner.frame.width * circleConst, height: circleViewOwner.frame.height * circleConst)
                 let circleView = UIView(frame: CGRect(x: circleViewOwner.frame.width/2 - circleSize.width/2, y: circleViewOwner.frame.height/2 - circleSize.width/2, width: circleSize.width, height: circleSize.height))
                 circleView.layer.cornerRadius = circleView.frame.height/2
-                circleView.backgroundColor = .black
+//                circleView.backgroundColor = .black
+                circleView.layer.borderWidth = 4
+                circleView.layer.borderColor = UIColor.black.cgColor
                 circleViewOwner.addSubview(circleView)
+                pointsViews.append(circleView)
                 self.addSubview(circleViewOwner)
             }
+        }
+        updateScore()
+    }
+    
+    func updateScore() {
+        for i in 0..<(score ?? 0) {
+            self.pointsViews[i].backgroundColor = .black
+        }
+    }
+    
+    func updateBasedOnScore(player: Player) {
+        let totalScore = player.score
+        for i in 0..<totalScore {
+            self.pointsViews[i].backgroundColor = .black
         }
     }
 }

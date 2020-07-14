@@ -71,10 +71,13 @@ class Player {
     var instantCol: Int
     var instantRow: Int
     var lock: Bool
+    var isPegador: Bool
     var selectionState: SelectionState
     var menuPosition: (Int,Int)
+    
+  
 
-    public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int = 0, instantRow: Int = 0, lock: Bool = false, selectionState: SelectionState = .preSelected, menuPosition: (Int,Int) = (0,0)) {
+    public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int = 0, instantRow: Int = 0, lock: Bool = false, selectionState: SelectionState = .preSelected, menuPosition: (Int,Int) = (0,0), isPegador: Bool = false) {
         self.id = id
         self.name = name
         self.colorPlayer = colorPlayer
@@ -82,6 +85,7 @@ class Player {
         self.instantCol = instantCol
         self.instantRow = instantRow
         self.lock = lock
+        self.isPegador = isPegador
         self.selectionState = selectionState
         self.menuPosition = menuPosition
     }
