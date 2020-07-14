@@ -102,7 +102,9 @@ extension GameControlViewController : MultipeerHandler {
             updateLabel(title: "Fim de jogo!", track: "Bom jogo, jogue novamente!")
             pause = true
         case .newGame:
-            self.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
         case .lockColor:
             break
         case .confirmedColor:

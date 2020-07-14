@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var host: MCPeerID?
     var instantPos = (0,0)
     var enableConnectivity = true
+    var sendData = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,12 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         enableConnectivity = true
+        sendData = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
+        sendData = false
     }
 
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
@@ -65,7 +68,7 @@ class ViewController: UIViewController {
             movement = "4"
         }
 
-        if let movementData = movement.data(using: .utf8), let host = host, enableConnectivity {
+        if let movementData = movement.data(using: .utf8), let host = host, sendData {
             MultipeerController.shared().sendToPeers(movementData, reliably: true, peers: [host])
         }
     }
@@ -73,7 +76,7 @@ class ViewController: UIViewController {
     @IBAction func btnEscolher(_ sender: Any) {
         let choice: String = "LOCKCOLOR"
 
-        if let choiceData = choice.data(using: .utf8), let host = host {
+        if let choiceData = choice.data(using: .utf8), let host = host, sendData {
             MultipeerController.shared().sendToPeers(choiceData, reliably: true, peers: [host])
         }
     }
@@ -91,11 +94,11 @@ extension ViewController: MultipeerHandler {
     func peerLost(_ id: MCPeerID) { }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
-        guard let texto = String(bytes: data, encoding: .utf8) else { return }
-        let move = Movement(decode: texto)
-        let command = CommandSystem(decode: texto)
-
         if enableConnectivity {
+            guard let texto = String(bytes: data, encoding: .utf8) else { return }
+            let move = Movement(decode: texto)
+            let command = CommandSystem(decode: texto)
+
             switch move.type {
             case .up:
                 animatedSelections(swipe: .up)
@@ -121,11 +124,15 @@ extension ViewController: MultipeerHandler {
     func commandGame(command: CommandSystem) {
         switch command.command {
         case .start:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
-                vc.host = host
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+            enableConnectivity = false
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
+                    vc.host = self.host
+                    vc.color = self.selectionView.colors[self.instantPos.0][self.instantPos.1].color
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
         case .pause:
             break
@@ -149,8 +156,7 @@ extension ViewController: MultipeerHandler {
     }
 
     func lockChoice(track: String) {
-        enableConnectivity = false
-
+        sendData = false
         DispatchQueue.main.async {
             self.btnEscolher.isEnabled = false
             self.btnEscolher.isHidden = true
