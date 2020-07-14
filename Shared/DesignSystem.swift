@@ -34,6 +34,17 @@ public class DesignSystem {
         static let gray = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 1)
 
     }
+    
+    func getMenuColors() -> [[ColorPlayer]] {
+        return [[.blue, .red, .green], [.purple, .orange, .yellow]]
+    }
+    
+    func getRightPointsColor() -> [ColorPlayer] {
+        return [.blue, .red, .green]
+    }
 
+    func getLeftPointsColor() -> [ColorPlayer] {
+        return [.purple, .orange, .yellow]
+    }
 }
 

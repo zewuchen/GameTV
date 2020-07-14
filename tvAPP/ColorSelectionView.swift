@@ -11,7 +11,7 @@ import UIKit
 
 class SelectionController: UIView {
     
-    let colors: [[ColorPlayer]] = [[.blue, .red, .green], [.purple, .orange, .yellow]]
+    let colors: [[ColorPlayer]] = DesignSystem().getMenuColors()
     var viewHeight: CGFloat?
     var viewWidth: CGFloat?
     var selectionViews = [[SelectionView]]()
@@ -19,7 +19,7 @@ class SelectionController: UIView {
     override func draw(_ rect: CGRect) {
         self.viewWidth = rect.width
         self.viewHeight = rect.height
-//        self.backgroundColor = .gray
+        self.backgroundColor = DesignSystem.Colors.gray
         initViews()
     }
     

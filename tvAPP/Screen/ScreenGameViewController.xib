@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenGameViewController" customModule="tvAPP" customModuleProvider="target">
             <connections>
+                <outlet property="counterLabel" destination="zpO-aB-lyq" id="Hrs-1r-jdP"/>
                 <outlet property="gameView" destination="l3w-e5-SSV" id="wqw-o9-cgo"/>
                 <outlet property="leftScoreView" destination="DOL-Zp-9r4" id="KSk-hJ-ws1"/>
                 <outlet property="rightScoreView" destination="jM6-gd-ytm" id="044-FR-e0D"/>
@@ -31,14 +32,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="390" height="1080"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpO-aB-lyq">
+                    <rect key="frame" x="914" y="60" width="92" height="46"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="zpO-aB-lyq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="09f-IB-bho"/>
                 <constraint firstItem="jM6-gd-ytm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6Qo-CM-eyM"/>
                 <constraint firstItem="DOL-Zp-9r4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="76V-ov-UP5"/>
                 <constraint firstAttribute="trailing" secondItem="jM6-gd-ytm" secondAttribute="trailing" id="Cx9-nU-5Ou"/>
                 <constraint firstItem="l3w-e5-SSV" firstAttribute="top" secondItem="nkI-NY-t1X" secondAttribute="top" constant="100" id="YFg-q1-yxH"/>
                 <constraint firstItem="l3w-e5-SSV" firstAttribute="leading" secondItem="nkI-NY-t1X" secondAttribute="leading" constant="300" id="YRa-jc-oz8"/>
+                <constraint firstItem="zpO-aB-lyq" firstAttribute="top" secondItem="nkI-NY-t1X" secondAttribute="top" id="Zjn-sm-7XH"/>
                 <constraint firstItem="nkI-NY-t1X" firstAttribute="bottom" secondItem="jM6-gd-ytm" secondAttribute="bottom" constant="-60" id="c2Y-Fm-mcn"/>
                 <constraint firstItem="nkI-NY-t1X" firstAttribute="bottom" secondItem="l3w-e5-SSV" secondAttribute="bottom" id="gdG-qE-WZR"/>
                 <constraint firstItem="DOL-Zp-9r4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j2x-FB-Mxy"/>
