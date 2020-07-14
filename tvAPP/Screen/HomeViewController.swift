@@ -259,7 +259,7 @@ extension HomeViewController: MultipeerHandler {
         }
 
         if let player = player, player.selectionState != .selected {
-            let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPositionf == player.menuPosition })
+            let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
             if filteredPlayers.count > 0 {
                 response = "CANNOTCOLOR"
             } else {
