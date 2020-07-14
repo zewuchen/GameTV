@@ -128,7 +128,7 @@ class ScreenGameViewController: UIViewController {
     
     func timerController() {
 
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             print("Timer fired!")
             if self.totalTime <  1 {
                 timer.invalidate()
@@ -173,6 +173,7 @@ class ScreenGameViewController: UIViewController {
 extension ScreenGameViewController: GameSceneDelegate {
     func endGame(winnerPlayer: Player) {
         setPointToPlayer(player: winnerPlayer)
-        timerRestart()
+        self.initScene()
+        self.totalTime = 20
     }
 }
