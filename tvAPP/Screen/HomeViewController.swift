@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     var players = [Player]()
     var countColors: (Int, Int)?
     var enableConnectivity = true
+    var alreadyStartFirstTime = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +30,31 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.initControl()
+        if !self.alreadyStartFirstTime {
+            self.initControl()
+        } else {
+            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+        }
         self.countColors = self.selectionView.getLimitsOfColors()
         enableConnectivity = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.createGestures()
+        self.playButtonOutlet.isEnabled = false
+        self.setNeedsFocusUpdate()
+        for player in players {
+            player.menuPosition = (0,0)
+            player.selectionState = .preSelected
+            player.lock = false
+            player.isPegador = false
+            player.score = 0
+        }
     }
     
     func createGestures() {
@@ -101,16 +120,17 @@ class HomeViewController: UIViewController {
     @objc func didTap() {
         if lockColorRemote(player: self.players[0]) {
             self.players[0].selectionState = .selected
-                    self.view.gestureRecognizers?.removeAll()
-                    playButtonOutlet.isEnabled = true
-                    playButtonOutlet.becomeFirstResponder()
-                    self.setNeedsFocusUpdate()
-                    self.playButtonOutlet.setTitleColor(.black, for: .normal)
-                    self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+            self.view.gestureRecognizers?.removeAll()
+            playButtonOutlet.isEnabled = true
+            playButtonOutlet.becomeFirstResponder()
+            self.setNeedsFocusUpdate()
+            self.playButtonOutlet.setTitleColor(.black, for: .normal)
+            self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
     
     @IBAction func didTapPlay(_ sender: Any) {
+        self.alreadyStartFirstTime = true
         if checkEveryoneReady(), self.players.count > 1 {
             let gameVC = ScreenGameViewController()
             gameVC.players = self.players

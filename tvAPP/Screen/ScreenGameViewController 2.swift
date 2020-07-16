@@ -37,7 +37,7 @@ class ScreenGameViewController: UIViewController {
     
     
     var players = [Player]()
-    var totalTime = 5
+    var totalTime = 20
     var map1 = DesignSystemMap1()
     var state: ScreenGameState = .playing
     var timer: Timer?
@@ -121,7 +121,7 @@ class ScreenGameViewController: UIViewController {
     
     func timerController() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-//            print("Timer fired!")
+            print("Timer fired!")
             if self.totalTime <  1 {
                 timer.invalidate()
                 for player in self.players {
@@ -129,9 +129,7 @@ class ScreenGameViewController: UIViewController {
                         self.setPointToPlayer(player: player)
                     }
                 }
-                if self.state != .end {
-                    self.timerRestart()
-                }
+                self.timerRestart()
             }
             self.totalTime -= 1
             self.counterLabel.text = self.timeString(time: TimeInterval(self.totalTime))
@@ -140,7 +138,7 @@ class ScreenGameViewController: UIViewController {
     
     func timerRestart() {
         self.initScene()
-        self.totalTime = 5
+        self.totalTime = 20
         self.timerController()
     }
     
@@ -151,7 +149,6 @@ class ScreenGameViewController: UIViewController {
             }
             if player.score == 4 {
                 setEndState(winnerPlayer: player)
-                self.state = .end
             }
         }
         var rightPlayers = [Player]()
@@ -181,11 +178,12 @@ class ScreenGameViewController: UIViewController {
                MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
         self.hiddeAll()
+        timer?.invalidate()
+        self.state = .end
         self.endMainView.isHidden = false
         self.restartButton.becomeFirstResponder()
         self.setNeedsFocusUpdate()
         self.winnerView.backgroundColor = winnerPlayer.colorPlayer.color
-        self.timer?.invalidate()
     }
     
     @IBAction func restartGameTap(_ sender: Any) {
@@ -193,37 +191,7 @@ class ScreenGameViewController: UIViewController {
         if let responseData = response.data(using: .utf8) {
                MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
-        restartGame()
-    }
-    
-    func restartGame() {
-        self.state = .playing
-        self.hiddeAll()
-        self.gameView.isHidden = false
-        self.counterLabel.isHidden = false
         timer?.invalidate()
-        self.initPositions()
-        self.timerRestart()
-        self.resetPoints()
-        self.setRandomPlayerAsPegador()
-    }
-    
-    func resetPoints() {
-        for p in players {
-            p.score = 0
-            p.lock = false
-        }
-        var rightPlayers = [Player]()
-        var leftPlayers = [Player]()
-        for p in players {
-            if p.menuPosition.0 == 0 {
-                leftPlayers.append(p)
-            } else {
-                rightPlayers.append(p)
-            }
-        }
-        rightScoreView.resetPoint(players: rightPlayers)
-        leftScoreView.resetPoint(players: leftPlayers)
     }
     
     @IBAction func backToStartTapped(_ sender: Any) {
@@ -231,15 +199,11 @@ class ScreenGameViewController: UIViewController {
         if let responseData = response.data(using: .utf8) {
                MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
-        self.dismiss(animated: true) {
-            self.timer?.invalidate()
-        }
     }
     
     //Estado de pause
     func setPauseState() {
         self.hiddeAll()
-        self.state = .paused
         timer?.invalidate()
         self.pauseView.isHidden = false
         self.counterLabel.isHidden = false
@@ -248,39 +212,22 @@ class ScreenGameViewController: UIViewController {
     }
     
     func setContinueGame() {
-        let response: String = "CONTINUE"
-        if let responseData = response.data(using: .utf8) {
-               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
-        }
         self.hiddeAll()
-        self.timerController()
+        timer?.fire()
         self.gameView.isHidden = false
         self.counterLabel.isHidden = false
     }
     
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-        for press in presses {
-            if(press.type == UIPress.PressType.playPause) {
-                let response: String = "PAUSE"
-                if let responseData = response.data(using: .utf8) {
-                    MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
-                }
-               setPauseState()
-            }
-        }
-    }
-
-    
     @IBAction func continueGameTapped(_ sender: Any) {
-        setContinueGame()
+        
     }
     
 }
 
 extension ScreenGameViewController: GameSceneDelegate {
     func endGame(winnerPlayer: Player) {
-        self.initScene()
         setPointToPlayer(player: winnerPlayer)
-        self.totalTime = 5
+        self.initScene()
+        self.totalTime = 20
     }
 }
