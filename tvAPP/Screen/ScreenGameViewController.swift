@@ -11,6 +11,12 @@ import SpriteKit
 import GameplayKit
 import MultipeerConnectivity
 
+enum ScreenGameState {
+    case playing
+    case paused
+    case end
+}
+
 class ScreenGameViewController: UIViewController {
 
     @IBOutlet weak var gameView: SKView!
@@ -18,9 +24,24 @@ class ScreenGameViewController: UIViewController {
     @IBOutlet weak var leftScoreView: ScoreController!
     @IBOutlet weak var counterLabel: UILabel!
     
+    //End Views
+    @IBOutlet weak var endMainView: UIView!
+    @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var backStartButton: UIButton!
+    @IBOutlet weak var winnerView: UIView!
+    
+    //Pause Views
+    @IBOutlet weak var pauseView: UIView!
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var backStartFromPauseButton: UIButton!
+    
+    
     var players = [Player]()
     var totalTime = 20
     var map1 = DesignSystemMap1()
+    var state: ScreenGameState = .playing
+    var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initScene()
@@ -87,6 +108,7 @@ class ScreenGameViewController: UIViewController {
             if player.id != randomPlayer.id {
                 player.isPegador = false
             }
+            player.lock = false
         }
     }
     
@@ -98,8 +120,7 @@ class ScreenGameViewController: UIViewController {
     }
     
     func timerController() {
-
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             print("Timer fired!")
             if self.totalTime <  1 {
                 timer.invalidate()
@@ -126,6 +147,9 @@ class ScreenGameViewController: UIViewController {
             if p.id == player.id {
                 player.score += 1
             }
+            if player.score == 4 {
+                setEndState(winnerPlayer: player)
+            }
         }
         var rightPlayers = [Player]()
         var leftPlayers = [Player]()
@@ -139,6 +163,82 @@ class ScreenGameViewController: UIViewController {
         rightScoreView.updatePoints(players: rightPlayers)
         leftScoreView.updatePoints(players: leftPlayers)
     }
+    
+    func hiddeAll() {
+        self.counterLabel.isHidden = true
+        self.gameView.isHidden = true
+        self.endMainView.isHidden = true
+        self.pauseView.isHidden = true
+    }
+    
+    //Estado de fim de jogo
+    func setEndState(winnerPlayer: Player) {
+        let response: String = "END"
+        if let responseData = response.data(using: .utf8) {
+               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+        }
+        self.hiddeAll()
+        timer?.invalidate()
+        self.state = .end
+        self.endMainView.isHidden = false
+        self.restartButton.becomeFirstResponder()
+        self.setNeedsFocusUpdate()
+        self.winnerView.backgroundColor = winnerPlayer.colorPlayer.color
+    }
+    
+    @IBAction func restartGameTap(_ sender: Any) {
+        let response: String = "RESTART"
+        if let responseData = response.data(using: .utf8) {
+               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+        }
+        timer?.invalidate()
+    }
+    
+    @IBAction func backToStartTapped(_ sender: Any) {
+        let response: String = "NEWGAME"
+        if let responseData = response.data(using: .utf8) {
+               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+        }
+    }
+    
+    //Estado de pause
+    func setPauseState() {
+        self.hiddeAll()
+        timer?.invalidate()
+        self.pauseView.isHidden = false
+        self.counterLabel.isHidden = false
+        self.continueButton.becomeFirstResponder()
+        self.setNeedsFocusUpdate()
+    }
+    
+    func setContinueGame() {
+        let response: String = "CONTINUE"
+        if let responseData = response.data(using: .utf8) {
+               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+        }
+        self.hiddeAll()
+        timer?.fire()
+        self.gameView.isHidden = false
+        self.counterLabel.isHidden = false
+    }
+    
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        for press in presses {
+            if(press.type == UIPress.PressType.playPause) {
+                let response: String = "PAUSE"
+                if let responseData = response.data(using: .utf8) {
+                    MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+                }
+               setPauseState()
+            }
+        }
+    }
+
+    
+    @IBAction func continueGameTapped(_ sender: Any) {
+        
+    }
+    
 }
 
 extension ScreenGameViewController: GameSceneDelegate {
