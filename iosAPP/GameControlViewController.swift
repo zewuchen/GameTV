@@ -14,6 +14,7 @@ class GameControlViewController: UIViewController {
     var host: MCPeerID?
     var color: UIColor?
     var pause: Bool = false
+    weak public var delegate: GameDelegate?
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTrack: UILabel!
@@ -103,6 +104,7 @@ extension GameControlViewController : MultipeerHandler {
             pause = true
         case .newGame:
             DispatchQueue.main.async {
+                self.delegate?.newGame()
                 self.dismiss(animated: true, completion: nil)
             }
         case .lockColor:

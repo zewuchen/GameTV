@@ -9,6 +9,9 @@
 import UIKit
 import MultipeerConnectivity
 
+protocol GameDelegate {
+    func newGame()
+}
 class ViewController: UIViewController {
 
     @IBOutlet weak var selectionView: SelectionController!
@@ -128,6 +131,7 @@ extension ViewController: MultipeerHandler {
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let vc = storyboard.instantiateViewController(identifier: "gameControlViewController") as? GameControlViewController {
+                    vc.delegate = self
                     vc.host = self.host
                     vc.color = self.selectionView.colors[self.instantPos.0][self.instantPos.1].color
                     vc.modalPresentationStyle = .fullScreen
@@ -170,4 +174,16 @@ extension ViewController: MultipeerHandler {
         }
     }
 
+}
+
+extension ViewController: GameDelegate {
+    func newGame() {
+        sendData = true
+        enableConnectivity = true
+        DispatchQueue.main.async {
+            self.btnEscolher.isEnabled = true
+            self.btnEscolher.isHidden = false
+            self.lblTrack.text = "Deslize para escolher"
+        }
+    }
 }
