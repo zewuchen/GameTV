@@ -9,7 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 
-protocol GameDelegate {
+protocol GameDelegate: class {
     func newGame()
 }
 class ViewController: UIViewController {
