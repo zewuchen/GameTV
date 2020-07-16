@@ -95,7 +95,7 @@
 		32D3363224AE781300EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CB13CAD824B3B711001576F8 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		CB4ACF9F24B38BDB009E1EA0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		CB5E26EE24AE46F200400B2E /* tvAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB5E26EE24AE46F200400B2E /* Run Box Run.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Run Box Run.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5E26F124AE46F200400B2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5E26F324AE46F200400B2E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CB5E26F524AE46F200400B2E /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		CBB95C0724B643D70070997D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CBB95C0924B64B810070997D /* GameControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlViewController.swift; sourceTree = "<group>"; };
 		CBB95C0B24B65A220070997D /* CommandSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandSystem.swift; sourceTree = "<group>"; };
-		CBC5D84924AE486100D049DF /* iosAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC5D84924AE486100D049DF /* Run Box Run.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Run Box Run.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC5D84B24AE486100D049DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBC5D84D24AE486100D049DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CBC5D84F24AE486100D049DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 		CB5E26EF24AE46F200400B2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB5E26EE24AE46F200400B2E /* tvAPP.app */,
-				CBC5D84924AE486100D049DF /* iosAPP.app */,
+				CB5E26EE24AE46F200400B2E /* Run Box Run.app */,
+				CBC5D84924AE486100D049DF /* Run Box Run.app */,
 				CBC5D86724AE48ED00D049DF /* macAPP.app */,
 			);
 			name = Products;
@@ -317,7 +317,7 @@
 			);
 			name = tvAPP;
 			productName = tvAPP;
-			productReference = CB5E26EE24AE46F200400B2E /* tvAPP.app */;
+			productReference = CB5E26EE24AE46F200400B2E /* Run Box Run.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CBC5D84824AE486100D049DF /* iosAPP */ = {
@@ -334,7 +334,7 @@
 			);
 			name = iosAPP;
 			productName = iosAPP;
-			productReference = CBC5D84924AE486100D049DF /* iosAPP.app */;
+			productReference = CBC5D84924AE486100D049DF /* Run Box Run.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CBC5D86624AE48ED00D049DF /* macAPP */ = {
@@ -681,7 +681,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.tvAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Box Run";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -698,7 +698,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.tvAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Box Run";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -717,7 +717,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.iosAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Box Run";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -737,7 +737,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.iosAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Run Box Run";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
