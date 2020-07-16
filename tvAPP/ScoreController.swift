@@ -83,6 +83,13 @@ class ScoreController: UIView {
             view.updatePoints(player: player)
         }
     }
+    
+    func resetPoint(players: [Player]) {
+        for player in players {
+            let view = scoreViews[player.menuPosition.1]
+            view.resetPoint(player: player)
+        }
+    }
 }
 
 class ScoreView: UIView {
@@ -126,6 +133,10 @@ class ScoreView: UIView {
     
     func updatePoints(player: Player) {
         pointsView?.updateBasedOnScore(player: player)
+    }
+    
+    func resetPoint(player: Player) {
+        pointsView?.resetPoints(player: player)
     }
 }
 
@@ -182,6 +193,12 @@ class PointsView: UIView {
         let totalScore = player.score
         for i in 0..<totalScore {
             self.pointsViews[i].backgroundColor = .black
+        }
+    }
+    
+    func resetPoints(player: Player) {
+        for pointView in pointsViews {
+            pointView.backgroundColor = .clear
         }
     }
 }
