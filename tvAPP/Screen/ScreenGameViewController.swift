@@ -44,6 +44,18 @@ class ScreenGameViewController: UIViewController {
         leftScoreView.updateBasedOnPlayers(players: leftPlayers)
     }
 
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        for press in presses {
+            if(press.type == UIPress.PressType.playPause) {
+                let response: String = "PAUSE"
+                if let responseData = response.data(using: .utf8) {
+                    MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+                }
+               // TODO: Fazer iniciar a tela de pause aqui
+            }
+        }
+    }
+
     func initViews() {
         rightScoreView.scorePosition = .right
         leftScoreView.scorePosition = .left
