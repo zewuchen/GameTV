@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C158F7F24C0CB130037DFA2 /* LogoAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C158F7E24C0CB130037DFA2 /* LogoAsset.xcassets */; };
+		0C158F8024C0CB130037DFA2 /* LogoAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C158F7E24C0CB130037DFA2 /* LogoAsset.xcassets */; };
+		0C158F8124C0CB130037DFA2 /* LogoAsset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C158F7E24C0CB130037DFA2 /* LogoAsset.xcassets */; };
 		0C71FA6524B8EC8500B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
 		0C71FA6624B8EC8600B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
 		0C71FA6724B8EC8600B21498 /* jogador_pego.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */; };
@@ -79,6 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C158F7E24C0CB130037DFA2 /* LogoAsset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LogoAsset.xcassets; sourceTree = "<group>"; };
 		0C71FA6224B8EC8500B21498 /* jogador_pego.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jogador_pego.mp3; sourceTree = "<group>"; };
 		0C71FA6324B8EC8500B21498 /* colisao_jogadores.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = colisao_jogadores.mp3; sourceTree = "<group>"; };
 		0C71FA6424B8EC8500B21498 /* colisao_parede.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = colisao_parede.mp3; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				CBB95C0B24B65A220070997D /* CommandSystem.swift */,
 				0C71FA7224B8EDB300B21498 /* SoundManager.swift */,
 				CB89920924BE30E2004033E3 /* System.swift */,
+				0C158F7E24C0CB130037DFA2 /* LogoAsset.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				CB5E26FD24AE46F200400B2E /* Main.storyboard in Resources */,
 				CB5E26F424AE46F200400B2E /* GameScene.sks in Resources */,
 				3269940424B509D9008A698B /* ScreenGameViewController.xib in Resources */,
+				0C158F7F24C0CB130037DFA2 /* LogoAsset.xcassets in Resources */,
 				0C71FA6F24B8ED3000B21498 /* backgroundSong.mp3 in Resources */,
 				0C71FA6524B8EC8500B21498 /* jogador_pego.mp3 in Resources */,
 				CB5E26FF24AE46F500400B2E /* Assets.xcassets in Resources */,
@@ -427,6 +433,7 @@
 				0C71FA6C24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 				CBC5D85324AE486100D049DF /* Main.storyboard in Resources */,
 				0C71FA7024B8ED3000B21498 /* backgroundSong.mp3 in Resources */,
+				0C158F8024C0CB130037DFA2 /* LogoAsset.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC5D87424AE48EF00D049DF /* Assets.xcassets in Resources */,
+				0C158F8124C0CB130037DFA2 /* LogoAsset.xcassets in Resources */,
 				0C71FA6724B8EC8600B21498 /* jogador_pego.mp3 in Resources */,
 				0C71FA6D24B8EC8600B21498 /* colisao_parede.mp3 in Resources */,
 				0C71FA6A24B8EC8600B21498 /* colisao_jogadores.mp3 in Resources */,
