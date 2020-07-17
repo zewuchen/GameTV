@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CB5E26ED24AE46F200400B2E"
-               BuildableName = "tvAPP.app"
+               BuildableName = "Run Box Run.app"
                BlueprintName = "tvAPP"
                ReferencedContainer = "container:tvAPP.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CB5E26ED24AE46F200400B2E"
-            BuildableName = "tvAPP.app"
+            BuildableName = "Run Box Run.app"
             BlueprintName = "tvAPP"
             ReferencedContainer = "container:tvAPP.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CB5E26ED24AE46F200400B2E"
-            BuildableName = "tvAPP.app"
+            BuildableName = "Run Box Run.app"
             BlueprintName = "tvAPP"
             ReferencedContainer = "container:tvAPP.xcodeproj">
          </BuildableReference>

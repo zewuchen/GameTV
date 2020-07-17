@@ -99,7 +99,7 @@
 		32D3363224AE781300EC37FD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CB13CAD824B3B711001576F8 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		CB4ACF9F24B38BDB009E1EA0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		CB5E26EE24AE46F200400B2E /* tvAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB5E26EE24AE46F200400B2E /* Run Box Run.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Run Box Run.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB5E26F124AE46F200400B2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB5E26F324AE46F200400B2E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CB5E26F524AE46F200400B2E /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		CB5E26EF24AE46F200400B2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB5E26EE24AE46F200400B2E /* tvAPP.app */,
+				CB5E26EE24AE46F200400B2E /* Run Box Run.app */,
 				CBC5D84924AE486100D049DF /* iosAPP.app */,
 				CBC5D86724AE48ED00D049DF /* macAPP.app */,
 			);
@@ -322,7 +322,7 @@
 			);
 			name = tvAPP;
 			productName = tvAPP;
-			productReference = CB5E26EE24AE46F200400B2E /* tvAPP.app */;
+			productReference = CB5E26EE24AE46F200400B2E /* Run Box Run.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CBC5D84824AE486100D049DF /* iosAPP */ = {
@@ -682,14 +682,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = tvAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.tvAPP;
-				PRODUCT_NAME = tvAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.rm4.runboxrun;
+				PRODUCT_NAME = "Run Box Run";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -699,14 +702,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = tvAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.tvAPP;
-				PRODUCT_NAME = tvAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.rm4.runboxrun;
+				PRODUCT_NAME = "Run Box Run";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -717,7 +723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DB2793VW42;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -737,7 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DB2793VW42;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -757,8 +763,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = macAPP/macAPP.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = macAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,8 +785,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = macAPP/macAPP.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = DHAN829484;
 				INFOPLIST_FILE = macAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

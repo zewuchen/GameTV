@@ -37,7 +37,7 @@ class ScreenGameViewController: UIViewController {
     
     
     var players = [Player]()
-    var totalTime = 5
+    var totalTime = 60
     var map1 = DesignSystemMap1()
     var state: ScreenGameState = .playing
     var timer: Timer?
@@ -140,7 +140,7 @@ class ScreenGameViewController: UIViewController {
     
     func timerRestart() {
         self.initScene()
-        self.totalTime = 5
+        self.totalTime = 60
         self.timerController()
     }
     
@@ -281,6 +281,6 @@ extension ScreenGameViewController: GameSceneDelegate {
     func endGame(winnerPlayer: Player) {
         self.initScene()
         setPointToPlayer(player: winnerPlayer)
-        self.totalTime = 5
+        self.totalTime = 60
     }
 }
