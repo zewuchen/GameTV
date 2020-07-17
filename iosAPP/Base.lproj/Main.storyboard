@@ -110,8 +110,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA8-5t-pWz">
                                 <rect key="frame" x="0.0" y="247" width="414" height="615"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deslize para mover" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeF-zb-gTQ">
-                                        <rect key="frame" x="49" y="286" width="316.5" height="43"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deslize para mover" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeF-zb-gTQ">
+                                        <rect key="frame" x="0.0" y="286" width="414" height="43"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" red="0.19215686269999999" green="0.21176470589999999" blue="0.23137254900000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -120,6 +120,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="GeF-zb-gTQ" firstAttribute="centerX" secondItem="iA8-5t-pWz" secondAttribute="centerX" id="2SY-Xx-ucL"/>
+                                    <constraint firstItem="GeF-zb-gTQ" firstAttribute="leading" secondItem="iA8-5t-pWz" secondAttribute="leading" id="Mnp-YZ-2OA"/>
+                                    <constraint firstAttribute="trailing" secondItem="GeF-zb-gTQ" secondAttribute="trailing" id="bM2-VQ-GRd"/>
                                     <constraint firstItem="GeF-zb-gTQ" firstAttribute="centerY" secondItem="iA8-5t-pWz" secondAttribute="centerY" id="uvF-yg-zY7"/>
                                 </constraints>
                             </view>
