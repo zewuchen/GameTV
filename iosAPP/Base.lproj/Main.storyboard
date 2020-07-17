@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P1A-wO-uut">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="viewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="iosAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIv-ay-IvP">
-                                <rect key="frame" x="16" y="780" width="382" height="50"/>
+                                <rect key="frame" x="16" y="486" width="288" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="udL-9r-JH8"/>
@@ -29,23 +29,23 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6d-bm-ROZ" customClass="SelectionController" customModule="iosAPP">
-                                <rect key="frame" x="0.0" y="120" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="76" width="320" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="bSf-YK-KmB"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escolhendo Cor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rit-a6-5ZB">
-                                <rect key="frame" x="32" y="60" width="166" height="28"/>
+                                <rect key="frame" x="32" y="16" width="166" height="28"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdX-GP-V01">
-                                <rect key="frame" x="0.0" y="270" width="414" height="510"/>
+                                <rect key="frame" x="0.0" y="226" width="320" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deslize para escolher" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-67-x3g">
-                                        <rect key="frame" x="29" y="233.5" width="356.5" height="43"/>
+                                        <rect key="frame" x="-18.5" y="108.5" width="357" height="43"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" red="0.19215686274509802" green="0.21176470588235294" blue="0.23137254901960785" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -90,17 +90,17 @@
             <objects>
                 <viewController storyboardIdentifier="gameControlViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oeS-ln-rxP" customClass="GameControlViewController" customModule="iosAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qMx-oA-Vm0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jogo em andamento" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMQ-YE-u4M">
-                                <rect key="frame" x="36" y="44" width="342" height="43"/>
+                                <rect key="frame" x="-11" y="0.0" width="342" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsS-Ew-tLn">
-                                <rect key="frame" x="147" y="127" width="120" height="120"/>
+                                <rect key="frame" x="100" y="83" width="120" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="H8g-Xh-ecz"/>
@@ -108,10 +108,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA8-5t-pWz">
-                                <rect key="frame" x="0.0" y="247" width="414" height="615"/>
+                                <rect key="frame" x="0.0" y="203" width="320" height="365"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deslize para mover" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeF-zb-gTQ">
-                                        <rect key="frame" x="0.0" y="286" width="414" height="43"/>
+                                        <rect key="frame" x="0.0" y="161" width="320" height="43"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" red="0.19215686269999999" green="0.21176470589999999" blue="0.23137254900000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -154,35 +154,35 @@
             <objects>
                 <viewController id="P1A-wO-uut" customClass="SearchViewController" customModule="iosAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Le-Nu-VEl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procurando Apple TV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-pq-pD6">
-                                <rect key="frame" x="87.5" y="433.5" width="239" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Procurando Apple TV..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAU-pq-pD6">
+                                <rect key="frame" x="31" y="269.5" width="258" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BWD-we-VFf">
-                                <rect key="frame" x="197" y="472.5" width="20" height="20"/>
-                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xry-ok-LSQ">
-                                <rect key="frame" x="147" y="172" width="120" height="120"/>
+                                <rect key="frame" x="100" y="128" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="EAJ-nb-zfc"/>
                                     <constraint firstAttribute="width" constant="120" id="Rzt-mm-OkI"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="BWD-we-VFf">
+                                <rect key="frame" x="1" y="274" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="aAU-pq-pD6" firstAttribute="leading" secondItem="BWD-we-VFf" secondAttribute="trailing" constant="10" id="8u5-B5-eHT"/>
+                            <constraint firstItem="BWD-we-VFf" firstAttribute="centerY" secondItem="5Le-Nu-VEl" secondAttribute="centerY" id="HQb-ns-nSf"/>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerY" secondItem="5Le-Nu-VEl" secondAttribute="centerY" id="Pav-qL-bl4"/>
                             <constraint firstItem="Xry-ok-LSQ" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="R84-jc-h6j"/>
-                            <constraint firstItem="BWD-we-VFf" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="RUQ-ex-WFh"/>
                             <constraint firstItem="Xry-ok-LSQ" firstAttribute="top" secondItem="0DR-tM-AVq" secondAttribute="top" constant="128" id="epK-jB-o7m"/>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="gr0-UU-SQ8"/>
-                            <constraint firstItem="BWD-we-VFf" firstAttribute="top" secondItem="aAU-pq-pD6" secondAttribute="bottom" constant="10" id="kBS-hg-Eg7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0DR-tM-AVq"/>
                     </view>
