@@ -165,11 +165,20 @@
                                 <rect key="frame" x="197" y="472.5" width="20" height="20"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xry-ok-LSQ">
+                                <rect key="frame" x="147" y="172" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="EAJ-nb-zfc"/>
+                                    <constraint firstAttribute="width" constant="120" id="Rzt-mm-OkI"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerY" secondItem="5Le-Nu-VEl" secondAttribute="centerY" id="Pav-qL-bl4"/>
+                            <constraint firstItem="Xry-ok-LSQ" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="R84-jc-h6j"/>
                             <constraint firstItem="BWD-we-VFf" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="RUQ-ex-WFh"/>
+                            <constraint firstItem="Xry-ok-LSQ" firstAttribute="top" secondItem="0DR-tM-AVq" secondAttribute="top" constant="128" id="epK-jB-o7m"/>
                             <constraint firstItem="aAU-pq-pD6" firstAttribute="centerX" secondItem="5Le-Nu-VEl" secondAttribute="centerX" id="gr0-UU-SQ8"/>
                             <constraint firstItem="BWD-we-VFf" firstAttribute="top" secondItem="aAU-pq-pD6" secondAttribute="bottom" constant="10" id="kBS-hg-Eg7"/>
                         </constraints>
@@ -184,4 +193,7 @@
             <point key="canvasLocation" x="-636" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="315" height="315"/>
+    </resources>
 </document>
