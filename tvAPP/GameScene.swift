@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for player in players {
             let square = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             square.fillColor = player.colorPlayer.color
+            square.strokeColor = .clear
             square.name = player.id
             square.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: square.frame.width - 4, height: square.frame.height - 4))
             square.physicsBody?.isDynamic = true
@@ -46,6 +47,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.physicsBody!.categoryBitMask = UInt32.max
             square.physicsBody?.allowsRotation = false
             square.physicsBody?.friction = 1.0
+            var trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
+            trail.name = "trail"
+            square.addChild(trail)
             if player.isPegador {
                 let squarePegador = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
                 squarePegador.fillColor = .black
@@ -54,16 +58,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             self.squares.append(square)
         }
-
+        
         for index in 0..<squares.count {
-
+            
             if let positionSquare = (chao?.centerOfTile(atColumn: players[index].instantCol, row: players[index].instantRow)), let square = squares[index] {
                 
                 square.position = positionSquare
                 self.chao?.addChild(square)
             }
         }
-//        setRandomPlayerAsPegador()
+        //        setRandomPlayerAsPegador()
     }
     
     func collisionBetween(square: SKNode, object: SKNode) {
@@ -73,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             destroy(square: square)
         }
     }
-
+    
     func destroy(square: SKNode) {
         square.removeFromParent()
     }
@@ -100,28 +104,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if !players[0].lock {
-        let instantPos = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow))!
-        if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-             players[0].instantCol = tileMapping.getIndexWallRightRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
-        }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-            players[0].instantCol = tileMapping.getIndexWallLeftRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
-        }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            players[0].instantRow = tileMapping.getIndexWallUpColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
-        }
-        else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            players[0].instantRow = tileMapping.getIndexWallDownColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
 
+            let instantPos = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow))!
+            if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+                print("Swipe Right")
+                players[0].instantCol = tileMapping.getIndexWallRightRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
+            }
+            else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+                print("Swipe Left")
+                players[0].instantCol = tileMapping.getIndexWallLeftRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
+            }
+            else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+                print("Swipe Up")
+                players[0].instantRow = tileMapping.getIndexWallUpColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
+            }
+            else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+                print("Down")
+                players[0].instantRow = tileMapping.getIndexWallDownColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
+            }
+            if let destination = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow)) {
+                let duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+                self.createTrail(duration: duration, square: self.squares[0]!, direction: gesture.direction)
+                let action = SKAction.move(to: destination, duration:duration)
+                players[0].lock = true
+                self.squares.first??.run(action, completion: {
+                    self.players[0].lock = false
+                })
+            }
         }
-        if let destination = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow)) {
-        let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-        players[0].lock = true
-        self.squares.first??.run(action, completion: {
-            self.players[0].lock = false
-        })
+    }
+    
+    func createTrail(duration: TimeInterval, square: SKShapeNode, direction: UISwipeGestureRecognizer.Direction) {
+        guard let trail = square.childNode(withName: "trail") as? SKShapeNode else { fatalError() }
+        var gradientDirection: GradientDirection = .left
+        let color1 = CIColor(color: square.fillColor)
+        let color2 = CIColor(red: color1.red, green: color1.green, blue: color1.blue, alpha: 0.0)
+        if direction == .up {
+            trail.yScale = 2
+            trail.xScale = 1
+//            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
+            gradientDirection = .down
+            trail.position = CGPoint(x: 0, y: -48)
+        } else if direction == .down {
+            trail.yScale = 2
+            trail.xScale = 1
+//            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
+            gradientDirection = .up
+            trail.position = CGPoint(x: 0, y: 48)
+        } else if direction == .left {
+            trail.xScale = 2
+            trail.yScale = 1
+//            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
+            gradientDirection = .right
+            trail.position = CGPoint(x: 48, y: 0)
+        } else if direction == .right {
+            trail.xScale = 2
+            trail.yScale = 1
+//            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
+            gradientDirection = .left
+            trail.position = CGPoint(x: -48, y: 0)
         }
-        
+        var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
+//        square.addChild(trail)
+        trail.fillColor = .white
+        trail.strokeColor = .clear
+        trail.alpha = 0
+        trail.fillTexture = texture
+        let fadeIn = SKAction.fadeIn(withDuration: duration)
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        trail.run(fadeIn) {
+            trail.run(fadeOut)
         }
     }
     
@@ -205,19 +257,27 @@ extension GameScene: MultipeerHandler {
         
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
+            var direction: UISwipeGestureRecognizer.Direction = .right
             switch move.type {
-            case .right :
+
+            case .right : //right
+                direction = .right
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .left:
+            case .left: //left
+                direction = .left
                 player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .up:
+            case .up: //up
+                direction = .up
                 player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .down: 
+            case .down: //down
+                direction = .down
                 player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:
                 break
             }
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
+                let duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+                self.createTrail(duration: duration, square: square, direction: direction)
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
                 square.run(action, completion: {
@@ -226,4 +286,58 @@ extension GameScene: MultipeerHandler {
             }
         }
     }
+}
+
+
+
+public enum GradientDirection {
+    case up
+    case down
+    case left
+    case right
+    case upLeft
+    case upRight
+}
+
+public extension SKTexture {
+    
+    convenience init(size: CGSize, color1: CIColor, color2: CIColor, direction: GradientDirection = .up) {
+        
+        let context = CIContext(options: nil)
+        let filter = CIFilter(name: "CILinearGradient")
+        var startVector: CIVector
+        var endVector: CIVector
+        
+        filter!.setDefaults()
+        
+        switch direction {
+            case .up:
+                startVector = CIVector(x: size.width * 0.5, y: 0)
+                endVector = CIVector(x: size.width * 0.5, y: size.height)
+            case .left:
+                startVector = CIVector(x: size.width, y: size.height * 0.5)
+                endVector = CIVector(x: 0, y: size.height * 0.5)
+            case .upLeft:
+                startVector = CIVector(x: size.width, y: 0)
+                endVector = CIVector(x: 0, y: size.height)
+            case .upRight:
+                startVector = CIVector(x: 0, y: 0)
+                endVector = CIVector(x: size.width, y: size.height)
+        case .right:
+            endVector = CIVector(x: size.width, y: size.height * 0.5)
+            startVector = CIVector(x: 0, y: size.height * 0.5)
+        case .down:
+            endVector = CIVector(x: size.width * 0.5, y: 0)
+            startVector = CIVector(x: size.width * 0.5, y: size.height)
+        }
+        
+        filter!.setValue(startVector, forKey: "inputPoint0")
+        filter!.setValue(endVector, forKey: "inputPoint1")
+        filter!.setValue(color1, forKey: "inputColor0")
+        filter!.setValue(color2, forKey: "inputColor1")
+        
+        let image = context.createCGImage(filter!.outputImage!, from: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        self.init(cgImage: image!)
+    }
+    
 }
