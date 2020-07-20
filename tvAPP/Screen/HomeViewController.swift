@@ -117,10 +117,13 @@ class HomeViewController: UIViewController {
         if lockColorRemote(player: self.players[0]) {
             self.players[0].selectionState = .selected
             self.view.gestureRecognizers?.removeAll()
-            playButtonOutlet.isEnabled = true
-            playButtonOutlet.becomeFirstResponder()
-            self.setNeedsFocusUpdate()
-            self.playButtonOutlet.setTitleColor(.black, for: .normal)
+            DispatchQueue.main.async {
+                self.playButtonOutlet.isHidden = false
+                self.playButtonOutlet.isEnabled = true
+                self.playButtonOutlet.clipsToBounds = true
+                self.playButtonOutlet.becomeFirstResponder()
+                self.setNeedsFocusUpdate()
+            }
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
