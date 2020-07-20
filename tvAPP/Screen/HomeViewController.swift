@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
     @IBOutlet weak var waitForPlayersLabel: UILabel!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
+    @IBOutlet weak var lblWaiting: UILabel!
     var startPos = (0,0)
     var players = [Player]()
     var countColors: (Int, Int)?
@@ -36,11 +38,13 @@ class HomeViewController: UIViewController {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
         self.countColors = self.selectionView.getLimitsOfColors()
+        loadingAnimation(flag: true)
         enableConnectivity = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
+        loadingAnimation(flag: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,19 +91,16 @@ class HomeViewController: UIViewController {
     //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-            print("Swipe Right")
             if players[0].menuPosition.0 + 1 < countColors?.0 ?? 0 {
                 players[0].menuPosition.0 += 1
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-            print("Swipe Left")
             if players[0].menuPosition.0 - 1 >= 0 {
                 players[0].menuPosition.0 -= 1
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            print("Swipe Up")
             if players[0].menuPosition.1 - 1 >= 0 {
                 players[0].menuPosition.1 -= 1
             } else {
@@ -107,7 +108,6 @@ class HomeViewController: UIViewController {
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            print("Down")
             if players[0].menuPosition.1 + 1 < countColors?.1 ?? 0 {
                 players[0].menuPosition.1 += 1
             } else {
@@ -121,10 +121,13 @@ class HomeViewController: UIViewController {
         if lockColorRemote(player: self.players[0]) {
             self.players[0].selectionState = .selected
             self.view.gestureRecognizers?.removeAll()
-            playButtonOutlet.isEnabled = true
-            playButtonOutlet.becomeFirstResponder()
-            self.setNeedsFocusUpdate()
-            self.playButtonOutlet.setTitleColor(.black, for: .normal)
+            DispatchQueue.main.async {
+                self.playButtonOutlet.isHidden = false
+                self.playButtonOutlet.isEnabled = true
+                self.playButtonOutlet.clipsToBounds = true
+                self.playButtonOutlet.becomeFirstResponder()
+                self.setNeedsFocusUpdate()
+            }
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
@@ -146,7 +149,6 @@ class HomeViewController: UIViewController {
                 self.waitForPlayersLabel.alpha = 0
             }
         }
-        print("Play")
     }
     
     func checkEveryoneReady() -> Bool {
@@ -162,16 +164,39 @@ class HomeViewController: UIViewController {
 
 //MARK:- Multipeer handler
 extension HomeViewController: MultipeerHandler {
-    
+
+    func loadingAnimation(flag: Bool) {
+        if flag {
+            DispatchQueue.main.async {
+                self.loading.startAnimating()
+                self.loading.isHidden = false
+                self.lblWaiting.isHidden = false
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.loading.stopAnimating()
+                self.loading.isHidden = true
+                self.lblWaiting.isHidden = true
+            }
+        }
+    }
+
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
+
         if MultipeerController.shared().connectedPeers.count < 5, enableConnectivity {
             let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
             self.players.append(phonePlayer)
-            print("Connected")
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
+
+            if players.count <= 5 {
+                loadingAnimation(flag: true)
+            } else {
+                loadingAnimation(flag: false)
+            }
 
             return true
         }
+
         return false
     }
     
@@ -189,7 +214,6 @@ extension HomeViewController: MultipeerHandler {
             }
 
             guard var player = playerAux else { return }
-            print(move.type)
             switch move.type {
             case .down:
                 if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {

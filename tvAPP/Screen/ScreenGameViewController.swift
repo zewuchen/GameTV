@@ -121,7 +121,6 @@ class ScreenGameViewController: UIViewController {
     
     func timerController() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-//            print("Timer fired!")
             if self.totalTime <  1 {
                 timer.invalidate()
                 for player in self.players {

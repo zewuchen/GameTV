@@ -7,8 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="tvAPP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Run_Box_Run" customModuleProvider="target">
             <connections>
+                <outlet property="lblWaiting" destination="8wn-39-Z0V" id="ivA-Cy-Wta"/>
+                <outlet property="loading" destination="HGP-ll-wPY" id="7c0-CB-SSd"/>
                 <outlet property="playButtonOutlet" destination="ejX-Bf-k2E" id="QPa-be-hI4"/>
                 <outlet property="selectionView" destination="DEm-oq-5kp" id="QhG-Qv-zHJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Eym-vH-oyN"/>
@@ -20,17 +22,21 @@
             <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEm-oq-5kp" customClass="SelectionController" customModule="tvAPP" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEm-oq-5kp" customClass="SelectionController" customModule="Run_Box_Run" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejX-Bf-k2E">
-                            <rect key="frame" x="810" y="794" width="300" height="86"/>
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejX-Bf-k2E">
+                            <rect key="frame" x="608" y="710" width="704" height="170"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="300" id="UNZ-lb-rwY"/>
+                                <constraint firstAttribute="height" constant="170" id="KD1-mt-y5t"/>
+                                <constraint firstAttribute="width" constant="704" id="UNZ-lb-rwY"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="72"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                             <state key="normal" title="Jogar">
-                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapPlay:" destination="-1" eventType="primaryActionTriggered" id="hS5-8C-7nh"/>
@@ -42,17 +48,40 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xfo-UN-TUG">
+                            <rect key="frame" x="802.5" y="80" width="315" height="315"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="315" id="5hD-yW-Zeb"/>
+                                <constraint firstAttribute="height" constant="315" id="INk-ef-rNu"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aguardando jogadores..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wn-39-Z0V">
+                            <rect key="frame" x="636" y="502" width="648" height="77"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="64"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-ll-wPY">
+                            <rect key="frame" x="564" y="508" width="64" height="64"/>
+                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </activityIndicatorView>
                     </subviews>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="Xfo-UN-TUG" firstAttribute="centerX" secondItem="DEm-oq-5kp" secondAttribute="centerX" id="1lf-l3-3ks"/>
                         <constraint firstItem="feU-pE-0Mg" firstAttribute="top" secondItem="ejX-Bf-k2E" secondAttribute="bottom" constant="44" id="Jdh-eT-VWM"/>
+                        <constraint firstItem="8wn-39-Z0V" firstAttribute="centerX" secondItem="DEm-oq-5kp" secondAttribute="centerX" id="L5s-g8-DHa"/>
                         <constraint firstAttribute="bottom" secondItem="ejX-Bf-k2E" secondAttribute="bottom" constant="200" id="LjS-b1-2DY"/>
+                        <constraint firstItem="8wn-39-Z0V" firstAttribute="top" secondItem="Xfo-UN-TUG" secondAttribute="bottom" constant="107" id="Q5z-n1-JGU"/>
+                        <constraint firstItem="Xfo-UN-TUG" firstAttribute="top" secondItem="DEm-oq-5kp" secondAttribute="top" constant="80" id="Td0-lc-IsA"/>
                         <constraint firstItem="feU-pE-0Mg" firstAttribute="centerX" secondItem="DEm-oq-5kp" secondAttribute="centerX" id="eqO-wh-fin"/>
                         <constraint firstItem="ejX-Bf-k2E" firstAttribute="centerX" secondItem="DEm-oq-5kp" secondAttribute="centerX" id="fJ9-Ts-ab5"/>
+                        <constraint firstItem="HGP-ll-wPY" firstAttribute="centerY" secondItem="DEm-oq-5kp" secondAttribute="centerY" id="fMB-Iz-ezg"/>
+                        <constraint firstItem="8wn-39-Z0V" firstAttribute="leading" secondItem="HGP-ll-wPY" secondAttribute="trailing" constant="8" id="nhV-4f-mj8"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="DEm-oq-5kp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="96T-Yb-JsS"/>
                 <constraint firstItem="DEm-oq-5kp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cWS-hz-tHv"/>
@@ -63,4 +92,7 @@
             <point key="canvasLocation" x="25" y="52"/>
         </view>
     </objects>
+    <resources>
+        <image name="logo" width="315" height="315"/>
+    </resources>
 </document>

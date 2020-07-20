@@ -33,21 +33,16 @@ class TileMapping {
             var appendRow = [Int]()
             for col in 0..<totalColumns {
                 let tile = self.map?.tileDefinition(atColumn: col, row: row)
-                //self.numericMap?[row][col] = tile == nil ? 0 : 1
                 appendRow.append(tile == nil ? 0 : 1)
-//                print(tile == nil ? 0 : 1)
             }
             self.numericMap.append(appendRow)
         }
-//        self.numericMap.reverse()
-        print(numericMap)
     }
     
     func getIndexWallRightRow(instantRow: Int, instantCol: Int) -> Int? {
         guard let totalColumns = self.map?.numberOfColumns else {
             fatalError()
         }
-//        var actualPos =
         for col in instantCol..<totalColumns {
             if self.numericMap[instantRow][col] == 0 {
                 return col - 1
@@ -57,7 +52,6 @@ class TileMapping {
     }
     
     func getIndexWallLeftRow(instantRow: Int, instantCol: Int) -> Int? {
-    //        var actualPos =
         let countdown = Countdown(count: instantCol)
         for col in countdown{
                 if self.numericMap[instantRow][col] == 0 {
@@ -82,14 +76,9 @@ class TileMapping {
         }
     
     func getIndexWallDownColumn(instantRow: Int, instantCol: Int) -> Int? {
-//            guard let totalRows = self.map?.numberOfRows else {
-//                fatalError()
-//            }
-    //        var actualPos =
         let countdown = Countdown(count: instantRow)
         for row in countdown {
                 if self.numericMap[row][instantCol] == 0 {
-                    print(row)
                     return row + 1
                 }
             }

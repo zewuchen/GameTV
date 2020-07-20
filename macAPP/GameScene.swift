@@ -89,8 +89,6 @@ class GameScene: SKScene {
 extension GameScene: MultipeerHandler {
 
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
-        print("Encontrado um usuário")
-
         // Teste
         if !player1 {
             players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
@@ -126,13 +124,13 @@ extension GameScene: MultipeerHandler {
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             switch move.type {
-            case .right : //right
+            case .right :
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .left: //left
+            case .left:
                 player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .up: //up
+            case .up:
                 player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .down: //down
+            case .down:
                 player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:
                 break
@@ -145,6 +143,5 @@ extension GameScene: MultipeerHandler {
                 })
             }
         }
-        print("\(peerID) moveu para \(move.type)")
     }
 }
