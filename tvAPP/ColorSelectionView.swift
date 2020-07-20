@@ -145,11 +145,7 @@ class SelectionView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    //
-    //    override func draw(_ rect: CGRect) {
-    //        self.backgroundColor = color
-    //        self.frame = rect
-    //    }
+
     func animateTo(state: SelectionState, newColumn: Int?) {
         self.state = state
         if let newColumn = newColumn {

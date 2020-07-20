@@ -102,19 +102,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !players[0].lock {
         let instantPos = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow))!
         if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-            print("Swipe Right")
              players[0].instantCol = tileMapping.getIndexWallRightRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-            print("Swipe Left")
             players[0].instantCol = tileMapping.getIndexWallLeftRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            print("Swipe Up")
             players[0].instantRow = tileMapping.getIndexWallUpColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            print("Down")
             players[0].instantRow = tileMapping.getIndexWallDownColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
 
         }
@@ -128,34 +124,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         }
     }
-    // TODO:- Mudar para controle
-    
-//        override func keyDown(with event: NSEvent) {
-//            guard var player = players.first else { return }
-//            if !player.lock {
-//                let character = Int16(event.keyCode)
-//                let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow))!
-//                switch character {
-//                case 0x7C : //right
-//                    player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-//                case 0x7B: //left
-//                    player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-//                case 0x7E: //up
-//                    player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-//                case 0x7D: //down
-//                    player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-//                default:
-//                    break
-//                }
-//                if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
-//                    let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
-//                    player.lock = true
-//                    self.squares.first??.run(action, completion: {
-//                        player.lock = false
-//                    })
-//                }
-//            }
-//        }
     
     func getDuration(pointA:CGPoint,pointB:CGPoint,speed:CGFloat)->TimeInterval {
         let xDist = (pointB.x - pointA.x)
@@ -165,30 +133,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return duration
     }
     
-//    func setRandomPlayerAsPegador() {
-//        guard let randomPlayer = self.players.randomElement() else { fatalError() }
-//        randomPlayer.isPegador = true
-//        initPegador(player: randomPlayer)
-//    }
-//
-//    func initPegador(player: Player) {
-//        let square = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
-//        square.fillColor = .black
-//        for sq in squares {
-//            if sq?.name == player.id {
-//                square.position = .zero
-//                sq?.addChild(square)
-//            }
-//        }
-//    }
-    
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-          print("touch")
         contact.bodyA.node?.removeAllActions()
         contact.bodyB.node?.removeAllActions()
         var playerA: Player?
@@ -200,26 +149,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if contact.bodyB.node?.name == player.id {
                 playerB = player
             }
-//            if contact.bodyA.node?.name == player.id || contact.bodyB.node?.name == player.id {
-//                //supõe q apenas um dos jogadores é pegador. Mudar a logica caso contrario.
-//                if player.isPegador {
-//
-//                } else {
-//                    player.lock = false
-//                    guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { break }
-//                    guard let newColumn = self.chao?.tileColumnIndex(fromPosition: contact.bodyA.node!.position) else { break }
-//                    player.instantRow = newRow
-//                    player.instantCol = newColumn
-//                }
-//            }
         }
+
         guard let gPlayerA = playerA, let gPlayerB = playerB else { fatalError() }
+
         if gPlayerA.isPegador && !gPlayerB.isPegador {
             gameDelegate?.endGame(winnerPlayer: gPlayerA)
-            print("playerA Venceu")
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
             gameDelegate?.endGame(winnerPlayer: gPlayerB)
-            print("playerB Venceu")
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {
             gPlayerA.lock = false
             guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
@@ -238,25 +175,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
       }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        print("touch end")
     }
 }
 
 extension GameScene: MultipeerHandler {
     
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
-        print("Encontrado um usuário")
-        
-        // Teste
-//        if !player1 {
-//            players[0] = Player(id: id.description, name: "Teste1", colorPlayer: .blue, instantCol: 1, instantRow: 22)
-//            squares[0]?.name = id.description
-//            player1 = true
-//        } else {
-//            players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
-//            squares[1]?.name = id.description
-//        }
-        
         return true
     }
     
@@ -282,13 +206,13 @@ extension GameScene: MultipeerHandler {
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             switch move.type {
-            case .right : //right
+            case .right :
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .left: //left
+            case .left:
                 player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .up: //up
+            case .up:
                 player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .down: //down
+            case .down: 
                 player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:
                 break
@@ -301,6 +225,5 @@ extension GameScene: MultipeerHandler {
                 })
             }
         }
-        print("\(peerID) moveu para \(move.type)")
     }
 }

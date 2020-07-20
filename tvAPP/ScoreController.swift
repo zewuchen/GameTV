@@ -22,15 +22,6 @@ class ScoreController: UIView {
     var scorePosition: ScorePosition = .left
     var scoreViews = [ScoreView]()
     
-//    init(scorePosition: ScorePosition, size: CGSize, position: CGPoint) {
-//        self.scorePosition = scorePosition
-//        super.init(frame: CGRect(x: position.x, y: position.y, width: size.width, height: size.height))
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     override func draw(_ rect: CGRect) {
         self.viewWidth = rect.width
         self.viewHeight = rect.height
@@ -124,11 +115,9 @@ class ScoreView: UIView {
     func createPoints(player: Player) {
         let sizeConstant: CGFloat = 0.5
         let pointSize = CGSize(width: self.frame.width * sizeConstant, height: self.frame.width * sizeConstant)
-//        let pointsView = PointsView(frame: CGRect(x: self.frame.width/2 - pointSize.width/2, y: self.frame.height/2 - pointSize.width/2, width: pointSize.width, height: pointSize.height))
         let pointsView = PointsView(score: player.score, size: CGSize(width: pointSize.width, height: pointSize.height), position: CGPoint(x: self.frame.width/2 - pointSize.width/2, y: self.frame.height/2 - pointSize.width/2))
         self.pointsView = pointsView
         self.addSubview(pointsView)
-//        updatePoints(player: player)
     }
     
     func updatePoints(player: Player) {
@@ -172,7 +161,6 @@ class PointsView: UIView {
                 let circleSize = CGSize(width: circleViewOwner.frame.width * circleConst, height: circleViewOwner.frame.height * circleConst)
                 let circleView = UIView(frame: CGRect(x: circleViewOwner.frame.width/2 - circleSize.width/2, y: circleViewOwner.frame.height/2 - circleSize.width/2, width: circleSize.width, height: circleSize.height))
                 circleView.layer.cornerRadius = circleView.frame.height/2
-//                circleView.backgroundColor = .black
                 circleView.layer.borderWidth = 4
                 circleView.layer.borderColor = UIColor.black.cgColor
                 circleViewOwner.addSubview(circleView)

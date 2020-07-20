@@ -87,19 +87,16 @@ class HomeViewController: UIViewController {
     //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-            print("Swipe Right")
             if players[0].menuPosition.0 + 1 < countColors?.0 ?? 0 {
                 players[0].menuPosition.0 += 1
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-            print("Swipe Left")
             if players[0].menuPosition.0 - 1 >= 0 {
                 players[0].menuPosition.0 -= 1
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-            print("Swipe Up")
             if players[0].menuPosition.1 - 1 >= 0 {
                 players[0].menuPosition.1 -= 1
             } else {
@@ -107,7 +104,6 @@ class HomeViewController: UIViewController {
             }
         }
         else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-            print("Down")
             if players[0].menuPosition.1 + 1 < countColors?.1 ?? 0 {
                 players[0].menuPosition.1 += 1
             } else {
@@ -146,7 +142,6 @@ class HomeViewController: UIViewController {
                 self.waitForPlayersLabel.alpha = 0
             }
         }
-        print("Play")
     }
     
     func checkEveryoneReady() -> Bool {
@@ -167,7 +162,6 @@ extension HomeViewController: MultipeerHandler {
         if MultipeerController.shared().connectedPeers.count < 5, enableConnectivity {
             let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
             self.players.append(phonePlayer)
-            print("Connected")
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
 
             return true
@@ -189,7 +183,6 @@ extension HomeViewController: MultipeerHandler {
             }
 
             guard var player = playerAux else { return }
-            print(move.type)
             switch move.type {
             case .down:
                 if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {

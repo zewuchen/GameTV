@@ -39,14 +39,11 @@ class GameViewController: UIViewController {
 
 extension GameViewController: MultipeerHandler {
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
-        print("Encontrado um usuário")
         return true
     }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)
-        
-        print("\(move.type) \(peerID)")
     }
 }
