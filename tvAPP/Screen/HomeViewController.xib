@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Run_Box_Run" customModuleProvider="target">
             <connections>
+                <outlet property="lblWaiting" destination="8wn-39-Z0V" id="ivA-Cy-Wta"/>
+                <outlet property="loading" destination="HGP-ll-wPY" id="7c0-CB-SSd"/>
                 <outlet property="playButtonOutlet" destination="ejX-Bf-k2E" id="QPa-be-hI4"/>
                 <outlet property="selectionView" destination="DEm-oq-5kp" id="QhG-Qv-zHJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Eym-vH-oyN"/>

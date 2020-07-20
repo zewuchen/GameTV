@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
     @IBOutlet weak var waitForPlayersLabel: UILabel!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
+    @IBOutlet weak var lblWaiting: UILabel!
     var startPos = (0,0)
     var players = [Player]()
     var countColors: (Int, Int)?
@@ -36,11 +38,13 @@ class HomeViewController: UIViewController {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
         self.countColors = self.selectionView.getLimitsOfColors()
+        loadingAnimation(flag: true)
         enableConnectivity = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
+        loadingAnimation(flag: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,15 +164,39 @@ class HomeViewController: UIViewController {
 
 //MARK:- Multipeer handler
 extension HomeViewController: MultipeerHandler {
-    
+
+    func loadingAnimation(flag: Bool) {
+        if flag {
+            DispatchQueue.main.async {
+                self.loading.startAnimating()
+                self.loading.isHidden = false
+                self.lblWaiting.isHidden = false
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.loading.stopAnimating()
+                self.loading.isHidden = true
+                self.lblWaiting.isHidden = true
+            }
+        }
+    }
+
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
+
         if MultipeerController.shared().connectedPeers.count < 5, enableConnectivity {
             let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
             self.players.append(phonePlayer)
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
 
+            if players.count <= 5 {
+                loadingAnimation(flag: true)
+            } else {
+                loadingAnimation(flag: false)
+            }
+
             return true
         }
+
         return false
     }
     
