@@ -15,6 +15,7 @@ protocol GameDelegate: class {
 class ViewController: UIViewController {
 
     @IBOutlet weak var selectionView: SelectionController!
+    @IBOutlet weak var selectedColor: UIView!
     @IBOutlet weak var btnEscolher: UIButton!
     @IBOutlet weak var lblTrack: UILabel!
     
@@ -121,6 +122,7 @@ extension ViewController: MultipeerHandler {
         DispatchQueue.main.async {
             let finalPos = self.selectionView.changePos(instantPos: self.instantPos, swipe: swipe)
             self.instantPos = finalPos
+            self.selectedColor.backgroundColor = self.selectionView.colors[self.instantPos.0][self.instantPos.1].color
         }
     }
 
