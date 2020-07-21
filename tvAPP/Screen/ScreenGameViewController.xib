@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenGameViewController" customModule="tvAPP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScreenGameViewController" customModule="Run_Box_Run" customModuleProvider="target">
             <connections>
                 <outlet property="backStartButton" destination="9To-le-FFD" id="rnL-U3-97a"/>
                 <outlet property="backStartFromPauseButton" destination="b72-US-qKL" id="2gT-22-FxW"/>
@@ -31,11 +31,11 @@
                 <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3w-e5-SSV">
                     <rect key="frame" x="390" y="160" width="1140" height="860"/>
                 </skView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jM6-gd-ytm" customClass="ScoreController" customModule="tvAPP" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jM6-gd-ytm" customClass="ScoreController" customModule="Run_Box_Run" customModuleProvider="target">
                     <rect key="frame" x="1530" y="0.0" width="390" height="1080"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-Zp-9r4" customClass="ScoreController" customModule="tvAPP" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-Zp-9r4" customClass="ScoreController" customModule="Run_Box_Run" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="1080"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
@@ -92,7 +92,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="0.0" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="9To-le-FFD" firstAttribute="centerX" secondItem="7UW-5t-OYr" secondAttribute="centerX" id="3SW-wG-fmp"/>
                         <constraint firstAttribute="trailing" secondItem="Ztt-dc-mPv" secondAttribute="trailing" constant="100" id="4cU-cj-wR4"/>
@@ -142,7 +142,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="0.0" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="rk1-cl-Eja" firstAttribute="top" secondItem="b72-US-qKL" secondAttribute="bottom" constant="73" id="1Xh-67-Gq8"/>
                         <constraint firstItem="b72-US-qKL" firstAttribute="top" secondItem="IPg-6D-HpX" secondAttribute="bottom" constant="49" id="FaM-Lc-JLe"/>
@@ -155,7 +155,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="zpO-aB-lyq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="09f-IB-bho"/>
                 <constraint firstItem="jM6-gd-ytm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6Qo-CM-eyM"/>

@@ -12,6 +12,7 @@ import MultipeerConnectivity
 
 protocol GameSceneDelegate {
     func endGame(winnerPlayer: Player)
+    func removePlayer(player: Player)
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -144,25 +145,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             trail.xScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .down
-            trail.position = CGPoint(x: 0, y: -48)
+            trail.position = CGPoint(x: 0, y: -32)
         } else if direction == .down {
             trail.yScale = 2
             trail.xScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .up
-            trail.position = CGPoint(x: 0, y: 48)
+            trail.position = CGPoint(x: 0, y: 32)
         } else if direction == .left {
             trail.xScale = 2
             trail.yScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .right
-            trail.position = CGPoint(x: 48, y: 0)
+            trail.position = CGPoint(x: 32, y: 0)
         } else if direction == .right {
             trail.xScale = 2
             trail.yScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .left
-            trail.position = CGPoint(x: -48, y: 0)
+            trail.position = CGPoint(x: -32, y: 0)
         }
         var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
 //        square.addChild(trail)
@@ -206,9 +207,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let gPlayerA = playerA, let gPlayerB = playerB else { fatalError() }
 
         if gPlayerA.isPegador && !gPlayerB.isPegador {
-            gameDelegate?.endGame(winnerPlayer: gPlayerA)
+            //Remover o playerB do jogo
+            if players.count == 2 {
+                gameDelegate?.endGame(winnerPlayer: gPlayerA)
+            } else {
+                self.players.removeAll { (player) -> Bool in
+                    return player.id == gPlayerB.id
+                }
+//                self.removeChildren(in: [contact.bodyB.node!])
+                contact.bodyB.node?.removeFromParent()
+                gPlayerA.lock = false
+                gameDelegate?.removePlayer(player: gPlayerB)
+            }
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
-            gameDelegate?.endGame(winnerPlayer: gPlayerB)
+            //Remover o playerA do jogo
+            if players.count == 2 {
+                gameDelegate?.endGame(winnerPlayer: gPlayerB)
+            } else {
+                self.players.removeAll { (player) -> Bool in
+                    return player.id == gPlayerA.id
+                }
+                contact.bodyA.node?.removeFromParent()
+//                self.removeChildren(in: [contact.bodyA.node!])
+                gameDelegate?.removePlayer(player: gPlayerA)
+            }
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {
             gPlayerA.lock = false
             guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
@@ -226,8 +248,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
       }
     
-    func didEnd(_ contact: SKPhysicsContact) {
-    }
 }
 
 extension GameScene: MultipeerHandler {
@@ -276,7 +296,13 @@ extension GameScene: MultipeerHandler {
                 break
             }
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
-                let duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+                var duration: TimeInterval
+                duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+
+                if player.isPegador {
+                    duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1150)
+                }
+
                 self.createTrail(duration: duration, square: square, direction: direction)
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
