@@ -37,6 +37,7 @@ class ScreenGameViewController: UIViewController {
     
     
     var players = [Player]()
+    var roundPlayers = [Player]()
     var totalTime = 60
     var map1 = DesignSystemMap1()
     var state: ScreenGameState = .playing
@@ -76,8 +77,9 @@ class ScreenGameViewController: UIViewController {
         if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             scene.scaleMode = .fill
             scene.gameDelegate = self
-            scene.players = self.players
             gameView.backgroundColor = DesignSystem.Colors.gray
+            roundPlayers = players
+            scene.players = self.roundPlayers
             gameView.presentScene(scene)
         }
         
@@ -123,7 +125,7 @@ class ScreenGameViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if self.totalTime <  1 {
                 timer.invalidate()
-                for player in self.players {
+                for player in self.roundPlayers {
                     if !player.isPegador {
                         self.setPointToPlayer(player: player)
                     }
@@ -277,6 +279,13 @@ class ScreenGameViewController: UIViewController {
 }
 
 extension ScreenGameViewController: GameSceneDelegate {
+    func removePlayer(player: Player) {
+        self.roundPlayers.removeAll { (player) -> Bool in
+            return player.id == player.id
+        }
+        self.totalTime += 10
+    }
+    
     func endGame(winnerPlayer: Player) {
         self.initScene()
         setPointToPlayer(player: winnerPlayer)

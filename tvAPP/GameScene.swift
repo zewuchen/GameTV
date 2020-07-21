@@ -12,6 +12,7 @@ import MultipeerConnectivity
 
 protocol GameSceneDelegate {
     func endGame(winnerPlayer: Player)
+    func removePlayer(player: Player)
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -206,9 +207,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let gPlayerA = playerA, let gPlayerB = playerB else { fatalError() }
 
         if gPlayerA.isPegador && !gPlayerB.isPegador {
-            gameDelegate?.endGame(winnerPlayer: gPlayerA)
+            //Remover o playerB do jogo
+            if players.count == 2 {
+                gameDelegate?.endGame(winnerPlayer: gPlayerA)
+            } else {
+                self.players.removeAll { (player) -> Bool in
+                    return player.id == gPlayerB.id
+                }
+//                self.removeChildren(in: [contact.bodyB.node!])
+                contact.bodyB.node?.removeFromParent()
+                gPlayerA.lock = false
+                gameDelegate?.removePlayer(player: gPlayerB)
+            }
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
-            gameDelegate?.endGame(winnerPlayer: gPlayerB)
+            //Remover o playerA do jogo
+            if players.count == 2 {
+                gameDelegate?.endGame(winnerPlayer: gPlayerB)
+            } else {
+                self.players.removeAll { (player) -> Bool in
+                    return player.id == gPlayerA.id
+                }
+                contact.bodyA.node?.removeFromParent()
+//                self.removeChildren(in: [contact.bodyA.node!])
+                gameDelegate?.removePlayer(player: gPlayerA)
+            }
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {
             gPlayerA.lock = false
             guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
@@ -226,8 +248,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
       }
     
-    func didEnd(_ contact: SKPhysicsContact) {
-    }
 }
 
 extension GameScene: MultipeerHandler {
