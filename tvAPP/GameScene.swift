@@ -144,25 +144,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             trail.xScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .down
-            trail.position = CGPoint(x: 0, y: -48)
+            trail.position = CGPoint(x: 0, y: -32)
         } else if direction == .down {
             trail.yScale = 2
             trail.xScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .up
-            trail.position = CGPoint(x: 0, y: 48)
+            trail.position = CGPoint(x: 0, y: 32)
         } else if direction == .left {
             trail.xScale = 2
             trail.yScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .right
-            trail.position = CGPoint(x: 48, y: 0)
+            trail.position = CGPoint(x: 32, y: 0)
         } else if direction == .right {
             trail.xScale = 2
             trail.yScale = 1
 //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .left
-            trail.position = CGPoint(x: -48, y: 0)
+            trail.position = CGPoint(x: -32, y: 0)
         }
         var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
 //        square.addChild(trail)
