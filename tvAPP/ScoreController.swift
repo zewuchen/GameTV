@@ -162,7 +162,7 @@ class PointsView: UIView {
                 let circleView = UIView(frame: CGRect(x: circleViewOwner.frame.width/2 - circleSize.width/2, y: circleViewOwner.frame.height/2 - circleSize.width/2, width: circleSize.width, height: circleSize.height))
                 circleView.layer.cornerRadius = circleView.frame.height/2
                 circleView.layer.borderWidth = 4
-                circleView.layer.borderColor = UIColor.black.cgColor
+                circleView.layer.borderColor = DesignSystem.Colors.gray.cgColor
                 circleViewOwner.addSubview(circleView)
                 pointsViews.append(circleView)
                 self.addSubview(circleViewOwner)
@@ -173,14 +173,14 @@ class PointsView: UIView {
     
     func updateScore() {
         for i in 0..<(score ?? 0) {
-            self.pointsViews[i].backgroundColor = .black
+            self.pointsViews[i].backgroundColor = DesignSystem.Colors.gray
         }
     }
     
     func updateBasedOnScore(player: Player) {
         let totalScore = player.score
         for i in 0..<totalScore {
-            self.pointsViews[i].backgroundColor = .black
+            self.pointsViews[i].backgroundColor = DesignSystem.Colors.gray
         }
     }
     

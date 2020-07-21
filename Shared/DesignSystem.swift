@@ -31,7 +31,7 @@ public class DesignSystem {
         static let orange = #colorLiteral(red: 0.9254901961, green: 0.4941176471, blue: 0.3137254902, alpha: 1)
         static let yellow = #colorLiteral(red: 0.9254901961, green: 0.862745098, blue: 0.3137254902, alpha: 1)
         static let white = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
-        static let gray = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 1)
+        static let gray = #colorLiteral(red: 0.1254901961, green: 0.1254901961, blue: 0.1254901961, alpha: 1)
 
     }
     
