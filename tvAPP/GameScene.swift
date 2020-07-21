@@ -276,7 +276,13 @@ extension GameScene: MultipeerHandler {
                 break
             }
             if let destination = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) {
-                let duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+                var duration: TimeInterval
+                duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1000)
+
+                if player.isPegador {
+                    duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1150)
+                }
+
                 self.createTrail(duration: duration, square: square, direction: direction)
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
