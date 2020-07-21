@@ -36,7 +36,7 @@
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                             <state key="normal" title="Jogar">
-                                <color key="titleColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapPlay:" destination="-1" eventType="primaryActionTriggered" id="hS5-8C-7nh"/>
@@ -66,7 +66,7 @@
                             <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </activityIndicatorView>
                     </subviews>
-                    <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Xfo-UN-TUG" firstAttribute="centerX" secondItem="DEm-oq-5kp" secondAttribute="centerX" id="1lf-l3-3ks"/>
                         <constraint firstItem="feU-pE-0Mg" firstAttribute="top" secondItem="ejX-Bf-k2E" secondAttribute="bottom" constant="44" id="Jdh-eT-VWM"/>
@@ -81,7 +81,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="DEm-oq-5kp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="96T-Yb-JsS"/>
                 <constraint firstItem="DEm-oq-5kp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cWS-hz-tHv"/>

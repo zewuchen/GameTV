@@ -77,7 +77,7 @@ class ScreenGameViewController: UIViewController {
             scene.scaleMode = .fill
             scene.gameDelegate = self
             scene.players = self.players
-            gameView.backgroundColor = .blue
+            gameView.backgroundColor = DesignSystem.Colors.gray
             gameView.presentScene(scene)
         }
         
