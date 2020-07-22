@@ -104,8 +104,13 @@ extension GameControlViewController : MultipeerHandler {
             pause = true
         case .newGame:
             DispatchQueue.main.async {
-                self.delegate?.newGame()
-                self.dismiss(animated: true, completion: nil)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(identifier: "viewController") as? ViewController {
+                    vc.host = self.host
+                    UIApplication.shared.windows.first?.rootViewController = vc
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             }
         case .lockColor:
             break
