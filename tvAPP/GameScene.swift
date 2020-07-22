@@ -142,30 +142,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if direction == .up {
             trail.yScale = 2
             trail.xScale = 1
-//            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
+            //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .down
             trail.position = CGPoint(x: 0, y: -48)
         } else if direction == .down {
             trail.yScale = 2
             trail.xScale = 1
-//            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
+            //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .up
             trail.position = CGPoint(x: 0, y: 48)
         } else if direction == .left {
             trail.xScale = 2
             trail.yScale = 1
-//            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
+            //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .right
             trail.position = CGPoint(x: 48, y: 0)
         } else if direction == .right {
             trail.xScale = 2
             trail.yScale = 1
-//            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
+            //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .left
             trail.position = CGPoint(x: -48, y: 0)
         }
         var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
-//        square.addChild(trail)
+        //        square.addChild(trail)
         trail.fillColor = .white
         trail.strokeColor = .clear
         trail.alpha = 0
@@ -224,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
 
-      }
+    }
     
     func didEnd(_ contact: SKPhysicsContact) {
     }
@@ -311,18 +311,18 @@ public extension SKTexture {
         filter!.setDefaults()
         
         switch direction {
-            case .up:
-                startVector = CIVector(x: size.width * 0.5, y: 0)
-                endVector = CIVector(x: size.width * 0.5, y: size.height)
-            case .left:
-                startVector = CIVector(x: size.width, y: size.height * 0.5)
-                endVector = CIVector(x: 0, y: size.height * 0.5)
-            case .upLeft:
-                startVector = CIVector(x: size.width, y: 0)
-                endVector = CIVector(x: 0, y: size.height)
-            case .upRight:
-                startVector = CIVector(x: 0, y: 0)
-                endVector = CIVector(x: size.width, y: size.height)
+        case .up:
+            startVector = CIVector(x: size.width * 0.5, y: 0)
+            endVector = CIVector(x: size.width * 0.5, y: size.height)
+        case .left:
+            startVector = CIVector(x: size.width, y: size.height * 0.5)
+            endVector = CIVector(x: 0, y: size.height * 0.5)
+        case .upLeft:
+            startVector = CIVector(x: size.width, y: 0)
+            endVector = CIVector(x: 0, y: size.height)
+        case .upRight:
+            startVector = CIVector(x: 0, y: 0)
+            endVector = CIVector(x: size.width, y: size.height)
         case .right:
             endVector = CIVector(x: size.width, y: size.height * 0.5)
             startVector = CIVector(x: 0, y: size.height * 0.5)

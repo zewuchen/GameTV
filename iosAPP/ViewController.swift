@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 
     @IBAction func btnEscolher(_ sender: Any) {
         let choice: String = "LOCKCOLOR"
-
+        
         if let choiceData = choice.data(using: .utf8), let host = host, sendData {
             MultipeerController.shared().sendToPeers(choiceData, reliably: true, peers: [host])
         }
