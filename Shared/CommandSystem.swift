@@ -21,7 +21,7 @@ public enum Command {
 
 public struct CommandSystem {
     var decode: String
-
+    
     var command: Command {
         switch decode {
         case "START":

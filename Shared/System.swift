@@ -7,16 +7,16 @@
 //
 
 public class System {
-
+    
     public static func shared() -> System {
         return sharedInstance
     }
-
+    
     private static let sharedInstance: System = {
         let shared = System()
         return shared
     }()
-
+    
     static let soundManager: SoundManager = SoundManager()
-
+    
 }

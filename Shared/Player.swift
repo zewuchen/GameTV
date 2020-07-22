@@ -31,39 +31,39 @@ public enum ColorPlayer {
     case purple
     case orange
     case yellow
-
+    
     #if !os(macOS)
     var color: UIColor {
         switch self {
         case .blue:
-            return DesignSystem.Colors.blue
+        return DesignSystem.Colors.blue
         case .red:
-            return DesignSystem.Colors.red
+        return DesignSystem.Colors.red
         case .green:
-            return DesignSystem.Colors.green
+        return DesignSystem.Colors.green
         case .purple:
-            return DesignSystem.Colors.purple
+        return DesignSystem.Colors.purple
         case .orange:
-            return DesignSystem.Colors.orange
+        return DesignSystem.Colors.orange
         case .yellow:
-            return DesignSystem.Colors.yellow
+        return DesignSystem.Colors.yellow
         }
     }
     #else
     var color: NSColor {
         switch self {
         case .blue:
-            return DesignSystem.Colors.blue
+        return DesignSystem.Colors.blue
         case .red:
-            return DesignSystem.Colors.red
+        return DesignSystem.Colors.red
         case .green:
-            return DesignSystem.Colors.green
+        return DesignSystem.Colors.green
         case .purple:
-            return DesignSystem.Colors.purple
+        return DesignSystem.Colors.purple
         case .orange:
-            return DesignSystem.Colors.orange
+        return DesignSystem.Colors.orange
         case .yellow:
-            return DesignSystem.Colors.yellow
+        return DesignSystem.Colors.yellow
         }
     }
     #endif
@@ -81,8 +81,8 @@ class Player {
     var selectionState: SelectionState
     var menuPosition: (Int,Int)
     
-  
-
+    
+    
     public init(id: String, name: String, colorPlayer: ColorPlayer, score: Int = 0, instantCol: Int = 0, instantRow: Int = 0, lock: Bool = false, selectionState: SelectionState = .preSelected, menuPosition: (Int,Int) = (0,0), isPegador: Bool = false) {
         self.id = id
         self.name = name

@@ -12,18 +12,18 @@ import AppKit
 #endif
 
 public class DesignSystem {
-
+    
     public static func shared() -> DesignSystem {
         return sharedInstance
     }
-
+    
     private static let sharedInstance: DesignSystem = {
         let shared = DesignSystem()
         return shared
     }()
-
+    
     public class Colors {
-
+        
         static let blue = #colorLiteral(red: 0.4666666667, green: 0.7647058824, blue: 0.9333333333, alpha: 1)
         static let red = #colorLiteral(red: 0.8941176471, green: 0.2862745098, blue: 0.2862745098, alpha: 1)
         static let green = #colorLiteral(red: 0.4705882353, green: 0.9254901961, blue: 0.3137254902, alpha: 1)
@@ -32,7 +32,7 @@ public class DesignSystem {
         static let yellow = #colorLiteral(red: 0.9254901961, green: 0.862745098, blue: 0.3137254902, alpha: 1)
         static let white = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
         static let gray = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.1450980392, alpha: 1)
-
+        
     }
     
     func getMenuColors() -> [[ColorPlayer]] {
@@ -42,7 +42,7 @@ public class DesignSystem {
     func getRightPointsColor() -> [ColorPlayer] {
         return [.purple, .orange, .yellow]
     }
-
+    
     func getLeftPointsColor() -> [ColorPlayer] {
         return [.blue, .red, .green]
     }
@@ -57,12 +57,12 @@ public class DesignSystemMap1 {
     public static func shared() -> DesignSystemMap1 {
         return sharedInstance
     }
-
+    
     private static let sharedInstance: DesignSystemMap1 = {
         let shared = DesignSystemMap1()
         return shared
     }()
-
+    
     func getRandomPosition() -> (Int, Int) {
         guard let pos = auxPossible.randomElement() else { return (0,0) }
         auxPossible.removeAll { (position) -> Bool in

@@ -25,7 +25,7 @@ class GameScene: SKScene {
         self.chao = self.childNode(withName: "//chao") as? SKTileMapNode
         tileMapping.buildNumericMap(from: chao!)
         self.initShapes()
-
+        
         MultipeerController.shared().delegate = self
     }
     
@@ -36,7 +36,7 @@ class GameScene: SKScene {
             square.name = player.id
             self.squares.append(square)
         }
-
+        
         for index in 0..<squares.count {
             if let positionSquare = (chao?.centerOfTile(atColumn: players[index].instantCol, row: players[index].instantRow)), let square = squares[index] {
                 square.position = positionSquare
@@ -87,7 +87,7 @@ class GameScene: SKScene {
 }
 
 extension GameScene: MultipeerHandler {
-
+    
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
         // Teste
         if !player1 {
@@ -98,16 +98,16 @@ extension GameScene: MultipeerHandler {
             players[1] = Player(id: id.description, name: "Teste2", colorPlayer: .red, instantCol: 22, instantRow: 22)
             squares[1]?.name = id.description
         }
-
+        
         return true
     }
-
+    
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)
         var playerAux: Player?
         var squareAux: SKShapeNode?
-
+        
         // Encontra qual é o player e a square que vai se mover
         for index in 0..<players.count {
             if players[index].id == peerID.description {
@@ -117,10 +117,10 @@ extension GameScene: MultipeerHandler {
                 squareAux = squares[index]
             }
         }
-
+        
         guard var player = playerAux else { return }
         guard var square = squareAux else { return }
-
+        
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             switch move.type {

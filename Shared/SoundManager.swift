@@ -16,14 +16,14 @@ public enum Sound {
 }
 
 final class SoundManager {
-
+    
     private var player: AVAudioPlayer?
     private var toggleMusic: Bool = true
-
+    
     func play(sound: Sound) {
-
+        
         var soundURL: URL?
-
+        
         switch sound {
         case .backgroundSong:
             soundURL = Bundle.main.url(forResource: "backgroundSong", withExtension: "mp3")
@@ -34,7 +34,7 @@ final class SoundManager {
         case .wallCollision:
             soundURL = Bundle.main.url(forResource: "colisao_parede", withExtension: "mp3")
         }
-
+        
         do {
             try AVAudioSession.sharedInstance().setMode(.default)
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
@@ -43,7 +43,7 @@ final class SoundManager {
         } catch {
             print(error.localizedDescription)
         }
-
+        
         if sound != .backgroundSong {
             player?.play()
         } else {
@@ -51,7 +51,7 @@ final class SoundManager {
             player?.numberOfLoops = -1
         }
     }
-
+    
     func stopSound() {
         if toggleMusic {
             player?.stop()

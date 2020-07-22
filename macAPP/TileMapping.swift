@@ -14,7 +14,7 @@ class TileMapping {
     
     var map: SKTileMapNode?
     var numericMap = [[Int]]()
-
+    
     func buildNumericMap(from map: SKTileMapNode) {
         self.map = map
         
@@ -54,41 +54,41 @@ class TileMapping {
     func getIndexWallLeftRow(instantRow: Int, instantCol: Int) -> Int? {
         let countdown = Countdown(count: instantCol)
         for col in countdown{
-                if self.numericMap[instantRow][col] == 0 {
-                    return col + 1
-                }
+            if self.numericMap[instantRow][col] == 0 {
+                return col + 1
             }
-            return nil
         }
+        return nil
+    }
     
     func getIndexWallUpColumn(instantRow: Int, instantCol: Int) -> Int? {
-            guard let totalRows = self.map?.numberOfRows else {
-                fatalError()
-            }
-    //        var actualPos =
-        
-            for row in instantRow..<totalRows {
-                if self.numericMap[row][instantCol] == 0 {
-                    return row - 1
-                }
-            }
-            return nil
+        guard let totalRows = self.map?.numberOfRows else {
+            fatalError()
         }
+        //        var actualPos =
+        
+        for row in instantRow..<totalRows {
+            if self.numericMap[row][instantCol] == 0 {
+                return row - 1
+            }
+        }
+        return nil
+    }
     
     func getIndexWallDownColumn(instantRow: Int, instantCol: Int) -> Int? {
         let countdown = Countdown(count: instantRow)
         for row in countdown {
-                if self.numericMap[row][instantCol] == 0 {
-                    return row + 1
-                }
+            if self.numericMap[row][instantCol] == 0 {
+                return row + 1
             }
-            return nil
         }
+        return nil
+    }
 }
 
 struct Countdown: Sequence, IteratorProtocol {
     var count: Int
-
+    
     mutating func next() -> Int? {
         if count == -1 {
             return nil

@@ -13,7 +13,7 @@ protocol GameDelegate: class {
     func newGame()
 }
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var selectedColor: UIView!
     @IBOutlet weak var btnEscolher: UIButton!
@@ -23,42 +23,42 @@ class ViewController: UIViewController {
     var instantPos = (0,0)
     var enableConnectivity = true
     var sendData = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
-
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
-
+        
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeUp.direction = .up
         self.view.addGestureRecognizer(swipeUp)
-
+        
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeDown.direction = .down
         self.view.addGestureRecognizer(swipeDown)
-
+        
         MultipeerController.shared().delegate = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         enableConnectivity = true
         sendData = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
         sendData = false
     }
-
+    
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         var movement: String = "0"
-
+        
         if gesture.direction == .up {
             movement = "1"
         }
@@ -71,12 +71,12 @@ class ViewController: UIViewController {
         else if gesture.direction == .right {
             movement = "4"
         }
-
+        
         if let movementData = movement.data(using: .utf8), let host = host, sendData {
             MultipeerController.shared().sendToPeers(movementData, reliably: true, peers: [host])
         }
     }
-
+    
     @IBAction func btnEscolher(_ sender: Any) {
         let choice: String = "LOCKCOLOR"
         
@@ -84,25 +84,25 @@ class ViewController: UIViewController {
             MultipeerController.shared().sendToPeers(choiceData, reliably: true, peers: [host])
         }
     }
-
+    
 }
 
 extension ViewController: MultipeerHandler {
-
+    
     // Quando encontra o host do jogo (AppleTV)
     func peerDiscovered(_ id: MCPeerID) -> Bool {
         host = id
         return true
     }
-        
+    
     func peerLost(_ id: MCPeerID) { }
-
+    
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         if enableConnectivity {
             guard let texto = String(bytes: data, encoding: .utf8) else { return }
             let move = Movement(decode: texto)
             let command = CommandSystem(decode: texto)
-
+            
             switch move.type {
             case .up:
                 animatedSelections(swipe: .up)
@@ -117,7 +117,7 @@ extension ViewController: MultipeerHandler {
             }
         }
     }
-
+    
     func animatedSelections(swipe: MovementType) {
         DispatchQueue.main.async {
             let finalPos = self.selectionView.changePos(instantPos: self.instantPos, swipe: swipe)
@@ -125,7 +125,7 @@ extension ViewController: MultipeerHandler {
             self.selectedColor.backgroundColor = self.selectionView.colors[self.instantPos.0][self.instantPos.1].color
         }
     }
-
+    
     func commandGame(command: CommandSystem) {
         switch command.command {
         case .start:
@@ -160,7 +160,7 @@ extension ViewController: MultipeerHandler {
             break
         }
     }
-
+    
     func lockChoice(track: String) {
         sendData = false
         DispatchQueue.main.async {
@@ -169,13 +169,13 @@ extension ViewController: MultipeerHandler {
             self.lblTrack.text = track
         }
     }
-
+    
     func invalidChoice(track: String) {
         DispatchQueue.main.async {
             self.lblTrack.text = track
         }
     }
-
+    
 }
 
 extension ViewController: GameDelegate {

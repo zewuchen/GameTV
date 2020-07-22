@@ -34,7 +34,7 @@ class ScoreController: UIView {
         let size = CGSize(width: 0, height: heightForView)
         var scoreView: ScoreView?
         var position: CGPoint?
-
+        
         for i in 0..<colors.count {
             
             switch scorePosition {
@@ -63,9 +63,9 @@ class ScoreController: UIView {
             let view = scoreViews[player.menuPosition.1]
             view.state = player.selectionState
             view.animateOwnState(scorePosition: scorePosition, width: self.viewWidth ?? 0, player: player)
-//            view.createPoints()
+            //            view.createPoints()
         }
-//        updatePoints(players: players)
+        //        updatePoints(players: players)
     }
     
     func updatePoints(players: [Player]) {
@@ -88,7 +88,7 @@ class ScoreView: UIView {
     var position: CGPoint?
     var state: SelectionState = .notSelected
     var pointsView: PointsView?
-
+    
     init(color: ColorPlayer, size: CGSize, position: CGPoint) {
         self.color = color
         self.position = position

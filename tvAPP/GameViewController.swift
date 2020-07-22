@@ -12,12 +12,12 @@ import GameplayKit
 import MultipeerConnectivity
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         MultipeerController.shared().delegate = self
-
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -34,14 +34,14 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
+    
 }
 
 extension GameViewController: MultipeerHandler {
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
         return true
     }
-
+    
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let move = Movement(decode: texto)

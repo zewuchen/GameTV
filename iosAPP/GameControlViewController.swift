@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 class GameControlViewController: UIViewController {
-
+    
     var host: MCPeerID?
     var color: UIColor?
     var pause: Bool = false
@@ -21,29 +21,29 @@ class GameControlViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
-
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
-
+        
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeUp.direction = .up
         self.view.addGestureRecognizer(swipeUp)
-
+        
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
         swipeDown.direction = .down
         self.view.addGestureRecognizer(swipeDown)
-
+        
         MultipeerController.shared().delegate = self
     }
-
+    
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         var movement: String = "0"
-
+        
         if gesture.direction == .up {
             movement = "1"
         }
@@ -56,12 +56,12 @@ class GameControlViewController: UIViewController {
         else if gesture.direction == .right {
             movement = "4"
         }
-
+        
         if let movementData = movement.data(using: .utf8), let host = host, !pause {
             MultipeerController.shared().sendToPeers(movementData, reliably: false, peers: [host])
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         if let colorView = colorView, let color = color {
             DispatchQueue.main.async {
@@ -76,16 +76,16 @@ extension GameControlViewController : MultipeerHandler {
         host = id
         return true
     }
-
+    
     func peerLost(_ id: MCPeerID) { }
     
     func receivedData(_ data: Data, from peerID: MCPeerID) {
         guard let texto = String(bytes: data, encoding: .utf8) else { return }
         let command = CommandSystem(decode: texto)
-
+        
         commandGame(command: command)
     }
-
+    
     func commandGame(command: CommandSystem) {
         switch command.command {
         case .start:
@@ -117,7 +117,7 @@ extension GameControlViewController : MultipeerHandler {
             break
         }
     }
-
+    
     func updateLabel(title: String, track: String) {
         DispatchQueue.main.async {
             self.lblTitle.text = title

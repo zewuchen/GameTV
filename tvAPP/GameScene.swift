@@ -104,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if !players[0].lock {
-
+            
             let instantPos = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow))!
             if gesture.direction == UISwipeGestureRecognizer.Direction.right {
                 print("Swipe Right")
@@ -202,9 +202,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 playerB = player
             }
         }
-
+        
         guard let gPlayerA = playerA, let gPlayerB = playerB else { fatalError() }
-
+        
         if gPlayerA.isPegador && !gPlayerB.isPegador {
             gameDelegate?.endGame(winnerPlayer: gPlayerA)
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
@@ -223,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gPlayerB.instantCol = newColumnB
             
         }
-
+        
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -259,7 +259,7 @@ extension GameScene: MultipeerHandler {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
             var direction: UISwipeGestureRecognizer.Direction = .right
             switch move.type {
-
+                
             case .right : //right
                 direction = .right
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0

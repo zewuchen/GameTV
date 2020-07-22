@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var selectionView: SelectionController!
     @IBOutlet weak var playButtonOutlet: UIButton!
     @IBOutlet weak var waitForPlayersLabel: UILabel!
@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
         loadingAnimation(flag: true)
         enableConnectivity = true
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         enableConnectivity = false
         loadingAnimation(flag: false)
@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
         self.players.append(controlPlayer)
         self.selectionView.updateBasedOnPlayersPosition(players: self.players)
     }
-     
+    
     //MARK:- Handle gestures remoteControl
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.right {
@@ -164,7 +164,7 @@ class HomeViewController: UIViewController {
 
 //MARK:- Multipeer handler
 extension HomeViewController: MultipeerHandler {
-
+    
     func loadingAnimation(flag: Bool) {
         if flag {
             DispatchQueue.main.async {
@@ -180,23 +180,23 @@ extension HomeViewController: MultipeerHandler {
             }
         }
     }
-
+    
     func peerReceivedInvitation(_ id: MCPeerID) -> Bool {
-
+        
         if MultipeerController.shared().connectedPeers.count < 5, enableConnectivity {
             let phonePlayer = Player(id: id.description, name: id.displayName, colorPlayer: selectionView.getColor(instantPos: startPos))
             self.players.append(phonePlayer)
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
-
+            
             if players.count <= 5 {
                 loadingAnimation(flag: true)
             } else {
                 loadingAnimation(flag: false)
             }
-
+            
             return true
         }
-
+        
         return false
     }
     
@@ -206,13 +206,13 @@ extension HomeViewController: MultipeerHandler {
             let command = CommandSystem(decode: texto)
             let move = Movement(decode: texto)
             var playerAux: Player?
-
+            
             for index in 0..<players.count {
                 if players[index].id == peerID.description {
                     playerAux = players[index]
                 }
             }
-
+            
             guard var player = playerAux else { return }
             switch move.type {
             case .down:
@@ -258,7 +258,7 @@ extension HomeViewController: MultipeerHandler {
             self.selectionView.updateBasedOnPlayersPosition(players: self.players)
         }
     }
-
+    
     func commandGame(command: CommandSystem, peer: MCPeerID) {
         switch command.command {
         case .start:
@@ -283,14 +283,14 @@ extension HomeViewController: MultipeerHandler {
             break
         }
     }
-
+    
     func lockColor(peer: MCPeerID) {
         let response: String
-
+        
         let player = players.first { (player) -> Bool in
             return player.id == peer.description
         }
-
+        
         if let player = player, player.selectionState != .selected {
             let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
             if filteredPlayers.count > 0 {
@@ -305,7 +305,7 @@ extension HomeViewController: MultipeerHandler {
             }
         }
     }
-
+    
     func lockColorRemote(player: Player) -> Bool {
         let filteredPlayers = self.players.filter({ $0.selectionState == .selected && $0.menuPosition == player.menuPosition })
         if filteredPlayers.count > 0 {
@@ -314,7 +314,7 @@ extension HomeViewController: MultipeerHandler {
             player.selectionState = .selected
             player.colorPlayer = selectionView.colors[player.menuPosition.0][player.menuPosition.1]
         }
-
+        
         return true
     }
 }

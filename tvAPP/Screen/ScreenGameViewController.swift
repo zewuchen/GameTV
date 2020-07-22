@@ -18,7 +18,7 @@ enum ScreenGameState {
 }
 
 class ScreenGameViewController: UIViewController {
-
+    
     @IBOutlet weak var gameView: SKView!
     @IBOutlet var rightScoreView: ScoreController!
     @IBOutlet weak var leftScoreView: ScoreController!
@@ -46,7 +46,7 @@ class ScreenGameViewController: UIViewController {
         super.viewDidLoad()
         initScene()
         timerController()
-//        timer.fire()
+        //        timer.fire()
         initViews()
     }
     
@@ -64,7 +64,7 @@ class ScreenGameViewController: UIViewController {
         rightScoreView.updateBasedOnPlayers(players: rightPlayers)
         leftScoreView.updateBasedOnPlayers(players: leftPlayers)
     }
-
+    
     func initViews() {
         rightScoreView.scorePosition = .right
         leftScoreView.scorePosition = .left
@@ -113,7 +113,7 @@ class ScreenGameViewController: UIViewController {
     }
     
     func timeString(time:TimeInterval) -> String {
-//        let hours = Int(time) / 3600
+        //        let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return String(format:"%02i:%02i", minutes, seconds)
@@ -177,7 +177,7 @@ class ScreenGameViewController: UIViewController {
     func setEndState(winnerPlayer: Player) {
         let response: String = "END"
         if let responseData = response.data(using: .utf8) {
-               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+            MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
         self.hiddeAll()
         self.endMainView.isHidden = false
@@ -190,7 +190,7 @@ class ScreenGameViewController: UIViewController {
     @IBAction func restartGameTap(_ sender: Any) {
         let response: String = "RESTART"
         if let responseData = response.data(using: .utf8) {
-               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+            MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
         restartGame()
     }
@@ -228,7 +228,7 @@ class ScreenGameViewController: UIViewController {
     @IBAction func backToStartTapped(_ sender: Any) {
         let response: String = "NEWGAME"
         if let responseData = response.data(using: .utf8) {
-               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+            MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
         self.dismiss(animated: true) {
             self.timer?.invalidate()
@@ -249,7 +249,7 @@ class ScreenGameViewController: UIViewController {
     func setContinueGame() {
         let response: String = "CONTINUE"
         if let responseData = response.data(using: .utf8) {
-               MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
+            MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
         self.hiddeAll()
         self.timerController()
@@ -264,11 +264,11 @@ class ScreenGameViewController: UIViewController {
                 if let responseData = response.data(using: .utf8) {
                     MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
                 }
-               setPauseState()
+                setPauseState()
             }
         }
     }
-
+    
     
     @IBAction func continueGameTapped(_ sender: Any) {
         setContinueGame()
