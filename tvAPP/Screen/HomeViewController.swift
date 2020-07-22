@@ -213,7 +213,7 @@ extension HomeViewController: MultipeerHandler {
                 }
             }
 
-            guard var player = playerAux else { return }
+            guard let player = playerAux else { return }
             switch move.type {
             case .down:
                 if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {

@@ -30,7 +30,7 @@ class ScoreController: UIView {
     
     func initViews() {
         let count = self.colors.count
-        var heightForView = Int(viewHeight ?? 0) / count
+        let heightForView = Int(viewHeight ?? 0) / count
         let size = CGSize(width: 0, height: heightForView)
         var scoreView: ScoreView?
         var position: CGPoint?
@@ -43,8 +43,6 @@ class ScoreController: UIView {
             case .right:
                 let width = viewWidth! - SelectionState.notSelected.rawValue
                 position = CGPoint(x: width, y: CGFloat(heightForView) * CGFloat(i))
-            default:
-                break
             }
             var systemColor: [ColorPlayer] = DesignSystem().getLeftPointsColor()
             if scorePosition == .left {

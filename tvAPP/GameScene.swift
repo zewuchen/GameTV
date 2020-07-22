@@ -48,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.physicsBody!.categoryBitMask = UInt32.max
             square.physicsBody?.allowsRotation = false
             square.physicsBody?.friction = 1.0
-            var trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
+            let trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             trail.name = "trail"
             square.addChild(trail)
             if player.isPegador {
@@ -165,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gradientDirection = .left
             trail.position = CGPoint(x: -32, y: 0)
         }
-        var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
+        let texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
         //        square.addChild(trail)
         trail.fillColor = .white
         trail.strokeColor = .clear
@@ -272,8 +272,8 @@ extension GameScene: MultipeerHandler {
             }
         }
         
-        guard var player = playerAux else { return }
-        guard var square = squareAux else { return }
+        guard let player = playerAux else { return }
+        guard let square = squareAux else { return }
         
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
