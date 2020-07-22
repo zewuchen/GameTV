@@ -136,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createTrail(duration: TimeInterval, square: SKShapeNode, direction: UISwipeGestureRecognizer.Direction) {
-        guard let trail = square.childNode(withName: "trail") as? SKShapeNode else { fatalError() }
+        guard let trail = square.childNode(withName: "trail") as? SKShapeNode else { return }
         var gradientDirection: GradientDirection = .left
         let color1 = CIColor(color: square.fillColor)
         let color2 = CIColor(red: color1.red, green: color1.green, blue: color1.blue, alpha: 0.0)
@@ -302,8 +302,9 @@ extension GameScene: MultipeerHandler {
                 if player.isPegador {
                     duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1150)
                 }
-
-                self.createTrail(duration: duration, square: square, direction: direction)
+                DispatchQueue.main.async {
+                    self.createTrail(duration: duration, square: square, direction: direction)
+                }
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
                 square.run(action, completion: {

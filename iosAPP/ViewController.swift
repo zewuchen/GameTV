@@ -12,6 +12,7 @@ import MultipeerConnectivity
 protocol GameDelegate: class {
     func newGame()
 }
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var selectionView: SelectionController!

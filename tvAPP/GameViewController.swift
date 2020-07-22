@@ -34,7 +34,6 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
 }
 
 extension GameViewController: MultipeerHandler {
