@@ -7,9 +7,15 @@
 //
 
 enum SelectionState: CGFloat {
+    #if os(iOS)
+    case notSelected = 30
+    case preSelected = 60
+    case selected = 160
+    #else
     case notSelected = 100
     case preSelected = 200
     case selected = 300
+    #endif
 }
 
 #if !os(macOS)
