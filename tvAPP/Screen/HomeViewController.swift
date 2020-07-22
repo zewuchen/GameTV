@@ -317,4 +317,12 @@ extension HomeViewController: MultipeerHandler {
 
         return true
     }
+
+    func resetPlayers() {
+        for player in players {
+            player.colorPlayer = .blue
+            player.menuPosition = (0,0)
+            player.selectionState = .notSelected
+        }
+    }
 }

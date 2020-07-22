@@ -289,8 +289,15 @@ class ScreenGameViewController: UIViewController {
         if let responseData = response.data(using: .utf8) {
                MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
         }
-        self.dismiss(animated: true) {
+
+        if let vc = HomeViewController() as? HomeViewController {
             self.timer?.invalidate()
+            vc.players = self.players
+            vc.alreadyStartFirstTime = true
+            vc.resetPlayers()
+            UIApplication.shared.windows.first?.rootViewController = vc
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
