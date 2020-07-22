@@ -167,6 +167,7 @@ extension ViewController: MultipeerHandler {
             self.btnEscolher.isEnabled = false
             self.btnEscolher.isHidden = true
             self.lblTrack.text = track
+            self.selectionView.selectionViews[self.instantPos.0][self.instantPos.1].animateTo(state: .selected, newColumn: nil)
         }
     }
 
