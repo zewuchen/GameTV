@@ -15,6 +15,7 @@ class SelectionController: UIView {
     var viewHeight: CGFloat?
     var viewWidth: CGFloat?
     var selectionViews = [[SelectionView]]()
+    var imageControl: UIImageView?
     
     override func draw(_ rect: CGRect) {
         self.viewWidth = rect.width
@@ -49,6 +50,26 @@ class SelectionController: UIView {
                 
             }
         }
+
+        #if os(tvOS)
+        if let selectionViewReference = self.selectionViews[0].first, let image = UIImage(named: "control") {
+            self.imageControl = UIImageView(image: image)
+            guard let position = selectionViewReference.position else { return }
+            let quadrado = selectionViewReference.frame.height * 0.25
+            let cornerRadius = CGFloat((self.imageControl?.frame.height ?? 0) / 2)
+            let frame = CGRect(x: position.x + (selectionViewReference.frame.width * 1.55), y: position.y + (selectionViewReference.frame.height / 3), width: quadrado, height: quadrado)
+            self.imageControl?.frame = frame
+            self.imageControl?.backgroundColor = selectionViewReference.color?.color
+            self.imageControl?.layer.cornerRadius = cornerRadius
+            self.imageControl?.clipsToBounds = true
+            self.imageControl?.layer.borderWidth = 5
+            self.imageControl?.layer.borderColor = selectionViewReference.color?.color.cgColor
+
+            if let imageControle = self.imageControl {
+                self.addSubview(imageControle)
+            }
+        }
+        #endif
     }
     
     //Passa a posição que está no momento, sendo coluna e row, e o tipo de movimento para calcular a posicao final
@@ -124,6 +145,7 @@ class SelectionController: UIView {
     func getLimitsOfColors() -> (Int, Int) {
         return (self.colors.count, self.colors[0].count)
     }
+
 }
 
 class SelectionView: UIView {
