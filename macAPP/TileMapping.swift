@@ -18,9 +18,9 @@ class TileMapping {
     func buildNumericMap(from map: SKTileMapNode) {
         self.map = map
         
-        let position = CGPoint(x: 0, y: 0)
-        let column = self.map?.tileColumnIndex(fromPosition: position)
-        let row = self.map?.tileRowIndex(fromPosition: position)
+//        let position = CGPoint(x: 0, y: 0)
+//        let column = self.map?.tileColumnIndex(fromPosition: position)
+//        let row = self.map?.tileRowIndex(fromPosition: position)
         
         guard let totalRows = self.map?.numberOfRows else {
             fatalError()
