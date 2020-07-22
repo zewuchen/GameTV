@@ -15,6 +15,7 @@ enum ScreenGameState {
     case playing
     case paused
     case end
+    case startRound
 }
 
 class ScreenGameViewController: UIViewController {
@@ -35,6 +36,11 @@ class ScreenGameViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var backStartFromPauseButton: UIButton!
     
+    //Round Views
+    @IBOutlet weak var roundView: UIView!
+    @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var playersStackView: UIStackView!
+    @IBOutlet weak var pegadorView: UIView!
     
     var players = [Player]()
     var roundPlayers = [Player]()
@@ -42,11 +48,12 @@ class ScreenGameViewController: UIViewController {
     var map1 = DesignSystemMap1()
     var state: ScreenGameState = .playing
     var timer: Timer?
+    var roundCounter = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initScene()
-        timerController()
+//        timerController()
 //        timer.fire()
         initViews()
     }
@@ -74,7 +81,8 @@ class ScreenGameViewController: UIViewController {
     func initScene() {
         setRandomPlayerAsPegador()
         initPositions()
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+        self.setRoundState()
+        if let scene = GameScene(fileNamed: "GameScene") as? GameScene {
             scene.scaleMode = .fill
             scene.gameDelegate = self
             gameView.backgroundColor = DesignSystem.Colors.gray
@@ -85,8 +93,8 @@ class ScreenGameViewController: UIViewController {
         
         gameView.ignoresSiblingOrder = true
         
-        gameView.showsFPS = true
-        gameView.showsNodeCount = true
+//        gameView.showsFPS = true
+//        gameView.showsNodeCount = true
         
         let response: String = "START"
         if let responseData = response.data(using: .utf8) {
@@ -137,12 +145,13 @@ class ScreenGameViewController: UIViewController {
             self.totalTime -= 1
             self.counterLabel.text = self.timeString(time: TimeInterval(self.totalTime))
         }
+//        timer?.invalidate()
     }
     
     func timerRestart() {
         self.initScene()
         self.totalTime = 60
-        self.timerController()
+//        self.timerController()
     }
     
     func setPointToPlayer(player: Player) {
@@ -173,6 +182,53 @@ class ScreenGameViewController: UIViewController {
         self.gameView.isHidden = true
         self.endMainView.isHidden = true
         self.pauseView.isHidden = true
+        self.roundView.isHidden = true
+    }
+    
+    //Estado de começo de round
+    func lockAllPlayers() {
+        for player in players {
+            player.lock = true
+        }
+    }
+
+    func unlockAllPlayers() {
+        for player in players {
+            player.lock = false
+        }
+    }
+    
+    func setRoundState() {
+        self.counterLabel.text = "01:00"
+        self.roundView.isHidden = false
+        self.roundLabel.text = "Round \(roundCounter)"
+        roundCounter += 1
+        self.timer?.invalidate()
+        self.lockAllPlayers()
+        for subview in playersStackView.subviews {
+            if subview.tag == 1 {
+                subview.removeFromSuperview()
+            }
+        }
+        for player in players {
+            if player.isPegador {
+                self.pegadorView.backgroundColor = player.colorPlayer.color
+            } else {
+                let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+                view.backgroundColor = player.colorPlayer.color
+                view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50))
+                view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50))
+                view.tag = 1
+                self.playersStackView.addArrangedSubview(view)
+            }
+        }
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+//            self.timer?.fire()
+            self.timerController()
+            self.roundView.isHidden = true
+            self.unlockAllPlayers()
+        }
     }
     
     //Estado de fim de jogo
@@ -207,6 +263,7 @@ class ScreenGameViewController: UIViewController {
         self.timerRestart()
         self.resetPoints()
         self.setRandomPlayerAsPegador()
+        self.roundCounter = 1
     }
     
     func resetPoints() {
@@ -294,8 +351,8 @@ extension ScreenGameViewController: GameSceneDelegate {
     }
     
     func endGame(winnerPlayer: Player) {
+        self.totalTime = 5
         self.initScene()
         setPointToPlayer(player: winnerPlayer)
-        self.totalTime = 60
     }
 }

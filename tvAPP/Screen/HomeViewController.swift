@@ -140,7 +140,7 @@ class HomeViewController: UIViewController {
             self.show(gameVC, sender: self)
         } else {
             if self.players.count < 2 {
-                self.waitForPlayersLabel.text = "É necessário ter pelo menos 2 jogadores"
+                self.waitForPlayersLabel.text = "No mínimo 2 jogadores para iniciar..."
             } else {
                 self.waitForPlayersLabel.text = "Espere todos os jogadores escolherem"
             }
@@ -213,7 +213,7 @@ extension HomeViewController: MultipeerHandler {
                 }
             }
 
-            guard var player = playerAux else { return }
+            guard let player = playerAux else { return }
             switch move.type {
             case .down:
                 if player.menuPosition.1 + 1 < countColors?.1 ?? 0 {

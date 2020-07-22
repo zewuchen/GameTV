@@ -25,7 +25,7 @@ class SelectionController: UIView {
     
     func initViews() {
         let count = (self.colors[0].count)
-        var heightForView = Int(viewHeight ?? 0) / count
+        let heightForView = Int(viewHeight ?? 0) / count
         
         let size = CGSize(width: 0, height: heightForView)
         var selectionView: SelectionView?

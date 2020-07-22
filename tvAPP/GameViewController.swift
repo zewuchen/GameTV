@@ -31,7 +31,6 @@ class GameViewController: UIViewController {
             view.ignoresSiblingOrder = true
         }
     }
-
 }
 
 extension GameViewController: MultipeerHandler {
@@ -40,7 +39,7 @@ extension GameViewController: MultipeerHandler {
     }
 
     func receivedData(_ data: Data, from peerID: MCPeerID) {
-        guard let texto = String(bytes: data, encoding: .utf8) else { return }
-        let move = Movement(decode: texto)
+        guard String(bytes: data, encoding: .utf8) != nil else { return }
+//        let move = Movement(decode: texto)
     }
 }

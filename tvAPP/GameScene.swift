@@ -48,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.physicsBody!.categoryBitMask = UInt32.max
             square.physicsBody?.allowsRotation = false
             square.physicsBody?.friction = 1.0
-            var trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
+            let trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             trail.name = "trail"
             square.addChild(trail)
             if player.isPegador {
@@ -136,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createTrail(duration: TimeInterval, square: SKShapeNode, direction: UISwipeGestureRecognizer.Direction) {
-        guard let trail = square.childNode(withName: "trail") as? SKShapeNode else { fatalError() }
+        guard let trail = square.childNode(withName: "trail") as? SKShapeNode else { return }
         var gradientDirection: GradientDirection = .left
         let color1 = CIColor(color: square.fillColor)
         let color2 = CIColor(red: color1.red, green: color1.green, blue: color1.blue, alpha: 0.0)
@@ -165,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gradientDirection = .left
             trail.position = CGPoint(x: -32, y: 0)
         }
-        var texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
+        let texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
         //        square.addChild(trail)
         trail.fillColor = .white
         trail.strokeColor = .clear
@@ -272,8 +272,8 @@ extension GameScene: MultipeerHandler {
             }
         }
         
-        guard var player = playerAux else { return }
-        guard var square = squareAux else { return }
+        guard let player = playerAux else { return }
+        guard let square = squareAux else { return }
         
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }
@@ -302,8 +302,9 @@ extension GameScene: MultipeerHandler {
                 if player.isPegador {
                     duration = self.getDuration(pointA: instantPos, pointB: destination, speed: 1150)
                 }
-
-                self.createTrail(duration: duration, square: square, direction: direction)
+                DispatchQueue.main.async {
+                    self.createTrail(duration: duration, square: square, direction: direction)
+                }
                 let action = SKAction.move(to: destination, duration: self.getDuration(pointA: instantPos, pointB: destination, speed: 1000))
                 player.lock = true
                 square.run(action, completion: {
