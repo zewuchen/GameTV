@@ -730,7 +730,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.iosAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.rm4.runboxrun;
 				PRODUCT_NAME = iosAPP;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -750,7 +750,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zewuchen.iosAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.rm4.runboxrun;
 				PRODUCT_NAME = iosAPP;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
