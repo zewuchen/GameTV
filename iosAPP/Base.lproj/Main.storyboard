@@ -71,7 +71,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="T6d-bm-ROZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="65d-2Q-Ecn"/>
                             <constraint firstItem="wdX-GP-V01" firstAttribute="top" secondItem="T6d-bm-ROZ" secondAttribute="bottom" id="6Hq-RI-0SO"/>
@@ -109,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsS-Ew-tLn">
-                                <rect key="frame" x="147" y="136" width="120" height="120"/>
+                                <rect key="frame" x="147" y="127" width="120" height="120"/>
                                 <color key="backgroundColor" red="0.46666666666666667" green="0.76470588235294112" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="H8g-Xh-ecz"/>
@@ -141,7 +141,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JMQ-YE-u4M" firstAttribute="leading" secondItem="RKM-pB-ZOt" secondAttribute="leading" constant="20" id="3jl-Bw-Fmj"/>
                             <constraint firstItem="RKM-pB-ZOt" firstAttribute="bottom" secondItem="iA8-5t-pWz" secondAttribute="bottom" constant="80" id="8VG-EN-O4a"/>
@@ -216,7 +216,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0DR-tM-AVq" firstAttribute="bottom" secondItem="zwB-YM-lem" secondAttribute="bottom" constant="80" id="4Un-bd-mPn"/>
                             <constraint firstItem="zwB-YM-lem" firstAttribute="top" secondItem="4vb-oT-e8k" secondAttribute="bottom" id="9QT-lO-Nsh"/>
