@@ -264,6 +264,8 @@ class ScreenGameViewController: UIViewController {
         self.resetPoints()
         self.setRandomPlayerAsPegador()
         self.roundCounter = 1
+        self.roundLabel.text = "Round \(roundCounter)"
+        self.counterLabel.text = "01:00"
     }
     
     func resetPoints() {
