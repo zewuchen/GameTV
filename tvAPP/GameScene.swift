@@ -108,19 +108,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             let instantPos = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow))!
             if gesture.direction == UISwipeGestureRecognizer.Direction.right {
-                print("Swipe Right")
                 players[0].instantCol = tileMapping.getIndexWallRightRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
             }
             else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-                print("Swipe Left")
                 players[0].instantCol = tileMapping.getIndexWallLeftRow(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
             }
             else if gesture.direction == UISwipeGestureRecognizer.Direction.up {
-                print("Swipe Up")
                 players[0].instantRow = tileMapping.getIndexWallUpColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
             }
             else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
-                print("Down")
                 players[0].instantRow = tileMapping.getIndexWallDownColumn(instantRow: players[0].instantRow, instantCol: players[0].instantCol) ?? 0
             }
             if let destination = (chao?.centerOfTile(atColumn: players[0].instantCol, row: players[0].instantRow)) {
