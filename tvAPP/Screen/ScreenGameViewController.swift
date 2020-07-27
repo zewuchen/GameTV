@@ -346,6 +346,9 @@ class ScreenGameViewController: UIViewController {
 
 extension ScreenGameViewController: GameSceneDelegate {
     func removePlayer(player: Player) {
+        for aPlayer in players {
+            aPlayer.lock = false
+        }
         self.roundPlayers.removeAll { (player) -> Bool in
             return player.id == player.id
         }
@@ -353,7 +356,7 @@ extension ScreenGameViewController: GameSceneDelegate {
     }
     
     func endGame(winnerPlayer: Player) {
-        self.totalTime = 5
+        self.totalTime = 60
         self.initScene()
         setPointToPlayer(player: winnerPlayer)
     }

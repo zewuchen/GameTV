@@ -109,6 +109,7 @@ class SelectionController: UIView {
     
     func updateBasedOnPlayersPosition(players: [Player]) {
         deselectAllViews()
+//        var createControl = false
         for column in selectionViews {
             for view in column {
                 view.removeSubViews()
@@ -117,16 +118,17 @@ class SelectionController: UIView {
         for player in players {
             let view = selectionViews[player.menuPosition.0][player.menuPosition.1]
 //            view.removeSubViews()
-            if player.id == players[0].id {
-                view.createControl()
-            }
-            //TODO:- Tratar se já esta na selected
             if view.state != .selected {
                 view.state = player.selectionState
+            }
+            if player.id == players[0].id {
+                view.createControl()
+//                createControl = true
             }
         }
         for column in selectionViews  {
             for view in column {
+//                view.animateOwnState(shouldCreateControl: createControl)
                 view.animateOwnState()
             }
         }
@@ -186,6 +188,10 @@ class SelectionView: UIView {
             }
 //             self.controlView.frame = self.frame
         }
+        
+//        if shouldCreateControl {
+//            createControl()
+//        }
     }
     
     func createControl() {
@@ -198,7 +204,7 @@ class SelectionView: UIView {
         if self.frame.minX > 0 {
             controlView.frame = CGRect(x: -50, y: self.frame.height/2 - 50, width: 100, height: 100)
         } else {
-            controlView.frame = CGRect(x: self.frame.width , y: self.frame.height/2 - 50, width: 100, height: 100)
+            controlView.frame = CGRect(x: self.state.rawValue - 50 , y: self.frame.height/2 - 50, width: 100, height: 100)
         }
         controlView.addSubview(imageView)
         controlView.isHidden = false
