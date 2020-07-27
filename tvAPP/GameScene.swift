@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var chao : SKTileMapNode?
     private var squares: [SKShapeNode?] = []
     var players = [Player]()
+    var totalPlayersInGame = 0
     
     let tileMapping = TileMapping()
     var player1 = false // Teste
@@ -31,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         self.initShapes()
         createGestures()
+        totalPlayersInGame = players.count
         MultipeerController.shared().delegate = self
     }
     
@@ -40,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.fillColor = player.colorPlayer.color
             square.strokeColor = .clear
             square.name = player.id
-            square.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: square.frame.width - 4, height: square.frame.height - 4))
+            square.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: square.frame.width - 2, height: square.frame.height - 2))
             square.physicsBody?.isDynamic = true
             square.physicsBody?.affectedByGravity = false
             square.physicsBody?.collisionBitMask = 0
@@ -186,6 +188,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
     }
     
+    func unlockAll() {
+        for player in players {
+            player.lock = false
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         contact.bodyA.node?.removeAllActions()
         contact.bodyB.node?.removeAllActions()
@@ -204,27 +212,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if gPlayerA.isPegador && !gPlayerB.isPegador {
             //Remover o playerB do jogo
-            if players.count == 2 {
+            if totalPlayersInGame == 2 {
                 gameDelegate?.endGame(winnerPlayer: gPlayerA)
             } else {
-                self.players.removeAll { (player) -> Bool in
-                    return player.id == gPlayerB.id
-                }
+                totalPlayersInGame -= 1
+//                self.players.removeAll { (player) -> Bool in
+//                    return player.id == gPlayerB.id
+//                }
 //                self.removeChildren(in: [contact.bodyB.node!])
+//                contact.bodyB.node?.isHidden = true
                 contact.bodyB.node?.removeFromParent()
                 gPlayerA.lock = false
+//                squares.removeAll { (square) -> Bool in
+//                    return square == contact.bodyB.node
+//                }
+//                unlockAll()
                 gameDelegate?.removePlayer(player: gPlayerB)
             }
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
             //Remover o playerA do jogo
-            if players.count == 2 {
+            if totalPlayersInGame == 2 {
                 gameDelegate?.endGame(winnerPlayer: gPlayerB)
             } else {
-                self.players.removeAll { (player) -> Bool in
-                    return player.id == gPlayerA.id
-                }
+                totalPlayersInGame -= 1
+//                self.players.removeAll { (player) -> Bool in
+//                    return player.id == gPlayerA.id
+//                }
+//                contact.bodyA.node?.isHidden = true
+//                squares.removeAll { (square) -> Bool in
+//                    return square == contact.bodyA.node
+//                }
                 contact.bodyA.node?.removeFromParent()
-//                self.removeChildren(in: [contact.bodyA.node!])
+                gPlayerB.lock = false
+//                unlockAll()
+                //                self.removeChildren(in: [contact.bodyA.node!])
                 gameDelegate?.removePlayer(player: gPlayerA)
             }
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {
@@ -277,15 +298,19 @@ extension GameScene: MultipeerHandler {
             switch move.type {
 
             case .right : //right
+                print("iphone right")
                 direction = .right
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .left: //left
+                print("iphone left")
                 direction = .left
                 player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .up: //up
+                print("iphone up")
                 direction = .up
                 player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             case .down: //down
+                print("iphone down")
                 direction = .down
                 player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:

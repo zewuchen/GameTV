@@ -109,13 +109,26 @@ class SelectionController: UIView {
     
     func updateBasedOnPlayersPosition(players: [Player]) {
         deselectAllViews()
+//        var createControl = false
+        for column in selectionViews {
+            for view in column {
+                view.removeSubViews()
+            }
+        }
         for player in players {
             let view = selectionViews[player.menuPosition.0][player.menuPosition.1]
-            //TODO:- Tratar se já esta na selected
-            view.state = player.selectionState
+//            view.removeSubViews()
+            if view.state != .selected {
+                view.state = player.selectionState
+            }
+            if player.id == players[0].id {
+                view.createControl()
+//                createControl = true
+            }
         }
         for column in selectionViews  {
             for view in column {
+//                view.animateOwnState(shouldCreateControl: createControl)
                 view.animateOwnState()
             }
         }
@@ -132,7 +145,9 @@ class SelectionView: UIView {
     var state: SelectionState = .notSelected
     var column: Int?
     var position: CGPoint?
-    
+    lazy var imageView = UIImageView(frame: CGRect(x: self.frame.width, y: self.frame.height/2, width: 50, height: 50))
+    lazy var controlView = UIView(frame: CGRect(x: self.frame.width + state.rawValue - 50, y: self.frame.height/2 - 50, width: 100, height: 100))
+
     init(color: ColorPlayer, size: CGSize, position: CGPoint, column: Int) {
         self.color = color
         self.column = column
@@ -171,6 +186,38 @@ class SelectionView: UIView {
             } else {
                 self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.state.rawValue, height: self.frame.height)
             }
+//             self.controlView.frame = self.frame
         }
+        
+//        if shouldCreateControl {
+//            createControl()
+//        }
+    }
+    
+    func createControl() {
+//        let imageView = UIImageView(frame: CGRect(x: self.frame.width, y: self.frame.height/2, width: 50, height: 50))
+        controlView.layer.cornerRadius = 50
+        controlView.backgroundColor = UIColor(red: 32/255, green: 32/255, blue: 32/255, alpha: 1.0)
+        controlView.layer.borderWidth = 5
+        controlView.layer.borderColor = self.color?.color.cgColor
+//        imageView.frame = CGRect(x: self.frame.width + state.rawValue, y: self.frame.height/2 - 25, width: 50, height: 50)
+        if self.frame.minX > 0 {
+            controlView.frame = CGRect(x: -50, y: self.frame.height/2 - 50, width: 100, height: 100)
+        } else {
+            controlView.frame = CGRect(x: self.state.rawValue - 50 , y: self.frame.height/2 - 50, width: 100, height: 100)
+        }
+        controlView.addSubview(imageView)
+        controlView.isHidden = false
+        imageView.frame = CGRect(x: 25, y: 25, width: 50, height: 50)
+        imageView.tintColor = self.color?.color
+        imageView.isHidden = false
+        imageView.image = UIImage(named: "control")
+        imageView.contentMode = .scaleAspectFit
+        self.addSubview(controlView)
+//        self.addSubview(imageView)
+    }
+    
+    func removeSubViews() {
+        controlView.isHidden = true
     }
 }
