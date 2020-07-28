@@ -250,8 +250,7 @@ extension HomeViewController: MultipeerHandler {
             return player.id == id.description
         }
         
-        let seconds = 5.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.players.removeAll { (removingPlayer) -> Bool in
                 player?.id == removingPlayer.id
             }

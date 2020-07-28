@@ -297,20 +297,16 @@ extension GameScene: MultipeerHandler {
             var direction: UISwipeGestureRecognizer.Direction = .right
             switch move.type {
 
-            case .right : //right
-                print("iphone right")
+            case .right :
                 direction = .right
                 player.instantCol = tileMapping.getIndexWallRightRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .left: //left
-                print("iphone left")
+            case .left:
                 direction = .left
                 player.instantCol = tileMapping.getIndexWallLeftRow(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .up: //up
-                print("iphone up")
+            case .up:
                 direction = .up
                 player.instantRow = tileMapping.getIndexWallUpColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
-            case .down: //down
-                print("iphone down")
+            case .down:
                 direction = .down
                 player.instantRow = tileMapping.getIndexWallDownColumn(instantRow: player.instantRow, instantCol: player.instantCol) ?? 0
             default:

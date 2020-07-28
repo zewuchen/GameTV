@@ -105,6 +105,10 @@ public class MultipeerController: NSObject {
     public var connectedPeers: [MCPeerID] {
         return session.connectedPeers
     }
+
+    public func disconnect() {
+        session.disconnect()
+    }
 }
 
 extension MultipeerController: MCSessionDelegate {
