@@ -170,9 +170,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGc-eT-CbT" userLabel="Round View">
                     <rect key="frame" x="390" y="390" width="1140" height="300"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS4-cG-6Dn">
-                            <rect key="frame" x="450.5" y="92.5" width="239" height="115"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS4-cG-6Dn">
+                            <rect key="frame" x="428" y="92.5" width="284" height="115"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="96"/>
+                            <color key="textColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pegador" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJl-0J-Smm">
+                            <rect key="frame" x="420" y="252.5" width="87" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fugitivo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-Bk-dyK">
+                            <rect key="frame" x="633" y="252.5" width="83" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -212,7 +224,11 @@
                     <constraints>
                         <constraint firstItem="wS4-cG-6Dn" firstAttribute="centerX" secondItem="gGc-eT-CbT" secondAttribute="centerX" id="F6E-dP-OXx"/>
                         <constraint firstItem="wS4-cG-6Dn" firstAttribute="centerY" secondItem="gGc-eT-CbT" secondAttribute="centerY" id="IDv-cW-kyt"/>
+                        <constraint firstItem="wJl-0J-Smm" firstAttribute="centerY" secondItem="ion-W1-038" secondAttribute="centerY" id="U19-Li-XbE"/>
+                        <constraint firstItem="2mV-Bk-dyK" firstAttribute="leading" secondItem="ion-W1-038" secondAttribute="trailing" constant="16" id="b4W-EE-85x"/>
                         <constraint firstAttribute="height" constant="300" id="fIM-1n-7pB"/>
+                        <constraint firstItem="2mV-Bk-dyK" firstAttribute="centerY" secondItem="ion-W1-038" secondAttribute="centerY" id="l6Q-cr-dSK"/>
+                        <constraint firstItem="ion-W1-038" firstAttribute="leading" secondItem="wJl-0J-Smm" secondAttribute="trailing" constant="16" id="ncu-Kc-G4H"/>
                         <constraint firstAttribute="bottom" secondItem="ion-W1-038" secondAttribute="bottom" constant="8" id="rig-CN-zNO"/>
                         <constraint firstItem="ion-W1-038" firstAttribute="centerX" secondItem="gGc-eT-CbT" secondAttribute="centerX" id="sg6-Ix-NDb"/>
                     </constraints>
