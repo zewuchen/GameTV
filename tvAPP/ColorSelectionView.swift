@@ -109,7 +109,6 @@ class SelectionController: UIView {
     
     func updateBasedOnPlayersPosition(players: [Player]) {
         deselectAllViews()
-//        var createControl = false
         for column in selectionViews {
             for view in column {
                 view.removeSubViews()
@@ -117,18 +116,15 @@ class SelectionController: UIView {
         }
         for player in players {
             let view = selectionViews[player.menuPosition.0][player.menuPosition.1]
-//            view.removeSubViews()
             if view.state != .selected {
                 view.state = player.selectionState
             }
             if player.id == players[0].id {
                 view.createControl()
-//                createControl = true
             }
         }
         for column in selectionViews  {
             for view in column {
-//                view.animateOwnState(shouldCreateControl: createControl)
                 view.animateOwnState()
             }
         }
@@ -154,7 +150,6 @@ class SelectionView: UIView {
         self.position = position
         super.init(frame: CGRect(x: position.x, y: position.y, width: state.rawValue, height: size.height))
         self.backgroundColor = color.color
-        //        self.draw(self.frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -186,21 +181,15 @@ class SelectionView: UIView {
             } else {
                 self.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.state.rawValue, height: self.frame.height)
             }
-//             self.controlView.frame = self.frame
         }
-        
-//        if shouldCreateControl {
-//            createControl()
-//        }
     }
     
     func createControl() {
-//        let imageView = UIImageView(frame: CGRect(x: self.frame.width, y: self.frame.height/2, width: 50, height: 50))
         controlView.layer.cornerRadius = 50
-        controlView.backgroundColor = UIColor(red: 32/255, green: 32/255, blue: 32/255, alpha: 1.0)
+        controlView.backgroundColor = DesignSystem.Colors.gray
         controlView.layer.borderWidth = 5
         controlView.layer.borderColor = self.color?.color.cgColor
-//        imageView.frame = CGRect(x: self.frame.width + state.rawValue, y: self.frame.height/2 - 25, width: 50, height: 50)
+        controlView.clipsToBounds = true
         if self.frame.minX > 0 {
             controlView.frame = CGRect(x: -50, y: self.frame.height/2 - 50, width: 100, height: 100)
         } else {
@@ -214,7 +203,6 @@ class SelectionView: UIView {
         imageView.image = UIImage(named: "control")
         imageView.contentMode = .scaleAspectFit
         self.addSubview(controlView)
-//        self.addSubview(imageView)
     }
     
     func removeSubViews() {

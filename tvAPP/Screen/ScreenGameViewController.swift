@@ -53,8 +53,6 @@ class ScreenGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initScene()
-//        timerController()
-//        timer.fire()
         initViews()
     }
     
@@ -82,7 +80,7 @@ class ScreenGameViewController: UIViewController {
         setRandomPlayerAsPegador()
         initPositions()
         self.setRoundState()
-        if let scene = GameScene(fileNamed: "GameScene") as? GameScene {
+        if let scene = GameScene(fileNamed: "GameScene") {
             scene.scaleMode = .fill
             scene.gameDelegate = self
             gameView.backgroundColor = DesignSystem.Colors.gray
@@ -92,10 +90,7 @@ class ScreenGameViewController: UIViewController {
         }
         
         gameView.ignoresSiblingOrder = true
-        
-//        gameView.showsFPS = true
-//        gameView.showsNodeCount = true
-        
+
         let response: String = "START"
         if let responseData = response.data(using: .utf8) {
             MultipeerController.shared().sendToAllPeers(responseData, reliably: false)
@@ -145,13 +140,11 @@ class ScreenGameViewController: UIViewController {
             self.totalTime -= 1
             self.counterLabel.text = self.timeString(time: TimeInterval(self.totalTime))
         }
-//        timer?.invalidate()
     }
     
     func timerRestart() {
         self.initScene()
         self.totalTime = 60
-//        self.timerController()
     }
     
     func setPointToPlayer(player: Player) {
@@ -224,7 +217,6 @@ class ScreenGameViewController: UIViewController {
         }
         
         timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
-//            self.timer?.fire()
             self.timerController()
             self.roundView.isHidden = true
             self.unlockAllPlayers()

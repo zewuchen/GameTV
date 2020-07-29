@@ -43,12 +43,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        MultipeerController.shared().disconnect()
-        DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let vc = storyboard.instantiateViewController(identifier: "viewController") as? ViewController {
-                UIApplication.shared.windows.first?.rootViewController = vc
-                UIApplication.shared.windows.first?.makeKeyAndVisible()
+        let ingame = UserDefaults.standard.bool(forKey: "InGame")
+
+        if !ingame {
+            MultipeerController.shared().disconnect()
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let vc = storyboard.instantiateViewController(identifier: "viewController") as? ViewController {
+                    UIApplication.shared.windows.first?.rootViewController = vc
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+                }
             }
         }
         // Called as the scene transitions from the foreground to the background.

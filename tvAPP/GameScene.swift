@@ -52,10 +52,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.physicsBody?.friction = 1.0
             let trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             trail.name = "trail"
+            trail.strokeColor = .clear
             square.addChild(trail)
             if player.isPegador {
-                let squarePegador = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+                let squarePegador = SKShapeNode(rectOf: CGSize(width: 14, height: 14))
                 squarePegador.fillColor = .black
+                squarePegador.strokeColor = .clear
                 squarePegador.position = .zero
                 square.addChild(squarePegador)
             }
@@ -70,7 +72,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.chao?.addChild(square)
             }
         }
-        //        setRandomPlayerAsPegador()
     }
     
     func collisionBetween(square: SKNode, object: SKNode) {
@@ -141,30 +142,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if direction == .up {
             trail.yScale = 2
             trail.xScale = 1
-            //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .down
             trail.position = CGPoint(x: 0, y: -32)
         } else if direction == .down {
             trail.yScale = 2
             trail.xScale = 1
-            //            trail = SKShapeNode(rectOf: CGSize(width: 32, height: 64))
             gradientDirection = .up
             trail.position = CGPoint(x: 0, y: 32)
         } else if direction == .left {
             trail.xScale = 2
             trail.yScale = 1
-            //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .right
             trail.position = CGPoint(x: 32, y: 0)
         } else if direction == .right {
             trail.xScale = 2
             trail.yScale = 1
-            //            trail = SKShapeNode(rectOf: CGSize(width: 64, height: 32))
             gradientDirection = .left
             trail.position = CGPoint(x: -32, y: 0)
         }
         let texture = SKTexture(size: CGSize(width: 32, height: 32), color1: color1, color2: color2, direction: gradientDirection)
-        //        square.addChild(trail)
         trail.fillColor = .white
         trail.strokeColor = .clear
         trail.alpha = 0
@@ -216,17 +212,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameDelegate?.endGame(winnerPlayer: gPlayerA)
             } else {
                 totalPlayersInGame -= 1
-//                self.players.removeAll { (player) -> Bool in
-//                    return player.id == gPlayerB.id
-//                }
-//                self.removeChildren(in: [contact.bodyB.node!])
-//                contact.bodyB.node?.isHidden = true
                 contact.bodyB.node?.removeFromParent()
                 gPlayerA.lock = false
-//                squares.removeAll { (square) -> Bool in
-//                    return square == contact.bodyB.node
-//                }
-//                unlockAll()
+                guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
+                guard let newColumn = self.chao?.tileColumnIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
+                gPlayerA.instantRow = newRow
+                gPlayerA.instantCol = newColumn
                 gameDelegate?.removePlayer(player: gPlayerB)
             }
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
@@ -235,17 +226,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameDelegate?.endGame(winnerPlayer: gPlayerB)
             } else {
                 totalPlayersInGame -= 1
-//                self.players.removeAll { (player) -> Bool in
-//                    return player.id == gPlayerA.id
-//                }
-//                contact.bodyA.node?.isHidden = true
-//                squares.removeAll { (square) -> Bool in
-//                    return square == contact.bodyA.node
-//                }
                 contact.bodyA.node?.removeFromParent()
                 gPlayerB.lock = false
-//                unlockAll()
-                //                self.removeChildren(in: [contact.bodyA.node!])
+                guard let newRowB = self.chao?.tileRowIndex(fromPosition: contact.bodyB.node!.position) else { fatalError() }
+                guard let newColumnB = self.chao?.tileColumnIndex(fromPosition: contact.bodyB.node!.position) else { fatalError() }
+                gPlayerB.instantRow = newRowB
+                gPlayerB.instantCol = newColumnB
                 gameDelegate?.removePlayer(player: gPlayerA)
             }
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {

@@ -61,9 +61,7 @@ class ScoreController: UIView {
             let view = scoreViews[player.menuPosition.1]
             view.state = player.selectionState
             view.animateOwnState(scorePosition: scorePosition, width: self.viewWidth ?? 0, player: player)
-//            view.createPoints()
         }
-//        updatePoints(players: players)
     }
     
     func updatePoints(players: [Player]) {
