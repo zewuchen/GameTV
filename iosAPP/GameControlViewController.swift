@@ -67,7 +67,12 @@ class GameControlViewController: UIViewController {
             DispatchQueue.main.async {
                 colorView.backgroundColor = color
             }
+            UserDefaults.standard.set(true, forKey: "InGame")
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.set(false, forKey: "InGame")
     }
 }
 
