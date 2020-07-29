@@ -46,7 +46,7 @@ class GameScene: SKScene {
     }
     
     override func keyDown(with event: NSEvent) {
-        guard var player = players.first else { return }
+        guard let player = players.first else { return }
         if !player.lock {
             let character = Int16(event.keyCode)
             let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow))!
@@ -118,8 +118,8 @@ extension GameScene: MultipeerHandler {
             }
         }
 
-        guard var player = playerAux else { return }
-        guard var square = squareAux else { return }
+        guard let player = playerAux else { return }
+        guard let square = squareAux else { return }
 
         if !player.lock {
             guard let instantPos = (chao?.centerOfTile(atColumn: player.instantCol, row: player.instantRow)) else { return }

@@ -35,6 +35,7 @@ final class SoundManager {
             soundURL = Bundle.main.url(forResource: "colisao_parede", withExtension: "mp3")
         }
 
+        #if !os(macOS)
         do {
             try AVAudioSession.sharedInstance().setMode(.default)
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
@@ -43,6 +44,7 @@ final class SoundManager {
         } catch {
             print(error.localizedDescription)
         }
+        #endif
 
         if sound != .backgroundSong {
             player?.play()
