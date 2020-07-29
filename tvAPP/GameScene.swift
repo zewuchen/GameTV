@@ -214,6 +214,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 totalPlayersInGame -= 1
                 contact.bodyB.node?.removeFromParent()
                 gPlayerA.lock = false
+                guard let newRow = self.chao?.tileRowIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
+                guard let newColumn = self.chao?.tileColumnIndex(fromPosition: contact.bodyA.node!.position) else { fatalError() }
+                gPlayerA.instantRow = newRow
+                gPlayerA.instantCol = newColumn
                 gameDelegate?.removePlayer(player: gPlayerB)
             }
         } else if !gPlayerA.isPegador && gPlayerB.isPegador {
@@ -224,6 +228,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 totalPlayersInGame -= 1
                 contact.bodyA.node?.removeFromParent()
                 gPlayerB.lock = false
+                guard let newRowB = self.chao?.tileRowIndex(fromPosition: contact.bodyB.node!.position) else { fatalError() }
+                guard let newColumnB = self.chao?.tileColumnIndex(fromPosition: contact.bodyB.node!.position) else { fatalError() }
+                gPlayerB.instantRow = newRowB
+                gPlayerB.instantCol = newColumnB
                 gameDelegate?.removePlayer(player: gPlayerA)
             }
         } else if (gPlayerA.isPegador && gPlayerB.isPegador) || (!gPlayerA.isPegador && !gPlayerB.isPegador) {
