@@ -197,9 +197,10 @@ class SelectionView: UIView {
     func createControl() {
 //        let imageView = UIImageView(frame: CGRect(x: self.frame.width, y: self.frame.height/2, width: 50, height: 50))
         controlView.layer.cornerRadius = 50
-        controlView.backgroundColor = UIColor(red: 32/255, green: 32/255, blue: 32/255, alpha: 1.0)
+        controlView.backgroundColor = DesignSystem.Colors.gray
         controlView.layer.borderWidth = 5
         controlView.layer.borderColor = self.color?.color.cgColor
+        controlView.clipsToBounds = true
 //        imageView.frame = CGRect(x: self.frame.width + state.rawValue, y: self.frame.height/2 - 25, width: 50, height: 50)
         if self.frame.minX > 0 {
             controlView.frame = CGRect(x: -50, y: self.frame.height/2 - 50, width: 100, height: 100)
