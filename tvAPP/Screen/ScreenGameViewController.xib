@@ -195,11 +195,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtP-EV-duY">
-                                            <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                            <rect key="frame" x="12.5" y="12.5" width="25" height="25"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="G62-1W-4hB"/>
-                                                <constraint firstAttribute="height" constant="20" id="mIB-rL-ivl"/>
+                                                <constraint firstAttribute="width" constant="25" id="G62-1W-4hB"/>
+                                                <constraint firstAttribute="height" constant="25" id="mIB-rL-ivl"/>
                                             </constraints>
                                         </view>
                                     </subviews>

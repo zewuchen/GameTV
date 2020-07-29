@@ -52,10 +52,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             square.physicsBody?.friction = 1.0
             let trail = SKShapeNode(rectOf: CGSize(width: 32, height: 32))
             trail.name = "trail"
+            trail.strokeColor = .clear
             square.addChild(trail)
             if player.isPegador {
-                let squarePegador = SKShapeNode(rectOf: CGSize(width: 10, height: 10))
+                let squarePegador = SKShapeNode(rectOf: CGSize(width: 14, height: 14))
                 squarePegador.fillColor = .black
+                squarePegador.strokeColor = .clear
                 squarePegador.position = .zero
                 square.addChild(squarePegador)
             }
