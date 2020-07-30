@@ -315,6 +315,7 @@ extension GameScene: MultipeerHandler {
                 player.lock = true
                 square.run(action, completion: {
                     player.lock = false
+                    self.soundEffect.play(sound: .wallCollision)
                 })
             }
         }
