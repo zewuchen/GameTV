@@ -77,10 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func collisionBetween(square: SKNode, object: SKNode) {
         if object.name == "good" {
-            soundEffect.play(sound: .playerCollision)
             destroy(square: square)
         } else if object.name == "bad" {
-            soundEffect.play(sound: .playerEaten)
             destroy(square: square)
         }
     }
@@ -131,6 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let action = SKAction.move(to: destination, duration:duration)
                 players[0].lock = true
                 self.squares.first??.run(action, completion: {
+                    self.soundEffect.play(sound: .wallCollision)
                     self.players[0].lock = false
                 })
             }
