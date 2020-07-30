@@ -80,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             soundEffect.play(sound: .playerCollision)
             destroy(square: square)
         } else if object.name == "bad" {
+            soundEffect.play(sound: .playerEaten)
             destroy(square: square)
         }
     }
