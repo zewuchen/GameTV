@@ -44,7 +44,7 @@ class ScreenGameViewController: UIViewController {
     
     var players = [Player]()
     var roundPlayers = [Player]()
-    var totalTime = 60
+    var totalTime = 30
     var map1 = DesignSystemMap1()
     var state: ScreenGameState = .playing
     var timer: Timer?
@@ -144,7 +144,7 @@ class ScreenGameViewController: UIViewController {
     
     func timerRestart() {
         self.initScene()
-        self.totalTime = 60
+        self.totalTime = 30
     }
     
     func setPointToPlayer(player: Player) {
@@ -192,7 +192,7 @@ class ScreenGameViewController: UIViewController {
     }
     
     func setRoundState() {
-        self.counterLabel.text = "01:00"
+        self.counterLabel.text = "00:30"
         self.roundView.isHidden = false
         self.roundLabel.text = "Round \(roundCounter)"
         roundCounter += 1
@@ -257,7 +257,7 @@ class ScreenGameViewController: UIViewController {
         self.setRandomPlayerAsPegador()
         self.roundCounter = 1
         self.roundLabel.text = "Round \(roundCounter)"
-        self.counterLabel.text = "01:00"
+        self.counterLabel.text = "00:30"
     }
     
     func resetPoints() {
@@ -348,7 +348,7 @@ extension ScreenGameViewController: GameSceneDelegate {
     }
     
     func endGame(winnerPlayer: Player) {
-        self.totalTime = 60
+        self.totalTime = 30
         self.initScene()
         setPointToPlayer(player: winnerPlayer)
     }
