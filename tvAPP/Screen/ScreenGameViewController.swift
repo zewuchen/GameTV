@@ -344,7 +344,6 @@ extension ScreenGameViewController: GameSceneDelegate {
         self.roundPlayers.removeAll { (player) -> Bool in
             return player.id == player.id
         }
-        self.totalTime += 10
     }
     
     func endGame(winnerPlayer: Player) {
