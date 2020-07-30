@@ -21,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var squares: [SKShapeNode?] = []
     var players = [Player]()
     var totalPlayersInGame = 0
+    var soundEffect = SoundManager()
     
     let tileMapping = TileMapping()
     var player1 = false // Teste
@@ -76,6 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func collisionBetween(square: SKNode, object: SKNode) {
         if object.name == "good" {
+            soundEffect.play(sound: .playerCollision)
             destroy(square: square)
         } else if object.name == "bad" {
             destroy(square: square)
